@@ -3,7 +3,7 @@
 
 > Website marketing dan booking unit rumah subsidi pemerintah (FLPP) di Paringin, Kabupaten Balangan, Kalimantan Selatan. Data unit, stok, dan progress pembangunan terhubung langsung ke Google Sheets sehingga bisa diupdate kapan saja tanpa menyentuh kode.
 
-🌐 **Live Site:** [https://username.github.io/perumahan-paringin-asri](https://maul042026.github.io/perumahan-paringin/)
+🌐 **Live Site:** [https://maul042026.github.io/perumahan-paringin/](https://maul042026.github.io/perumahan-paringin/)
 
 ---
 
