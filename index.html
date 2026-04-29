@@ -244,10 +244,14 @@ footer p,footer a{font-size:13px;line-height:1.8;color:rgba(255,255,255,.7);text
 footer a:hover{color:white}
 .footer-copy{max-width:1100px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.15);font-size:12px;color:rgba(255,255,255,.5)}
 
-/* ===== WHATSAPP FLOAT ===== */
-.wa-float{position:fixed;bottom:1.5rem;right:1.5rem;z-index:150;display:flex;align-items:center;gap:.75rem}
-.wa-btn{background:#25D366;color:white;border:none;border-radius:100px;padding:12px 20px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .15s,box-shadow .15s;text-decoration:none}
-.wa-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,211,102,.5)}
+/* ===== WHATSAPP FLOAT ICON ===== */
+.wa-float{position:fixed;bottom:1.75rem;right:1.75rem;z-index:150;display:flex;flex-direction:column;align-items:flex-end;gap:.5rem}
+.wa-tooltip{background:rgba(0,0,0,.75);color:white;font-size:12px;font-weight:600;padding:6px 12px;border-radius:100px;white-space:nowrap;opacity:0;transform:translateX(8px);transition:opacity .2s,transform .2s;pointer-events:none}
+.wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0)}
+.wa-btn{background:#25D366;color:white;border:none;border-radius:50%;width:58px;height:58px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s,box-shadow .2s;text-decoration:none;cursor:pointer;animation:waPulse 2.5s infinite}
+.wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.6);animation:none}
+.wa-btn svg{width:30px;height:30px;fill:white}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}50%{box-shadow:0 4px 28px rgba(37,211,102,.75)}}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:640px){
@@ -430,6 +434,7 @@ footer a:hover{color:white}
   <div class="section-desc">Foto progres terkini langsung dari lokasi — diperbarui berkala.</div>
   <div class="galeri-tabs">
     <button class="galeri-tab active" onclick="filterGaleri('semua',this)">Semua</button>
+    <button class="galeri-tab" onclick="filterGaleri('tampak depan',this)">Tampak Depan</button>
     <button class="galeri-tab" onclick="filterGaleri('pondasi',this)">Pondasi</button>
     <button class="galeri-tab" onclick="filterGaleri('struktur',this)">Struktur</button>
     <button class="galeri-tab" onclick="filterGaleri('finishing',this)">Finishing</button>
@@ -627,10 +632,15 @@ footer a:hover{color:white}
   <div class="modal"><button class="modal-close" onclick="closeModal()">✕</button><div id="modalBody"></div></div>
 </div>
 
-<!-- WA FLOAT BUTTON -->
-<a class="wa-btn" id="waFloat" href="https://wa.me/6281258001180?text=Halo%2C%20saya%20ingin%20informasi%20Garuda%20Maharam%20Residence" target="_blank">
-  💬 Tanya via WhatsApp
-</a>
+!-- WA FLOAT ICON -->
+<div class="wa-float">
+  <div class="wa-tooltip">💬 Tanya via WhatsApp</div>
+  <a class="wa-btn" id="waFloat" href="https://wa.me/6281258001180?text=Halo%2C%20saya%20ingin%20informasi%20Garuda%20Maharam%20Residence" target="_blank" title="Chat WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+</div>
 
 <script>
 // ==============================================================
@@ -854,10 +864,16 @@ async function loadGaleri() {
   try {
     const res = await fetch(SCRIPT_URL + '?action=galeri');
     const data = await res.json();
-    allFotos = Array.isArray(data) ? data.filter(f => f.drive_id) : [];
+    // Filter hanya baris yang punya drive_id, trim semua nilai
+    allFotos = Array.isArray(data) ? data.filter(f => f.drive_id && String(f.drive_id).trim()) : [];
     filteredFotos = [...allFotos];
-    allFotos.length ? renderGaleri(allFotos) : renderGaleriPlaceholder();
+    if (allFotos.length) {
+      renderGaleri(allFotos);
+    } else {
+      renderGaleriPlaceholder();
+    }
   } catch(e) {
+    console.error('Galeri error:', e);
     renderGaleriPlaceholder();
   }
 }
@@ -866,21 +882,31 @@ function renderGaleri(fotos) {
   filteredFotos = fotos;
   const grid = document.getElementById('galeriGrid');
   if (!fotos.length) { renderGaleriPlaceholder(); return; }
-  grid.innerHTML = fotos.map((f,i) => `
+  grid.innerHTML = fotos.map((f,i) => {
+    const id = String(f.drive_id).trim();
+    const judul = f.judul || '';
+    const tgl = f.tanggal || '';
+    return `
     <div class="galeri-item" onclick="openLB(${i})">
-      <img src="https://drive.google.com/thumbnail?id=${f.drive_id}&sz=w600" alt="${f.judul||''}"
-        onerror="this.style.display='none'">
+      <img src="https://drive.google.com/thumbnail?id=${id}&sz=w600" alt="${judul}"
+        loading="lazy"
+        onerror="this.parentElement.style.background='var(--gray-50)';this.style.display='none'">
       <div class="galeri-overlay"><span>🔍</span></div>
-      <div class="galeri-caption">${f.judul||''}${f.tanggal?' · '+f.tanggal:''}</div>
-    </div>`).join('');
+      <div class="galeri-caption">${judul}${tgl?' · '+tgl:''}</div>
+    </div>`;
+  }).join('');
 }
 
 function renderGaleriPlaceholder() {
-  const labels = ['🏗️ Pondasi','🧱 Dinding','🪟 Jendela','🚪 Pintu','🏠 Tampak Depan','📐 Denah'];
+  const labels = [
+    {icon:'🏗️',text:'Pondasi'},{icon:'🧱',text:'Dinding'},
+    {icon:'🪟',text:'Jendela'},{icon:'🚪',text:'Pintu'},
+    {icon:'🏠',text:'Tampak Depan'},{icon:'📐',text:'Denah'}
+  ];
   document.getElementById('galeriGrid').innerHTML = labels.map(l => `
     <div class="galeri-placeholder-card">
-      <div style="font-size:2rem">${l.split(' ')[0]}</div>
-      <div style="font-weight:600;font-size:13px">${l.split(' ').slice(1).join(' ')}</div>
+      <div style="font-size:2rem">${l.icon}</div>
+      <div style="font-weight:600;font-size:13px">${l.text}</div>
       <div style="font-size:11px;opacity:.5">Belum tersedia</div>
     </div>`).join('');
 }
@@ -888,7 +914,10 @@ function renderGaleriPlaceholder() {
 function filterGaleri(kat, btn) {
   document.querySelectorAll('.galeri-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
-  const fotos = kat === 'semua' ? allFotos : allFotos.filter(f=>(f.kategori||'').toLowerCase()===kat);
+  // Case-insensitive + trim agar cocok meski huruf kapital di Sheets
+  const fotos = kat === 'semua'
+    ? allFotos
+    : allFotos.filter(f => (f.kategori||'').trim().toLowerCase() === kat.toLowerCase());
   fotos.length ? renderGaleri(fotos) : renderGaleriPlaceholder();
 }
 
@@ -899,15 +928,18 @@ function openLB(idx) {
   lbIndex = idx; updateLB();
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
-  document.getElementById('lbThumbs').innerHTML = filteredFotos.map((f,i) =>
-    `<img class="lb-thumb ${i===idx?'active':''}"
-      src="https://drive.google.com/thumbnail?id=${f.drive_id}&sz=w120"
-      onclick="jumpLB(${i})" alt="">`).join('');
+  document.getElementById('lbThumbs').innerHTML = filteredFotos.map((f,i) => {
+    const id = String(f.drive_id).trim();
+    return `<img class="lb-thumb ${i===idx?'active':''}"
+      src="https://drive.google.com/thumbnail?id=${id}&sz=w120"
+      onclick="jumpLB(${i})" alt="">`;
+  }).join('');
 }
 function updateLB() {
   const f = filteredFotos[lbIndex];
   if (!f) return;
-  document.getElementById('lbImg').src = `https://drive.google.com/thumbnail?id=${f.drive_id}&sz=w1200`;
+  const id = String(f.drive_id).trim();
+  document.getElementById('lbImg').src = `https://drive.google.com/thumbnail?id=${id}&sz=w1200`;
   document.getElementById('lbCaption').textContent = (f.judul||'') + (f.tanggal?' · '+f.tanggal:'');
   document.getElementById('lbCounter').textContent = (lbIndex+1)+' / '+filteredFotos.length;
   document.querySelectorAll('.lb-thumb').forEach((t,i)=>t.classList.toggle('active',i===lbIndex));
