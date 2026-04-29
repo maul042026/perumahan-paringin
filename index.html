@@ -632,7 +632,7 @@ footer a:hover{color:white}
   <div class="modal"><button class="modal-close" onclick="closeModal()">✕</button><div id="modalBody"></div></div>
 </div>
 
-!-- WA FLOAT ICON -->
+<!-- WA FLOAT ICON -->
 <div class="wa-float">
   <div class="wa-tooltip">💬 Tanya via WhatsApp</div>
   <a class="wa-btn" id="waFloat" href="https://wa.me/6281258001180?text=Halo%2C%20saya%20ingin%20informasi%20Garuda%20Maharam%20Residence" target="_blank" title="Chat WhatsApp">
@@ -741,7 +741,7 @@ function renderUnits() {
           ${habis ? '⛔ Stok habis' : stok + ' unit tersisa dari ' + total + ' unit'}
         </div>
         <div class="unit-name">${u.nama || 'Tipe '+u.tipe}</div>
-        <div class="unit-price">Rp ${harga.toLocaleString('id')} <span>· harga subsidi </span></div>
+        <div class="unit-price">Rp ${harga.toLocaleString('id')} <span>· harga subsidi</span></div>
         <div class="unit-specs">
           <div class="spec"><div class="val">${u.lb||'—'} m²</div><div class="key">Luas Bangunan</div></div>
           <div class="spec"><div class="val">${u.lt||'—'} m²</div><div class="key">Luas Tanah</div></div>
@@ -860,18 +860,20 @@ function renderSiteplan() {
 // ==============================================================
 // GALERI
 // ==============================================================
+// Fungsi normalisasi: trim + hapus spasi ganda + lowercase
+function normalizeKat(str) {
+  return (str||'').trim().replace(/\s+/g,' ').toLowerCase();
+}
+
 async function loadGaleri() {
   try {
     const res = await fetch(SCRIPT_URL + '?action=galeri');
     const data = await res.json();
-    // Filter hanya baris yang punya drive_id, trim semua nilai
-    allFotos = Array.isArray(data) ? data.filter(f => f.drive_id && String(f.drive_id).trim()) : [];
+    allFotos = Array.isArray(data)
+      ? data.filter(f => f.drive_id && String(f.drive_id).trim())
+      : [];
     filteredFotos = [...allFotos];
-    if (allFotos.length) {
-      renderGaleri(allFotos);
-    } else {
-      renderGaleriPlaceholder();
-    }
+    allFotos.length ? renderGaleri(allFotos) : renderGaleriPlaceholder();
   } catch(e) {
     console.error('Galeri error:', e);
     renderGaleriPlaceholder();
@@ -914,10 +916,10 @@ function renderGaleriPlaceholder() {
 function filterGaleri(kat, btn) {
   document.querySelectorAll('.galeri-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
-  // Case-insensitive + trim agar cocok meski huruf kapital di Sheets
+  // normalizeKat: trim + hapus spasi ganda + lowercase — cocok meski Sheets pakai "tampak  depan"
   const fotos = kat === 'semua'
     ? allFotos
-    : allFotos.filter(f => (f.kategori||'').trim().toLowerCase() === kat.toLowerCase());
+    : allFotos.filter(f => normalizeKat(f.kategori) === normalizeKat(kat));
   fotos.length ? renderGaleri(fotos) : renderGaleriPlaceholder();
 }
 
