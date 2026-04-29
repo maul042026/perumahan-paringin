@@ -9,7 +9,7 @@
 :root {
   --teal-50:#E1F5EE;--teal-100:#9FE1CB;--teal-400:#1D9E75;--teal-600:#0F6E56;--teal-800:#085041;
   --green-50:#EAF3DE;--green-600:#3B6D11;--green-800:#27500A;
-  --amber-50:#FAEEDA;--amber-400:#EF9F27;--amber-600:#854F0B;
+  --amber-50:#FAEEDA;--amber-100:#FAC775;--amber-400:#EF9F27;--amber-600:#854F0B;
   --gray-50:#F1EFE8;--gray-100:#D3D1C7;--gray-400:#888780;--gray-600:#5F5E5A;
   --coral-50:#FAECE7;--coral-400:#D85A30;--coral-600:#993C1D;
   --blue-50:#E6F1FB;--blue-600:#185FA5;
@@ -34,8 +34,8 @@ nav{background:white;border-bottom:1px solid var(--border);padding:0 2rem;displa
 .nav-logo{width:36px;height:36px;background:var(--teal-600);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px}
 .nav-name{font-weight:700;font-size:15px;line-height:1.2}
 .nav-sub{font-size:11px;color:var(--text-muted)}
-.nav-links{display:flex;gap:1.5rem;align-items:center}
-.nav-links a{font-size:14px;color:var(--text-muted);text-decoration:none;font-weight:500;cursor:pointer}
+.nav-links{display:flex;gap:1.25rem;align-items:center}
+.nav-links a{font-size:13px;color:var(--text-muted);text-decoration:none;font-weight:500;cursor:pointer}
 .nav-links a:hover{color:var(--teal-600)}
 .btn-primary{background:var(--teal-600);color:white;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
 .btn-primary:hover{background:var(--teal-800)}
@@ -64,7 +64,7 @@ section{padding:4rem 2rem;max-width:1100px;margin:0 auto}
 .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;margin-bottom:.75rem}
 .section-desc{color:var(--text-muted);font-size:1rem;max-width:560px}
 
-/* ===== LIVE INDICATOR ===== */
+/* ===== LIVE BADGE ===== */
 .live-badge{display:inline-flex;align-items:center;gap:6px;background:var(--teal-50);border:1px solid var(--teal-100);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--teal-600);margin-bottom:1.5rem}
 .live-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal-400);display:inline-block;animation:pulse 2s infinite}
 
@@ -141,6 +141,54 @@ section{padding:4rem 2rem;max-width:1100px;margin:0 auto}
 .syarat-card li:last-child{border-bottom:none}
 .syarat-card li::before{content:'→';position:absolute;left:0;color:var(--teal-600)}
 
+/* ===== SITEPLAN ===== */
+.siteplan-wrap{margin-top:2rem}
+.siteplan-img-box{position:relative;background:white;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;cursor:zoom-in}
+.siteplan-img-box img{width:100%;display:block;transition:transform .3s}
+.siteplan-img-box:hover img{transform:scale(1.02)}
+.siteplan-zoom-btn{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.55);color:white;border:none;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;backdrop-filter:blur(4px)}
+.siteplan-placeholder{height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;color:var(--text-muted);background:var(--gray-50);border-radius:var(--radius-lg)}
+.siteplan-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:1.25rem}
+.siteplan-stat{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center}
+.siteplan-stat .snum{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--teal-600)}
+.siteplan-stat .slbl{font-size:12px;color:var(--text-muted);margin-top:2px}
+.upload-guide{background:var(--amber-50);border:1px solid var(--amber-100);border-radius:var(--radius);padding:1.25rem;margin-top:1.25rem}
+.upload-guide h4{font-size:13px;font-weight:700;color:var(--amber-600);margin-bottom:.5rem}
+.upload-guide ol{padding-left:1.25rem;color:var(--text-muted);font-size:13px;line-height:2}
+.upload-guide code{background:rgba(0,0,0,.07);border-radius:4px;padding:1px 6px;font-size:12px;font-family:monospace}
+
+/* ===== GALERI ===== */
+.galeri-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.galeri-tab{background:white;border:1.5px solid var(--border);border-radius:100px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--text-muted);transition:all .15s}
+.galeri-tab.active{background:var(--teal-600);border-color:var(--teal-600);color:white}
+.galeri-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
+.galeri-item{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;cursor:pointer;background:var(--gray-50)}
+.galeri-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.galeri-item:hover img{transform:scale(1.06)}
+.galeri-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;transition:background .2s}
+.galeri-item:hover .galeri-overlay{background:rgba(0,0,0,.28)}
+.galeri-overlay span{color:white;font-size:1.8rem;opacity:0;transition:opacity .2s}
+.galeri-item:hover .galeri-overlay span{opacity:1}
+.galeri-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.65));color:white;font-size:12px;font-weight:600;padding:.5rem .75rem;transform:translateY(100%);transition:transform .2s}
+.galeri-item:hover .galeri-caption{transform:translateY(0)}
+.galeri-placeholder-card{aspect-ratio:4/3;background:var(--gray-50);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted);font-size:12px;gap:.5rem;border:1.5px dashed var(--gray-100)}
+
+/* ===== LIGHTBOX ===== */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:500;align-items:center;justify-content:center}
+.lightbox.open{display:flex}
+.lightbox-inner{position:relative;display:flex;flex-direction:column;align-items:center;max-width:92vw}
+.lightbox-inner img{max-width:90vw;max-height:78vh;object-fit:contain;border-radius:8px}
+.lightbox-caption{color:rgba(255,255,255,.75);font-size:13px;margin-top:.75rem;text-align:center}
+.lb-close{position:fixed;top:1.25rem;right:1.25rem;background:rgba(255,255,255,.15);border:none;color:white;width:42px;height:42px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:501}
+.lb-prev,.lb-next{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:none;color:white;width:48px;height:48px;border-radius:50%;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;z-index:501}
+.lb-prev{left:1.25rem}
+.lb-next{right:1.25rem}
+.lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.3)}
+.lb-counter{position:fixed;bottom:4.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.55);font-size:13px;z-index:501}
+.lb-thumbs{display:flex;gap:.5rem;margin-top:.75rem;overflow-x:auto;max-width:80vw;padding-bottom:.25rem}
+.lb-thumb{width:56px;height:42px;object-fit:cover;border-radius:5px;cursor:pointer;opacity:.45;transition:opacity .15s;border:2px solid transparent;flex-shrink:0}
+.lb-thumb.active{opacity:1;border-color:white}
+
 /* ===== BOOKING FORM ===== */
 .booking-wrap{background:white;border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.5rem;margin-top:2rem;max-width:680px;margin-left:auto;margin-right:auto}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
@@ -151,7 +199,7 @@ section{padding:4rem 2rem;max-width:1100px;margin:0 auto}
 .form-group input,.form-group select,.form-group textarea{border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;font-size:14px;font-family:inherit;color:var(--text);background:white;transition:border-color .15s}
 .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--teal-400)}
 .form-group textarea{resize:vertical;min-height:80px}
-.form-submit{width:100%;padding:14px;background:var(--teal-600);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s;position:relative}
+.form-submit{width:100%;padding:14px;background:var(--teal-600);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
 .form-submit:disabled{background:var(--gray-400);cursor:not-allowed}
 .form-submit:hover:not(:disabled){background:var(--teal-800)}
 .booking-success{display:none;text-align:center;padding:2rem}
@@ -168,7 +216,7 @@ section{padding:4rem 2rem;max-width:1100px;margin:0 auto}
 .faq-a.open{max-height:300px}
 .faq-a p{padding:0 1.25rem 1rem;font-size:14px;color:var(--text-muted);line-height:1.7}
 
-/* ===== ERROR STATE ===== */
+/* ===== ERROR ===== */
 .error-banner{background:#FCEBEB;border:1px solid #F7C1C1;border-radius:var(--radius);padding:1rem 1.25rem;color:#791F1F;font-size:14px;margin-top:1rem;display:none}
 
 /* ===== MODAL ===== */
@@ -196,17 +244,23 @@ footer p,footer a{font-size:13px;line-height:1.8;color:rgba(255,255,255,.7);text
 footer a:hover{color:white}
 .footer-copy{max-width:1100px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.15);font-size:12px;color:rgba(255,255,255,.5)}
 
+/* ===== WHATSAPP FLOAT ===== */
+.wa-float{position:fixed;bottom:1.5rem;right:1.5rem;z-index:150;display:flex;align-items:center;gap:.75rem}
+.wa-btn{background:#25D366;color:white;border:none;border-radius:100px;padding:12px 20px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .15s,box-shadow .15s;text-decoration:none}
+.wa-btn:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,211,102,.5)}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width:640px){
   .nav-links{display:none}
   .hero{padding:3.5rem 1.5rem 3rem}
   section{padding:3rem 1.25rem}
+  .booking-wrap{padding:1.5rem}
 }
 </style>
 </head>
 <body>
 
-<!-- LOADING SCREEN -->
+<!-- LOADING -->
 <div id="loadingScreen">
   <div class="loading-logo">🏠</div>
   <div class="loading-title">Garuda Maharam Residence</div>
@@ -217,7 +271,7 @@ footer a:hover{color:white}
 <!-- NAV -->
 <nav>
   <div class="nav-brand">
-    <div class="nav-logo">PR</div>
+    <div class="nav-logo">GM</div>
     <div>
       <div class="nav-name" id="navNama">Garuda Maharam Residence</div>
       <div class="nav-sub">PT Rusdi Rahmi Property · Paringin, Balangan</div>
@@ -226,6 +280,8 @@ footer a:hover{color:white}
   <div class="nav-links">
     <a onclick="goTo('unit')">Tipe Unit</a>
     <a onclick="goTo('kpr')">Simulasi KPR</a>
+    <a onclick="goTo('siteplan')">Siteplan</a>
+    <a onclick="goTo('galeri')">Galeri</a>
     <a onclick="goTo('lokasi')">Lokasi</a>
     <a onclick="goTo('syarat')">Syarat</a>
     <a onclick="goTo('faq')">FAQ</a>
@@ -237,14 +293,14 @@ footer a:hover{color:white}
 <div class="hero">
   <div class="hero-badge">🏠 PROGRAM RUMAH SUBSIDI FLPP 2026</div>
   <h1>Rumah Impian<br><span>Terjangkau &amp; Berkualitas</span><br>di Paringin</h1>
-  <p id="heroDesc">Hunian subsidi pemerintah dengan cicilan mulai Rp 1,6 juta/bulan. DP ringan, proses mudah, lokasi strategis di jantung Kabupaten Balangan.</p>
+  <p id="heroDesc">Hunian subsidi pemerintah dengan cicilan terjangkau. DP ringan, proses mudah, lokasi strategis di jantung Kabupaten Balangan.</p>
   <div class="hero-cta">
     <button class="btn-white" onclick="goTo('booking')">📋 Booking Unit</button>
     <button class="btn-ghost" onclick="goTo('kpr')">🧮 Hitung Cicilan</button>
   </div>
   <div class="hero-stats">
     <div class="hero-stat"><div class="num" id="statTotal">42</div><div class="lbl">Total Unit</div></div>
-    <div class="hero-stat"><div class="num" id="statCicilan">1,6 Jt</div><div class="lbl">Cicilan/Bulan</div></div>
+    <div class="hero-stat"><div class="num" id="statCicilan">1,75 Jt</div><div class="lbl">Cicilan/Bulan</div></div>
     <div class="hero-stat"><div class="num" id="statHarga">182 Jt</div><div class="lbl">Harga Subsidi</div></div>
     <div class="hero-stat"><div class="num">20 Th</div><div class="lbl">Tenor KPR</div></div>
   </div>
@@ -258,7 +314,6 @@ footer a:hover{color:white}
   <div class="section-desc">Semua tipe memenuhi standar rumah subsidi FLPP dan siap diajukan KPR.</div>
   <div class="error-banner" id="errorBanner">⚠️ Gagal memuat data. Pastikan URL Google Apps Script sudah benar dan coba refresh halaman.</div>
   <div class="units-grid" id="unitsGrid">
-    <!-- Diisi oleh JavaScript dari Google Sheets -->
     <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted)">
       <div style="font-size:2rem;margin-bottom:.5rem">⏳</div>
       <div>Memuat data unit...</div>
@@ -271,7 +326,7 @@ footer a:hover{color:white}
 <div style="max-width:1100px;margin:0 auto;padding:0 2rem">
   <div class="section-label">Update Proyek</div>
   <div class="section-title">Progress Pembangunan</div>
-  <div class="progress-stat" id="progressStat">
+  <div class="progress-stat">
     <div class="p-card"><div class="big" id="pTotal">—</div><div class="label">Total Unit</div></div>
     <div class="p-card"><div class="big" style="color:#EF9F27" id="pTersedia">—</div><div class="label">Unit Tersedia</div></div>
     <div class="p-card"><div class="big" style="color:#D85A30" id="pTerjual">—</div><div class="label">Terjual/Booking</div></div>
@@ -304,7 +359,7 @@ footer a:hover{color:white}
       <div class="kpr-inputs">
         <label>Tipe Unit</label>
         <select id="kprTipe" onchange="hitungKPR()">
-          <option value="182000000">Tipe 36 — Rp 182.000.000</option>
+          <option value="182000000">Tipe 36/100 — Rp 182.000.000</option>
         </select>
         <label>Uang Muka (DP)</label>
         <input type="range" id="kprDP" min="1" max="30" value="10" step="1" oninput="hitungKPR()">
@@ -322,28 +377,104 @@ footer a:hover{color:white}
         <h3>📊 Estimasi Cicilan KPR</h3>
         <div class="kpr-highlight">
           <div class="cicilan-lbl">Cicilan Per Bulan</div>
-          <div class="cicilan-val" id="kprCicilan">Rp 1.605.000</div>
+          <div class="cicilan-val" id="kprCicilan">Rp 1.760.000</div>
         </div>
         <div class="kpr-row"><span class="lbl">Harga Rumah</span><span class="val" id="kprHarga">Rp 182.000.000</span></div>
         <div class="kpr-row"><span class="lbl">Uang Muka</span><span class="val" id="kprDPVal">Rp 18.200.000</span></div>
-        <div class="kpr-row"><span class="lbl">Pokok Pinjaman</span><span class="val" id="kprPokok">Rp 149.400.000</span></div>
-        <div class="kpr-row"><span class="lbl">Total Bayar</span><span class="val" id="kprTotal">Rp 385.200.000</span></div>
+        <div class="kpr-row"><span class="lbl">Pokok Pinjaman</span><span class="val" id="kprPokok">Rp 163.800.000</span></div>
+        <div class="kpr-row"><span class="lbl">Total Bayar</span><span class="val" id="kprTotal">Rp 422.400.000</span></div>
         <p style="font-size:11px;color:var(--text-muted);margin-top:.5rem">*Estimasi saja. Angka final ditentukan bank penyalur FLPP.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- SITEPLAN -->
+<section id="siteplan" style="background:#f8f6f0;max-width:100%;padding:4rem 0">
+<div style="max-width:1100px;margin:0 auto;padding:0 2rem">
+  <div class="section-label">Denah Kawasan</div>
+  <div class="section-title">Siteplan Garuda Maharam Residence</div>
+  <div class="section-desc">Tata letak unit dan fasilitas di dalam kawasan perumahan.</div>
+  <div class="siteplan-wrap">
+    <div class="siteplan-img-box" id="siteplanBox">
+      <div class="siteplan-placeholder" id="siteplanPlaceholder">
+        <div style="font-size:3rem">🗺️</div>
+        <div style="font-weight:600;font-size:15px;color:var(--text)">Siteplan Garuda Maharam Residence</div>
+        <div style="font-size:13px">Tambahkan <code style="background:rgba(0,0,0,.07);padding:1px 6px;border-radius:4px">siteplan_id</code> di Google Sheets tab Settings</div>
+      </div>
+    </div>
+    <div class="siteplan-info">
+      <div class="siteplan-stat"><div class="snum" id="spTotal">42</div><div class="slbl">Total Kavling</div></div>
+      <div class="siteplan-stat"><div class="snum" id="spLB">36</div><div class="slbl">Luas Bangunan (m²)</div></div>
+      <div class="siteplan-stat"><div class="snum" id="spLT">100</div><div class="slbl">Luas Tanah (m²)</div></div>
+      <div class="siteplan-stat"><div class="snum">2</div><div class="slbl">Kamar Tidur</div></div>
+    </div>
+    <div class="upload-guide">
+      <h4>📌 Cara Tambah Gambar Siteplan</h4>
+      <ol>
+        <li>Upload gambar siteplan ke <strong>Google Drive</strong></li>
+        <li>Klik kanan → <strong>Bagikan</strong> → ubah ke <strong>"Siapa saja yang memiliki link"</strong></li>
+        <li>Salin link — ambil ID-nya saja (antara <code>/d/</code> dan <code>/view</code>)</li>
+        <li>Di Google Sheets tab <strong>Settings</strong>, tambah baris: <code>siteplan_id</code> | <em>ID file Anda</em></li>
+        <li>Refresh website → gambar langsung muncul!</li>
+      </ol>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- GALERI -->
+<section id="galeri">
+  <div class="section-label">Dokumentasi Proyek</div>
+  <div class="section-title">Galeri Pembangunan</div>
+  <div class="section-desc">Foto progres terkini langsung dari lokasi — diperbarui berkala.</div>
+  <div class="galeri-tabs">
+    <button class="galeri-tab active" onclick="filterGaleri('semua',this)">Semua</button>
+    <button class="galeri-tab" onclick="filterGaleri('pondasi',this)">Pondasi</button>
+    <button class="galeri-tab" onclick="filterGaleri('struktur',this)">Struktur</button>
+    <button class="galeri-tab" onclick="filterGaleri('finishing',this)">Finishing</button>
+    <button class="galeri-tab" onclick="filterGaleri('lokasi',this)">Lokasi</button>
+  </div>
+  <div class="galeri-grid" id="galeriGrid">
+    <!-- diisi JS -->
+  </div>
+  <div class="upload-guide" style="margin-top:1.5rem">
+    <h4>📌 Cara Tambah Foto ke Galeri</h4>
+    <ol>
+      <li>Upload foto ke <strong>Google Drive</strong> → Bagikan → <strong>"Siapa saja yang memiliki link"</strong></li>
+      <li>Ambil <strong>ID file</strong> dari link (antara <code>/d/</code> dan <code>/view</code>)</li>
+      <li>Di Google Sheets, tambah tab baru bernama <strong>Galeri</strong></li>
+      <li>Buat kolom: <code>judul</code> | <code>kategori</code> | <code>drive_id</code> | <code>tanggal</code></li>
+      <li>Isi satu baris per foto. Kolom <code>kategori</code>: <code>pondasi</code>, <code>struktur</code>, <code>finishing</code>, atau <code>lokasi</code></li>
+      <li>Refresh website — foto langsung tampil di galeri!</li>
+    </ol>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="lbOutside(event)">
+  <button class="lb-close" onclick="closeLB()">✕</button>
+  <button class="lb-prev" onclick="lbNav(-1)">‹</button>
+  <button class="lb-next" onclick="lbNav(1)">›</button>
+  <div class="lightbox-inner">
+    <img id="lbImg" src="" alt="">
+    <div class="lightbox-caption" id="lbCaption"></div>
+    <div class="lb-thumbs" id="lbThumbs"></div>
+  </div>
+  <div class="lb-counter" id="lbCounter"></div>
+</div>
+
 <!-- LOKASI -->
-<section id="lokasi">
+<section id="lokasi" style="background:#f8f6f0;max-width:100%;padding:4rem 0">
+<div style="max-width:1100px;margin:0 auto;padding:0 2rem">
   <div class="section-label">Lokasi &amp; Aksesibilitas</div>
   <div class="section-title">Strategis di Paringin, Balangan</div>
   <div class="lokasi-grid">
     <div class="lokasi-map">
       <div style="font-size:3rem">📍</div>
-      <div style="font-weight:700;font-size:16px" id="lokasiAlamat">Jl. [Nama Jalan], Paringin</div>
+      <div style="font-weight:700;font-size:16px;text-align:center" id="lokasiAlamat">Jl. Lingkar Timur RT 9, Paringin</div>
       <div style="font-size:13px;color:var(--teal-600)">Kabupaten Balangan, Kalimantan Selatan</div>
-      <a id="lokasiMapLink" href="https://maps.google.com" target="_blank" style="background:var(--teal-600);color:white;padding:8px 20px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:600">Buka di Google Maps</a>
+      <a id="lokasiMapLink" href="https://maps.app.goo.gl/zdVzL2cJLB9nLRrw9" target="_blank" style="background:var(--teal-600);color:white;padding:8px 20px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:600">📍 Buka di Google Maps</a>
     </div>
     <div class="lokasi-list">
       <div class="lokasi-item"><div class="lokasi-icon" style="background:#E1F5EE">🏫</div><div><h4>Sekolah Negeri</h4><p>SD/SMP/SMA ±500m – 1km dari lokasi</p></div></div>
@@ -352,11 +483,11 @@ footer a:hover{color:white}
       <div class="lokasi-item"><div class="lokasi-icon" style="background:#E6F1FB">🏛️</div><div><h4>Kantor Pemerintahan</h4><p>Kantor Bupati Balangan ±2km</p></div></div>
     </div>
   </div>
+</div>
 </section>
 
 <!-- SYARAT -->
-<section id="syarat" style="background:#f8f6f0;max-width:100%;padding:4rem 0">
-<div style="max-width:1100px;margin:0 auto;padding:0 2rem">
+<section id="syarat">
   <div class="section-label">Persyaratan KPR FLPP</div>
   <div class="section-title">Siapa yang Bisa Mengajukan?</div>
   <div class="syarat-grid">
@@ -383,11 +514,11 @@ footer a:hover{color:white}
       <li>Akad kredit &amp; serah terima kunci</li>
     </ul></div>
   </div>
-</div>
 </section>
 
 <!-- BOOKING -->
-<section id="booking">
+<section id="booking" style="background:#f8f6f0;max-width:100%;padding:4rem 0">
+<div style="max-width:1100px;margin:0 auto;padding:0 2rem">
   <div class="section-label">Formulir Pemesanan</div>
   <div class="section-title">Booking Unit Sekarang</div>
   <div class="section-desc">Isi formulir di bawah. Tim kami akan menghubungi Anda dalam 1×24 jam.</div>
@@ -408,7 +539,7 @@ footer a:hover{color:white}
         <div class="form-group"><label>Tipe Unit yang Diminati *</label>
           <select id="fUnit">
             <option value="">-- Pilih Tipe --</option>
-            <option>Tipe 36/100</option><option>Tipe 72/100</option>
+            <option>Tipe 36/100</option>
             <option>Belum yakin, minta konsultasi</option>
           </select>
         </div>
@@ -436,6 +567,7 @@ footer a:hover{color:white}
       </div>
     </div>
   </div>
+</div>
 </section>
 
 <!-- FAQ -->
@@ -443,11 +575,18 @@ footer a:hover{color:white}
   <div class="section-label">Tanya Jawab</div>
   <div class="section-title">Pertanyaan yang Sering Ditanyakan</div>
   <div class="faq-list">
-    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Apa itu KPR FLPP dan apa bedanya dengan KPR biasa?<span class="arr">▾</span></button><div class="faq-a"><p>KPR FLPP adalah program pemerintah dengan bunga tetap 5% per tahun seumur kredit. Cicilan tidak berubah dari akad hingga lunas, berbeda dengan KPR komersial yang bunganya bisa naik.</p></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Berapa DP minimal untuk membeli rumah ini?<span class="arr">▾</span></button><div class="faq-a"><p>DP minimum rumah subsidi FLPP adalah 1% dari harga jual (±Rp 1.660.000). Namun umumnya bank meminta 5–10% untuk proses yang lebih mudah.</p></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Bank mana saja yang menyalurkan KPR FLPP?<span class="arr">▾</span></button><div class="faq-a"><p>Di Kalimantan Selatan, bank penyalur meliputi BTN, BRI, Bank Kalsel, dan beberapa BPD lainnya. Tim kami akan membantu mengarahkan ke bank yang paling sesuai.</p></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Apakah pegawai honorer / tidak tetap bisa mengajukan?<span class="arr">▾</span></button><div class="faq-a"><p>Bisa. Untuk penghasilan tidak tetap, batas maksimal Rp 10 juta/bulan. Dokumen menggunakan Surat Keterangan Penghasilan dari kepala desa/lurah.</p></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Apakah bisa survei lokasi sebelum booking?<span class="arr">▾</span></button><div class="faq-a"><p>Tentu bisa! Kami sangat menyarankan survei langsung. Hubungi tim kami via WhatsApp untuk mengatur jadwal kunjungan site — gratis, tanpa biaya apapun.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Apa itu KPR FLPP dan apa bedanya dengan KPR biasa?<span class="arr">▾</span></button>
+      <div class="faq-a"><p>KPR FLPP adalah program pemerintah dengan bunga tetap 5% per tahun seumur kredit. Cicilan tidak berubah dari akad hingga lunas, berbeda dengan KPR komersial yang bunganya bisa naik setiap tahun.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Berapa DP minimal untuk membeli rumah ini?<span class="arr">▾</span></button>
+      <div class="faq-a"><p>DP minimum rumah subsidi FLPP adalah 1% dari harga jual (±Rp 1.820.000). Namun umumnya bank meminta 5–10% untuk proses yang lebih mudah disetujui.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Bank mana saja yang menyalurkan KPR FLPP?<span class="arr">▾</span></button>
+      <div class="faq-a"><p>Di Kalimantan Selatan, bank penyalur meliputi BTN, BRI, Bank Kalsel, dan beberapa BPD lainnya. Tim kami akan membantu mengarahkan ke bank yang paling sesuai dan cepat prosesnya.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Apakah pegawai honorer / tidak tetap bisa mengajukan?<span class="arr">▾</span></button>
+      <div class="faq-a"><p>Bisa. Untuk penghasilan tidak tetap (wiraswasta, honorer, petani), batas maksimal Rp 10 juta/bulan. Dokumen menggunakan Surat Keterangan Penghasilan dari kepala desa/lurah.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Apakah bisa survei lokasi sebelum booking?<span class="arr">▾</span></button>
+      <div class="faq-a"><p>Tentu bisa! Kami sangat menyarankan survei langsung ke lokasi. Hubungi tim kami via WhatsApp untuk mengatur jadwal kunjungan — gratis, tanpa biaya apapun.</p></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Kapan unit bisa ditempati setelah akad KPR?<span class="arr">▾</span></button>
+      <div class="faq-a"><p>Unit yang sudah selesai dibangun dapat langsung diserahterimakan setelah akad KPR. Target serah terima keseluruhan adalah Q2 2026. Jadwal resmi akan diinformasikan setelah booking dikonfirmasi.</p></div></div>
   </div>
 </section>
 
@@ -456,53 +595,63 @@ footer a:hover{color:white}
   <div class="footer-inner">
     <div>
       <h4>🏠 Garuda Maharam Residence</h4>
-      <p>Perumahan subsidi berkualitas oleh PT Rusdi Rahmi Property. Hunian layak dan terjangkau untuk masyarakat Kabupaten Balangan.</p>
-      <p style="margin-top:1rem" id="footerAlamat">📍 Jl. [Nama Jalan], Paringin, Kab. Balangan 71611</p>
+      <p>Perumahan subsidi berkualitas oleh PT Rusdi Rahmi Property. Hunian layak dan terjangkau untuk masyarakat Kabupaten Balangan, Kalimantan Selatan.</p>
+      <p style="margin-top:1rem" id="footerAlamat">📍 Jl. Lingkar Timur RT 9, Paringin, Kab. Balangan 71662</p>
     </div>
     <div>
       <h4>Tautan Cepat</h4>
       <a onclick="goTo('unit')">Tipe Unit</a>
       <a onclick="goTo('kpr')">Simulasi KPR</a>
+      <a onclick="goTo('siteplan')">Siteplan</a>
+      <a onclick="goTo('galeri')">Galeri</a>
       <a onclick="goTo('lokasi')">Lokasi</a>
-      <a onclick="goTo('syarat')">Syarat KPR</a>
       <a onclick="goTo('booking')">Booking Unit</a>
     </div>
     <div>
       <h4>Hubungi Kami</h4>
-      <a id="footerWA" href="#">📱 +62 8xx-xxxx-xxxx (WhatsApp)</a>
-      <a id="footerEmail" href="#">📧 info@perumahan-paringin.com</a>
+      <a id="footerWA" href="https://wa.me/6281258001180" target="_blank">📱 +62 812-5800-1180 (WhatsApp)</a>
+      <a id="footerEmail" href="mailto:garuda_maharam@gmail.com">📧 garuda_maharam@gmail.com</a>
       <a>🕐 Senin–Sabtu, 08.00–17.00 WITA</a>
-      <div style="margin-top:1rem"><h4>Terdaftar di</h4>
+      <div style="margin-top:1rem">
+        <h4>Terdaftar di</h4>
         <p>✅ SIKUMBANG (BP Tapera)</p>
-        <p>✅ Asosiasi Developer</p>
+        <p>✅ Bank BTN – Penyalur FLPP</p>
       </div>
     </div>
   </div>
   <div class="footer-copy">© 2026 PT Rusdi Rahmi Property · Garuda Maharam Residence · Harga dan stok dapat berubah tanpa pemberitahuan sebelumnya.</div>
 </footer>
 
-<!-- MODAL -->
+<!-- MODAL UNIT -->
 <div class="modal-bg" id="modalBg" onclick="closeModalOutside(event)">
   <div class="modal"><button class="modal-close" onclick="closeModal()">✕</button><div id="modalBody"></div></div>
 </div>
 
+<!-- WA FLOAT BUTTON -->
+<a class="wa-btn" id="waFloat" href="https://wa.me/6281258001180?text=Halo%2C%20saya%20ingin%20informasi%20Garuda%20Maharam%20Residence" target="_blank">
+  💬 Tanya via WhatsApp
+</a>
+
 <script>
 // ==============================================================
-// ⚠️  GANTI URL INI dengan URL dari Google Apps Script Anda
+// SCRIPT_URL — URL Google Apps Script Anda
 // ==============================================================
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz6VfX1nng0WaC6NP-Ym_ujUNuyNsUg5Jlv3vFGcpi4LeYFp4AAeuC9xBY7O_3v85ef4w/exec';
 
-// ==============================================================
-// LOAD DATA dari Google Sheets
-// ==============================================================
 let allUnits = [];
 let siteSettings = {};
+let allFotos = [];
+let filteredFotos = [];
+let lbIndex = 0;
 
+// ==============================================================
+// LOAD DATA
+// ==============================================================
 async function loadData() {
-  animateLoadBar(0, 40);
+  animateBar(0, 40);
   try {
     const res = await fetch(SCRIPT_URL + '?action=all');
-    animateLoadBar(40, 80);
+    animateBar(40, 80);
     const data = await res.json();
     allUnits = data.units || [];
     siteSettings = data.settings || {};
@@ -510,82 +659,87 @@ async function loadData() {
     renderUnits();
     renderProgress();
     populateKPRSelect();
-    animateLoadBar(80, 100);
-    setTimeout(() => {
-      document.getElementById('loadingScreen').classList.add('hidden');
-    }, 400);
-  } catch (err) {
-    console.error('Gagal load data:', err);
+    animateBar(80, 100);
+    setTimeout(() => document.getElementById('loadingScreen').classList.add('hidden'), 400);
+    loadGaleri();
+  } catch(err) {
+    console.error(err);
     document.getElementById('errorBanner').style.display = 'block';
     document.getElementById('loadingScreen').classList.add('hidden');
     renderFallbackUnits();
+    renderGaleriPlaceholder();
   }
 }
 
-function animateLoadBar(from, to) {
-  const bar = document.getElementById('loadBar');
-  bar.style.width = to + '%';
-}
+function animateBar(f, t) { document.getElementById('loadBar').style.width = t + '%'; }
 
 // ==============================================================
-// TERAPKAN SETTINGS dari sheet Settings
+// APPLY SETTINGS
 // ==============================================================
 function applySettings() {
   const s = siteSettings;
   if (s.nama_proyek) document.getElementById('navNama').textContent = s.nama_proyek;
   if (s.tagline) document.getElementById('heroDesc').textContent = s.tagline;
-  if (s.alamat) { document.getElementById('lokasiAlamat').textContent = s.alamat; document.getElementById('footerAlamat').textContent = '📍 ' + s.alamat; }
-  if (s.gmaps_url) document.getElementById('lokasiMapLink').href = s.gmaps_url;
+  if (s.alamat) {
+    document.getElementById('lokasiAlamat').textContent = s.alamat;
+    document.getElementById('footerAlamat').textContent = '📍 ' + s.alamat;
+  }
+  if (s.gmaps_url) {
+    document.getElementById('lokasiMapLink').href = s.gmaps_url;
+  }
   if (s.whatsapp) {
+    const num = String(s.whatsapp).replace(/[^0-9]/g,'');
     const wa = document.getElementById('footerWA');
-    wa.textContent = '📱 ' + s.whatsapp + ' (WhatsApp)';
-    wa.href = 'https://wa.me/' + s.whatsapp.replace(/[^0-9]/g,'');
+    wa.textContent = '📱 +' + num + ' (WhatsApp)';
+    wa.href = 'https://wa.me/' + num;
+    document.getElementById('waFloat').href = 'https://wa.me/' + num + '?text=Halo%2C%20saya%20ingin%20informasi%20Garuda%20Maharam%20Residence';
   }
   if (s.email) {
     document.getElementById('footerEmail').textContent = '📧 ' + s.email;
     document.getElementById('footerEmail').href = 'mailto:' + s.email;
   }
+  renderSiteplan();
 }
 
 // ==============================================================
-// RENDER UNIT CARDS
+// RENDER UNITS
 // ==============================================================
 function renderUnits() {
   const grid = document.getElementById('unitsGrid');
   if (!allUnits.length) { renderFallbackUnits(); return; }
+  const gradients = [
+    'linear-gradient(135deg,#E1F5EE,#9FE1CB)',
+    'linear-gradient(135deg,#C0DD97,#EAF3DE)',
+    'linear-gradient(135deg,#B5D4F4,#E6F1FB)'
+  ];
   grid.innerHTML = allUnits.map((u, i) => {
     const stok = parseInt(u.stok_tersedia) || 0;
     const total = parseInt(u.stok_total) || 0;
     const habis = stok <= 0;
-    const populer = u.label === 'POPULER';
-    const harga = parseInt(u.harga) || 166000000;
-    const gradients = [
-      'linear-gradient(135deg,#E1F5EE,#9FE1CB)',
-      'linear-gradient(135deg,#C0DD97,#EAF3DE)',
-      'linear-gradient(135deg,#B5D4F4,#E6F1FB)'
-    ];
+    const populer = (u.label||'').toUpperCase() === 'POPULER';
+    const harga = parseInt(u.harga) || 182000000;
     const badgeClass = habis ? 'habis' : (populer ? 'populer' : 'tersedia');
     const badgeText = habis ? 'HABIS' : (populer ? 'POPULER' : 'TERSEDIA');
     return `
-    <div class="unit-card ${populer ? 'featured' : ''}">
-      <div class="unit-img" style="background:${gradients[i % gradients.length]}">
+    <div class="unit-card ${populer?'featured':''}">
+      <div class="unit-img" style="background:${gradients[i%gradients.length]}">
         🏠
         <div class="unit-badge ${badgeClass}">${badgeText}</div>
       </div>
       <div class="unit-body">
-        <div class="unit-avail ${habis ? 'habis' : 'ada'}">
+        <div class="unit-avail ${habis?'habis':'ada'}">
           ${habis ? '⛔ Stok habis' : stok + ' unit tersisa dari ' + total + ' unit'}
         </div>
-        <div class="unit-name">${u.nama || 'Tipe ' + u.tipe}</div>
-        <div class="unit-price">Rp ${parseInt(harga).toLocaleString('id')} <span>· harga subsidi</span></div>
+        <div class="unit-name">${u.nama || 'Tipe '+u.tipe}</div>
+        <div class="unit-price">Rp ${harga.toLocaleString('id')} <span>· harga subsidi</span></div>
         <div class="unit-specs">
-          <div class="spec"><div class="val">${u.lb || '—'} m²</div><div class="key">Luas Bangunan</div></div>
-          <div class="spec"><div class="val">${u.lt || '—'} m²</div><div class="key">Luas Tanah</div></div>
-          <div class="spec"><div class="val">${u.kamar_tidur || '2'} KT</div><div class="key">Kamar Tidur</div></div>
+          <div class="spec"><div class="val">${u.lb||'—'} m²</div><div class="key">Luas Bangunan</div></div>
+          <div class="spec"><div class="val">${u.lt||'—'} m²</div><div class="key">Luas Tanah</div></div>
+          <div class="spec"><div class="val">${u.kamar_tidur||'2'} KT</div><div class="key">Kamar Tidur</div></div>
         </div>
         <div class="unit-footer">
           <button class="btn-outline" onclick="openModal(${i})">Detail</button>
-          <button class="btn-primary" ${habis ? 'disabled style="opacity:.5;cursor:not-allowed"' : 'onclick="goTo(\'booking\')"'}>${habis ? 'Tidak Tersedia' : 'Booking'}</button>
+          <button class="btn-primary" ${habis?'disabled style="opacity:.5;cursor:not-allowed"':'onclick="goTo(\'booking\')"'}>${habis?'Tidak Tersedia':'Booking'}</button>
         </div>
       </div>
     </div>`;
@@ -593,10 +747,11 @@ function renderUnits() {
 }
 
 function renderFallbackUnits() {
-  allUnits = [
-    {nama:'Tipe 36/72',harga:166000000,lb:36,lt:72,kamar_tidur:2,stok_tersedia:18,stok_total:28,label:'TERSEDIA',fasilitas:'Dinding bata merah,Atap genteng metal,Lantai keramik,Kusen aluminium,Listrik SNI,Carport'},
-    {nama:'Tipe 36/60',harga:166000000,lb:36,lt:60,kamar_tidur:2,stok_tersedia:10,stok_total:14,label:'POPULER',fasilitas:'Dinding bata merah,Atap genteng metal,Lantai keramik,Kusen aluminium,Listrik SNI,Pagar depan'}
-  ];
+  allUnits = [{
+    nama:'Tipe 36/100', harga:182000000, lb:36, lt:100,
+    kamar_tidur:2, kamar_mandi:1, stok_tersedia:42, stok_total:42,
+    label:'TERSEDIA', fasilitas:'Listrik 1300VA,PAM,Carport,Pagar depan', listrik:1300
+  }];
   renderUnits();
 }
 
@@ -605,93 +760,197 @@ function renderFallbackUnits() {
 // ==============================================================
 function renderProgress() {
   const s = siteSettings;
-  const totalUnit = allUnits.reduce((a,u) => a + (parseInt(u.stok_total)||0), 0) || parseInt(s.total_unit) || 42;
-  const tersedia = allUnits.reduce((a,u) => a + (parseInt(u.stok_tersedia)||0), 0);
+  const totalUnit = allUnits.reduce((a,u)=>a+(parseInt(u.stok_total)||0),0) || parseInt(s.total_unit) || 42;
+  const tersedia = allUnits.reduce((a,u)=>a+(parseInt(u.stok_tersedia)||0),0);
   const terjual = totalUnit - tersedia;
-  const pctTerjual = Math.round(terjual / totalUnit * 100);
-  const pctKonstr = parseInt(s.progress_konstruksi) || 65;
-  const pctDok = parseInt(s.progress_dokumen) || 80;
+  const pctTerjual = Math.round(terjual/totalUnit*100);
+  const pctKonstr = parseInt(s.progress_konstruksi) || 2;
+  const pctDok = parseInt(s.progress_dokumen) || 2;
 
   document.getElementById('pTotal').textContent = totalUnit;
   document.getElementById('pTersedia').textContent = tersedia;
   document.getElementById('pTerjual').textContent = terjual;
-  document.getElementById('pTarget').textContent = s.target_serah || 'Q2 2025';
+  document.getElementById('pTarget').textContent = s.target_serah || 'Q2 2026';
   document.getElementById('pbUnitTxt').textContent = tersedia + ' / ' + totalUnit + ' tersisa';
   document.getElementById('pbKonstrTxt').textContent = pctKonstr + '%';
   document.getElementById('pbDokTxt').textContent = pctDok + '%';
+
+  // Update siteplan stats
+  document.getElementById('spTotal').textContent = totalUnit;
+  if (allUnits[0]) {
+    document.getElementById('spLB').textContent = allUnits[0].lb || 36;
+    document.getElementById('spLT').textContent = allUnits[0].lt || 100;
+  }
 
   setTimeout(() => {
     document.getElementById('pbUnit').style.width = pctTerjual + '%';
     document.getElementById('pbKonstr').style.width = pctKonstr + '%';
     document.getElementById('pbDok').style.width = pctDok + '%';
     document.getElementById('statTotal').textContent = totalUnit;
+    // Hero stats harga & cicilan otomatis dari data Sheets
+    if (allUnits.length) {
+      const harga = parseInt(allUnits[0].harga) || 182000000;
+      document.getElementById('statHarga').textContent = (harga/1000000).toFixed(0) + ' Jt';
+      const pokok = harga * 0.9;
+      const r = 5/100/12; const n = 240;
+      const cicilan = Math.round(pokok*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1));
+      document.getElementById('statCicilan').textContent = (cicilan/1000000).toFixed(2).replace('.',',') + ' Jt';
+    }
   }, 300);
 }
 
 // ==============================================================
-// POPULASI DROPDOWN KPR dari data unit
+// KPR SELECT
 // ==============================================================
 function populateKPRSelect() {
   if (!allUnits.length) return;
-  const sel = document.getElementById('kprTipe');
-  sel.innerHTML = allUnits.map(u =>
+  document.getElementById('kprTipe').innerHTML = allUnits.map(u =>
     `<option value="${u.harga}">${u.nama} — Rp ${parseInt(u.harga).toLocaleString('id')}</option>`
   ).join('');
   hitungKPR();
 }
 
 // ==============================================================
-// MODAL DETAIL UNIT
+// KALKULATOR KPR
+// ==============================================================
+function hitungKPR() {
+  const harga = parseInt(document.getElementById('kprTipe').value) || 182000000;
+  const dpPct = parseInt(document.getElementById('kprDP').value);
+  const tenor = parseInt(document.getElementById('kprTenor').value);
+  const bunga = parseFloat(document.getElementById('kprBunga').value);
+  const dp = Math.round(harga * dpPct / 100);
+  const pokok = harga - dp;
+  const r = bunga/100/12; const n = tenor*12;
+  const cicilan = Math.round(pokok*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1));
+  const total = cicilan*n + dp;
+  document.getElementById('dpLabel').textContent = 'Rp '+dp.toLocaleString('id')+' ('+dpPct+'%)';
+  document.getElementById('tenorLabel').textContent = tenor+' tahun';
+  document.getElementById('kprCicilan').textContent = 'Rp '+cicilan.toLocaleString('id');
+  document.getElementById('kprHarga').textContent = 'Rp '+harga.toLocaleString('id');
+  document.getElementById('kprDPVal').textContent = 'Rp '+dp.toLocaleString('id');
+  document.getElementById('kprPokok').textContent = 'Rp '+pokok.toLocaleString('id');
+  document.getElementById('kprTotal').textContent = 'Rp '+total.toLocaleString('id');
+}
+hitungKPR();
+
+// ==============================================================
+// SITEPLAN
+// ==============================================================
+function renderSiteplan() {
+  const id = siteSettings.siteplan_id || '';
+  if (!id) return;
+  const box = document.getElementById('siteplanBox');
+  box.innerHTML = `
+    <img src="https://drive.google.com/thumbnail?id=${id}&sz=w1200" alt="Siteplan"
+      style="width:100%;display:block;border-radius:var(--radius-lg)"
+      onerror="this.parentElement.innerHTML='<div class=siteplan-placeholder><div style=font-size:3rem>🗺️</div><div>Gambar tidak dapat dimuat. Pastikan file sudah dibagikan publik di Google Drive.</div></div>'">
+    <button class="siteplan-zoom-btn" onclick="window.open('https://drive.google.com/file/d/${id}/view','_blank')">🔍 Perbesar</button>`;
+}
+
+// ==============================================================
+// GALERI
+// ==============================================================
+async function loadGaleri() {
+  try {
+    const res = await fetch(SCRIPT_URL + '?action=galeri');
+    const data = await res.json();
+    allFotos = Array.isArray(data) ? data.filter(f => f.drive_id) : [];
+    filteredFotos = [...allFotos];
+    allFotos.length ? renderGaleri(allFotos) : renderGaleriPlaceholder();
+  } catch(e) {
+    renderGaleriPlaceholder();
+  }
+}
+
+function renderGaleri(fotos) {
+  filteredFotos = fotos;
+  const grid = document.getElementById('galeriGrid');
+  if (!fotos.length) { renderGaleriPlaceholder(); return; }
+  grid.innerHTML = fotos.map((f,i) => `
+    <div class="galeri-item" onclick="openLB(${i})">
+      <img src="https://drive.google.com/thumbnail?id=${f.drive_id}&sz=w600" alt="${f.judul||''}"
+        onerror="this.style.display='none'">
+      <div class="galeri-overlay"><span>🔍</span></div>
+      <div class="galeri-caption">${f.judul||''}${f.tanggal?' · '+f.tanggal:''}</div>
+    </div>`).join('');
+}
+
+function renderGaleriPlaceholder() {
+  const labels = ['🏗️ Pondasi','🧱 Dinding','🪟 Jendela','🚪 Pintu','🏠 Tampak Depan','📐 Denah'];
+  document.getElementById('galeriGrid').innerHTML = labels.map(l => `
+    <div class="galeri-placeholder-card">
+      <div style="font-size:2rem">${l.split(' ')[0]}</div>
+      <div style="font-weight:600;font-size:13px">${l.split(' ').slice(1).join(' ')}</div>
+      <div style="font-size:11px;opacity:.5">Belum tersedia</div>
+    </div>`).join('');
+}
+
+function filterGaleri(kat, btn) {
+  document.querySelectorAll('.galeri-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const fotos = kat === 'semua' ? allFotos : allFotos.filter(f=>(f.kategori||'').toLowerCase()===kat);
+  fotos.length ? renderGaleri(fotos) : renderGaleriPlaceholder();
+}
+
+// ==============================================================
+// LIGHTBOX
+// ==============================================================
+function openLB(idx) {
+  lbIndex = idx; updateLB();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('lbThumbs').innerHTML = filteredFotos.map((f,i) =>
+    `<img class="lb-thumb ${i===idx?'active':''}"
+      src="https://drive.google.com/thumbnail?id=${f.drive_id}&sz=w120"
+      onclick="jumpLB(${i})" alt="">`).join('');
+}
+function updateLB() {
+  const f = filteredFotos[lbIndex];
+  if (!f) return;
+  document.getElementById('lbImg').src = `https://drive.google.com/thumbnail?id=${f.drive_id}&sz=w1200`;
+  document.getElementById('lbCaption').textContent = (f.judul||'') + (f.tanggal?' · '+f.tanggal:'');
+  document.getElementById('lbCounter').textContent = (lbIndex+1)+' / '+filteredFotos.length;
+  document.querySelectorAll('.lb-thumb').forEach((t,i)=>t.classList.toggle('active',i===lbIndex));
+}
+function jumpLB(i){ lbIndex=i; updateLB(); }
+function lbNav(d){ lbIndex=(lbIndex+d+filteredFotos.length)%filteredFotos.length; updateLB(); }
+function closeLB(){ document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow=''; }
+function lbOutside(e){ if(e.target.id==='lightbox') closeLB(); }
+document.addEventListener('keydown', e=>{
+  if(!document.getElementById('lightbox').classList.contains('open')) return;
+  if(e.key==='ArrowRight') lbNav(1);
+  if(e.key==='ArrowLeft') lbNav(-1);
+  if(e.key==='Escape') closeLB();
+});
+
+// ==============================================================
+// MODAL UNIT
 // ==============================================================
 function openModal(idx) {
   const u = allUnits[idx];
-  const harga = parseInt(u.harga) || 166000000;
-  const fasilitas = (u.fasilitas || 'Dinding bata merah,Atap genteng metal,Lantai keramik').split(',');
+  const harga = parseInt(u.harga)||182000000;
+  const fasilitas = (u.fasilitas||'Listrik,PAM,Carport').split(',');
   document.getElementById('modalBody').innerHTML = `
     <h3>${u.nama}</h3>
     <div class="modal-price">Rp ${harga.toLocaleString('id')}</div>
     <div class="modal-specs">
       <div class="modal-spec"><div class="k">Luas Bangunan</div><div class="v">${u.lb} m²</div></div>
       <div class="modal-spec"><div class="k">Luas Tanah</div><div class="v">${u.lt} m²</div></div>
-      <div class="modal-spec"><div class="k">Kamar Tidur</div><div class="v">${u.kamar_tidur || 2} Kamar</div></div>
-      <div class="modal-spec"><div class="k">Kamar Mandi</div><div class="v">${u.kamar_mandi || 1} Kamar</div></div>
-      <div class="modal-spec"><div class="k">Daya Listrik</div><div class="v">${u.listrik || '1.300'} VA</div></div>
+      <div class="modal-spec"><div class="k">Kamar Tidur</div><div class="v">${u.kamar_tidur||2} Kamar</div></div>
+      <div class="modal-spec"><div class="k">Kamar Mandi</div><div class="v">${u.kamar_mandi||1} Kamar</div></div>
+      <div class="modal-spec"><div class="k">Daya Listrik</div><div class="v">${u.listrik||'1.300'} VA</div></div>
       <div class="modal-spec"><div class="k">Stok Tersisa</div><div class="v">${u.stok_tersedia} Unit</div></div>
     </div>
     <p style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text-muted)">FASILITAS TERMASUK</p>
-    <ul class="modal-list">${fasilitas.map(f => `<li>${f.trim()}</li>`).join('')}</ul>
+    <ul class="modal-list">${fasilitas.map(f=>`<li>${f.trim()}</li>`).join('')}</ul>
     <button class="modal-btn" onclick="closeModal();goTo('booking')">Booking Unit Ini →</button>`;
   document.getElementById('modalBg').classList.add('open');
 }
-function closeModal() { document.getElementById('modalBg').classList.remove('open'); }
-function closeModalOutside(e) { if (e.target.id === 'modalBg') closeModal(); }
+function closeModal(){ document.getElementById('modalBg').classList.remove('open'); }
+function closeModalOutside(e){ if(e.target.id==='modalBg') closeModal(); }
 
 // ==============================================================
-// KALKULATOR KPR
-// ==============================================================
-function hitungKPR() {
-  const harga = parseInt(document.getElementById('kprTipe').value) || 166000000;
-  const dpPct = parseInt(document.getElementById('kprDP').value);
-  const tenor = parseInt(document.getElementById('kprTenor').value);
-  const bunga = parseFloat(document.getElementById('kprBunga').value);
-  const dp = Math.round(harga * dpPct / 100);
-  const pokok = harga - dp;
-  const r = bunga / 100 / 12;
-  const n = tenor * 12;
-  const cicilan = Math.round(pokok * r * Math.pow(1+r,n) / (Math.pow(1+r,n) - 1));
-  const total = cicilan * n + dp;
-  document.getElementById('dpLabel').textContent = 'Rp ' + dp.toLocaleString('id') + ' (' + dpPct + '%)';
-  document.getElementById('tenorLabel').textContent = tenor + ' tahun';
-  document.getElementById('kprCicilan').textContent = 'Rp ' + cicilan.toLocaleString('id');
-  document.getElementById('kprHarga').textContent = 'Rp ' + harga.toLocaleString('id');
-  document.getElementById('kprDPVal').textContent = 'Rp ' + dp.toLocaleString('id');
-  document.getElementById('kprPokok').textContent = 'Rp ' + pokok.toLocaleString('id');
-  document.getElementById('kprTotal').textContent = 'Rp ' + total.toLocaleString('id');
-}
-hitungKPR();
-
-// ==============================================================
-// SUBMIT BOOKING ke Google Sheets
+// BOOKING
 // ==============================================================
 async function submitBooking() {
   const nama = document.getElementById('fNama').value.trim();
@@ -699,34 +958,28 @@ async function submitBooking() {
   const unit = document.getElementById('fUnit').value;
   const errEl = document.getElementById('formError');
   errEl.style.display = 'none';
-  if (!nama) { errEl.textContent = '⚠️ Mohon isi nama lengkap Anda.'; errEl.style.display = 'block'; return; }
-  if (!hp) { errEl.textContent = '⚠️ Mohon isi nomor HP/WhatsApp Anda.'; errEl.style.display = 'block'; return; }
-  if (!unit) { errEl.textContent = '⚠️ Mohon pilih tipe unit yang diminati.'; errEl.style.display = 'block'; return; }
+  if(!nama){errEl.textContent='⚠️ Mohon isi nama lengkap Anda.';errEl.style.display='block';return;}
+  if(!hp){errEl.textContent='⚠️ Mohon isi nomor HP/WhatsApp Anda.';errEl.style.display='block';return;}
+  if(!unit){errEl.textContent='⚠️ Mohon pilih tipe unit yang diminati.';errEl.style.display='block';return;}
   const btn = document.getElementById('btnSubmit');
-  btn.disabled = true;
-  btn.textContent = '⏳ Mengirim...';
-  const payload = {
-    nama, hp,
-    email: document.getElementById('fEmail').value,
-    pekerjaan: document.getElementById('fPekerjaan').value,
-    unit,
-    gaji: document.getElementById('fGaji').value,
-    catatan: document.getElementById('fCatatan').value
-  };
+  btn.disabled=true; btn.textContent='⏳ Mengirim...';
   try {
-    await fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify(payload)
-    });
+    await fetch(SCRIPT_URL, {method:'POST', body:JSON.stringify({
+      nama, hp,
+      email: document.getElementById('fEmail').value,
+      pekerjaan: document.getElementById('fPekerjaan').value,
+      unit,
+      gaji: document.getElementById('fGaji').value,
+      catatan: document.getElementById('fCatatan').value
+    })});
     document.getElementById('successNama').textContent = nama;
     document.getElementById('successHP').textContent = hp;
     document.getElementById('bookingForm').style.display = 'none';
     document.getElementById('bookingSuccess').style.display = 'block';
   } catch(err) {
-    btn.disabled = false;
-    btn.textContent = '📋 Kirim Permintaan Booking';
-    errEl.textContent = '⚠️ Terjadi kesalahan koneksi. Coba lagi atau hubungi kami via WhatsApp.';
-    errEl.style.display = 'block';
+    btn.disabled=false; btn.textContent='📋 Kirim Permintaan Booking';
+    errEl.textContent='⚠️ Terjadi kesalahan koneksi. Coba lagi atau hubungi kami via WhatsApp.';
+    errEl.style.display='block';
   }
 }
 
@@ -736,22 +989,16 @@ async function submitBooking() {
 function toggleFAQ(btn) {
   const a = btn.nextElementSibling;
   const wasOpen = a.classList.contains('open');
-  document.querySelectorAll('.faq-a.open').forEach(x => x.classList.remove('open'));
-  document.querySelectorAll('.faq-q.open').forEach(x => x.classList.remove('open'));
-  if (!wasOpen) { a.classList.add('open'); btn.classList.add('open'); }
+  document.querySelectorAll('.faq-a.open').forEach(x=>x.classList.remove('open'));
+  document.querySelectorAll('.faq-q.open').forEach(x=>x.classList.remove('open'));
+  if(!wasOpen){a.classList.add('open');btn.classList.add('open');}
 }
 
-// ==============================================================
-// SCROLL
-// ==============================================================
 function goTo(id) {
   const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-// ==============================================================
-// INIT
-// ==============================================================
 loadData();
 </script>
 </body>
