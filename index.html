@@ -93,7 +93,26 @@ section{padding:4rem 2rem;max-width:1100px;margin:0 auto}
 .unit-footer{display:flex;gap:8px}
 .unit-footer button{flex:1;padding:10px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
 
-/* ===== PROGRESS ===== */
+/* ===== UNIT FILTER TABS ===== */
+.unit-filter-wrap{margin-top:1.5rem;margin-bottom:.5rem}
+.unit-filter{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.unit-filter-btn{background:white;border:1.5px solid var(--border);border-radius:100px;padding:8px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--text-muted);transition:all .15s;display:flex;align-items:center;gap:6px}
+.unit-filter-btn.active{color:white;border-color:transparent}
+.unit-filter-btn.all.active{background:var(--teal-600)}
+.unit-filter-btn.subsidi.active{background:#0F6E56}
+.unit-filter-btn.komersil.active{background:#185FA5}
+.unit-section-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:100px;display:inline-flex;align-items:center;gap:6px;margin-bottom:1rem}
+.unit-section-label.subsidi{background:var(--teal-50);color:var(--teal-800)}
+.unit-section-label.komersil{background:var(--blue-50);color:var(--blue-600)}
+.unit-group{margin-bottom:2.5rem}
+.unit-badge.subsidi-badge{background:var(--teal-600)}
+.unit-badge.komersil-badge{background:var(--blue-600)}
+.unit-price.komersil-price{color:var(--blue-600)}
+.unit-card.komersil-card{border-color:rgba(24,95,165,.2)}
+.unit-card.komersil-card:hover{box-shadow:0 12px 32px rgba(24,95,165,.1)}
+.unit-tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;margin-bottom:.5rem}
+.unit-tag.cash{background:#E6F1FB;color:#185FA5}
+.unit-tag.kpr{background:var(--teal-50);color:var(--teal-800)}
 .progress-stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2rem}
 .p-card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem}
 .p-card .big{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700}
@@ -312,11 +331,20 @@ footer a:hover{color:white}
 
 <!-- TIPE UNIT -->
 <section id="unit">
- <!-- <div class="live-badge">🔴 Data langsung dari Google Sheets — diperbarui real-time</div> -->
+  <div class="live-badge">🔴 Data langsung dari Google Sheets — diperbarui real-time</div>
   <div class="section-label">Pilihan Hunian</div>
   <div class="section-title">Tipe Unit Tersedia</div>
   <div class="section-desc">Semua tipe memenuhi standar rumah subsidi FLPP dan siap diajukan KPR.</div>
   <div class="error-banner" id="errorBanner">⚠️ Gagal memuat data. Pastikan URL Google Apps Script sudah benar dan coba refresh halaman.</div>
+  
+  <!-- Filter Tab -->
+  <div class="unit-filter-wrap">
+    <div class="unit-filter">
+      <button class="unit-filter-btn all active" onclick="filterUnit('semua',this)">🏘️ Semua Tipe</button>
+      <button class="unit-filter-btn subsidi" onclick="filterUnit('subsidi',this)">🏦 Subsidi FLPP</button>
+      <button class="unit-filter-btn komersil" onclick="filterUnit('komersil',this)">🏠 Komersil</button>
+    </div>
+  </div>
   <div class="units-grid" id="unitsGrid">
     <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted)">
       <div style="font-size:2rem;margin-bottom:.5rem">⏳</div>
@@ -363,7 +391,13 @@ footer a:hover{color:white}
       <div class="kpr-inputs">
         <label>Tipe Unit</label>
         <select id="kprTipe" onchange="hitungKPR()">
-          <option value="182000000">Tipe 36/100 — Rp 182.000.000</option>
+          <option value="182000000">Tipe 36 Minimalis – Rp 182.000.000 (Subsidi)</option>
+          <option value="238000000">Tipe 42 Minimalis – Rp 238.000.000 (Komersil)</option>
+          <option value="250000000">Tipe 45 Minimalis – Rp 250.000.000 (Komersil)</option>
+          <option value="320000000">Tipe 50 – Rp 320.000.000 (Komersil)</option>
+          <option value="370000000">Tipe 60 – Rp 370.000.000 (Komersil)</option>
+          <option value="420000000">Tipe 70 – Rp 420.000.000 (Komersil)</option>
+          <option value="470000000">Tipe 80 – Rp 470.000.000 (Komersil)</option>
         </select>
         <label>Uang Muka (DP)</label>
         <input type="range" id="kprDP" min="1" max="30" value="10" step="1" oninput="hitungKPR()">
@@ -373,8 +407,9 @@ footer a:hover{color:white}
         <div class="range-row"><span id="tenorLabel">20 tahun</span><span>Maks 20 tahun</span></div>
         <label>Suku Bunga</label>
         <select id="kprBunga" onchange="hitungKPR()">
-          <option value="5">5% / tahun (Subsidi FLPP – Tetap)</option>
-          <option value="7">7% / tahun (Non-subsidi)</option>
+          <option value="5">5% / tahun (KPR FLPP – Subsidi, Tetap)</option>
+          <option value="10">10% / tahun (KPR Komersil – estimasi)</option>
+          <option value="12">12% / tahun (KPR Komersil – estimasi tinggi)</option>
         </select>
       </div>
       <div class="kpr-result">
@@ -387,7 +422,10 @@ footer a:hover{color:white}
         <div class="kpr-row"><span class="lbl">Uang Muka</span><span class="val" id="kprDPVal">Rp 18.200.000</span></div>
         <div class="kpr-row"><span class="lbl">Pokok Pinjaman</span><span class="val" id="kprPokok">Rp 163.800.000</span></div>
         <div class="kpr-row"><span class="lbl">Total Bayar</span><span class="val" id="kprTotal">Rp 422.400.000</span></div>
-        <p style="font-size:11px;color:var(--text-muted);margin-top:.5rem">*Estimasi saja. Angka final ditentukan bank penyalur FLPP.</p>
+        <div id="kprInfoKomersil" style="display:none;margin-top:.75rem;background:#E6F1FB;border-radius:8px;padding:.75rem 1rem;font-size:12px;color:#185FA5;font-weight:600">
+          💵 Tipe komersil hanya tersedia dengan pembayaran <strong>Cash / Tunai</strong>. Hubungi kami untuk negosiasi harga dan jadwal pembayaran.
+        </div>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:.5rem">*Estimasi saja. Angka final ditentukan bank penyalur FLPP (untuk tipe subsidi).</p>
       </div>
     </div>
   </div>
@@ -544,7 +582,13 @@ footer a:hover{color:white}
         <div class="form-group"><label>Tipe Unit yang Diminati *</label>
           <select id="fUnit">
             <option value="">-- Pilih Tipe --</option>
-            <option>Tipe 36/100</option>
+            <option>Tipe 36 Minimalis (Subsidi - Rp 182 Jt)</option>
+            <option>Tipe 42 Minimalis (Komersil - Rp 238 Jt)</option>
+            <option>Tipe 45 Minimalis (Komersil - Rp 250 Jt)</option>
+            <option>Tipe 50 (Komersil - Rp 320 Jt)</option>
+            <option>Tipe 60 (Komersil - Rp 370 Jt)</option>
+            <option>Tipe 70 (Komersil - Rp 420 Jt)</option>
+            <option>Tipe 80 (Komersil - Rp 470 Jt)</option>
             <option>Belum yakin, minta konsultasi</option>
           </select>
         </div>
@@ -720,48 +764,110 @@ function renderUnits() {
   const gradients = [
     'linear-gradient(135deg,#E1F5EE,#9FE1CB)',
     'linear-gradient(135deg,#C0DD97,#EAF3DE)',
-    'linear-gradient(135deg,#B5D4F4,#E6F1FB)'
+    'linear-gradient(135deg,#DBEAFE,#BFDBFE)',
+    'linear-gradient(135deg,#FEF3C7,#FDE68A)',
+    'linear-gradient(135deg,#FCE7F3,#FBCFE8)',
+    'linear-gradient(135deg,#EDE9FE,#DDD6FE)',
+    'linear-gradient(135deg,#FFEDD5,#FED7AA)'
   ];
-  grid.innerHTML = allUnits.map((u, i) => {
+
+  // Pisahkan subsidi dan komersil
+  const subsidi = allUnits.filter(u => (u.jenis||'').toLowerCase() === 'subsidi' || (u.nama||'').toLowerCase().includes('36'));
+  const komersil = allUnits.filter(u => (u.jenis||'').toLowerCase() === 'komersil' || (parseInt(u.tipe)||0) > 36);
+
+  // Render semua dulu (default tampil semua)
+  renderUnitGroup(grid, allUnits, gradients);
+}
+
+function renderUnitGroup(grid, units, gradients) {
+  if (!units.length) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted)">Tidak ada unit yang sesuai filter.</div>'; return; }
+  grid.innerHTML = units.map((u, i) => {
     const stok = parseInt(u.stok_tersedia) || 0;
     const total = parseInt(u.stok_total) || 0;
     const habis = stok <= 0;
-    const populer = (u.label||'').toUpperCase() === 'POPULER';
+    const isSubsidi = (u.jenis||'').toLowerCase() === 'subsidi' || (u.nama||'').toLowerCase().includes('36') && !(u.jenis||'').toLowerCase().includes('komersil');
+    const isKomersil = !isSubsidi;
     const harga = parseInt(u.harga) || 182000000;
-    const badgeClass = habis ? 'habis' : (populer ? 'populer' : 'tersedia');
-    const badgeText = habis ? 'HABIS' : (populer ? 'POPULER' : 'TERSEDIA');
+    const label = (u.label||'TERSEDIA').toUpperCase();
+    const populer = label === 'POPULER';
+
+    // Badge warna
+    let badgeClass = 'tersedia', badgeText = 'TERSEDIA';
+    if (habis) { badgeClass = 'habis'; badgeText = 'HABIS'; }
+    else if (populer) { badgeClass = 'populer'; badgeText = 'POPULER'; }
+    else if (isSubsidi) { badgeClass = 'subsidi-badge'; badgeText = 'SUBSIDI'; }
+    else { badgeClass = 'komersil-badge'; badgeText = 'KOMERSIL'; }
+
+    // Tag metode bayar — komersil HANYA Cash, subsidi bisa KPR FLPP + Cash
+    const tagHtml = isSubsidi
+      ? `<span class="unit-tag kpr">🏦 KPR FLPP</span> <span class="unit-tag cash">💵 Cash</span>`
+      : `<span class="unit-tag cash">💵 Cash</span>`;
+
+    // Luas tanah semua 120 m²
+    const lt = 120;
+
+    // Warna harga
+    const priceClass = isKomersil ? 'unit-price komersil-price' : 'unit-price';
+    const cardClass = isKomersil ? 'unit-card komersil-card' : 'unit-card';
+    const keterangan = isSubsidi ? '· harga subsidi' : '· harga komersil';
+
+    // Kamar tidur otomatis dari tipe
+    const lb = parseInt(u.lb) || parseInt(u.tipe) || 36;
+    const kt = lb >= 70 ? 3 : lb >= 45 ? 3 : 2;
+
     return `
-    <div class="unit-card ${populer?'featured':''}">
+    <div class="${cardClass} ${populer?'featured':''}">
       <div class="unit-img" style="background:${gradients[i%gradients.length]}">
         🏠
         <div class="unit-badge ${badgeClass}">${badgeText}</div>
       </div>
       <div class="unit-body">
+        <div style="margin-bottom:.5rem">${tagHtml}</div>
         <div class="unit-avail ${habis?'habis':'ada'}">
           ${habis ? '⛔ Stok habis' : stok + ' unit tersisa dari ' + total + ' unit'}
         </div>
         <div class="unit-name">${u.nama || 'Tipe '+u.tipe}</div>
-        <div class="unit-price">Rp ${harga.toLocaleString('id')} <span>· harga subsidi</span></div>
+        <div class="${priceClass}">Rp ${harga.toLocaleString('id')} <span>${keterangan}</span></div>
         <div class="unit-specs">
-          <div class="spec"><div class="val">${u.lb||'—'} m²</div><div class="key">Luas Bangunan</div></div>
-          <div class="spec"><div class="val">${u.lt||'—'} m²</div><div class="key">Luas Tanah</div></div>
-          <div class="spec"><div class="val">${u.kamar_tidur||'2'} KT</div><div class="key">Kamar Tidur</div></div>
+          <div class="spec"><div class="val">${u.lb||u.tipe||'—'} m²</div><div class="key">Luas Bangunan</div></div>
+          <div class="spec"><div class="val">120 m²</div><div class="key">Luas Tanah</div></div>
+          <div class="spec"><div class="val">${u.kamar_tidur||kt} KT</div><div class="key">Kamar Tidur</div></div>
         </div>
         <div class="unit-footer">
-          <button class="btn-outline" onclick="openModal(${i})">Detail</button>
-          <button class="btn-primary" ${habis?'disabled style="opacity:.5;cursor:not-allowed"':'onclick="goTo(\'booking\')"'}>${habis?'Tidak Tersedia':'Booking'}</button>
+          <button class="btn-outline" onclick="openModal(${allUnits.indexOf(u)})">Detail</button>
+          <button class="btn-primary" ${habis?'disabled style="opacity:.5;cursor:not-allowed"':'onclick="goTo(\'booking\')"'}>${habis?'Habis':'Booking'}</button>
         </div>
       </div>
     </div>`;
   }).join('');
 }
 
+function filterUnit(jenis, btn) {
+  document.querySelectorAll('.unit-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const grid = document.getElementById('unitsGrid');
+  const gradients = [
+    'linear-gradient(135deg,#E1F5EE,#9FE1CB)','linear-gradient(135deg,#C0DD97,#EAF3DE)',
+    'linear-gradient(135deg,#DBEAFE,#BFDBFE)','linear-gradient(135deg,#FEF3C7,#FDE68A)',
+    'linear-gradient(135deg,#FCE7F3,#FBCFE8)','linear-gradient(135deg,#EDE9FE,#DDD6FE)',
+    'linear-gradient(135deg,#FFEDD5,#FED7AA)'
+  ];
+  let filtered = allUnits;
+  if (jenis === 'subsidi') filtered = allUnits.filter(u => (u.jenis||'').toLowerCase()==='subsidi' || (parseInt(u.tipe)||parseInt(u.lb)||0)<=36);
+  if (jenis === 'komersil') filtered = allUnits.filter(u => (u.jenis||'').toLowerCase()==='komersil' || (parseInt(u.tipe)||parseInt(u.lb)||0)>36);
+  renderUnitGroup(grid, filtered, gradients);
+}
+
 function renderFallbackUnits() {
-  allUnits = [{
-    nama:'Tipe 36/100', harga:182000000, lb:36, lt:100,
-    kamar_tidur:2, kamar_mandi:1, stok_tersedia:42, stok_total:42,
-    label:'TERSEDIA', fasilitas:'Listrik 1300VA,PAM,Carport,Pagar depan', listrik:1300
-  }];
+  allUnits = [
+    { nama:'Tipe 36 Minimalis', tipe:36, harga:182000000, lb:36, lt:120, kamar_tidur:2, kamar_mandi:1, stok_tersedia:10, stok_total:10, label:'TERSEDIA', jenis:'subsidi', fasilitas:'Listrik 1300VA,Air PAM,Carport,Pagar depan', listrik:1300 },
+    { nama:'Tipe 42 Minimalis', tipe:42, harga:238000000, lb:42, lt:120, kamar_tidur:2, kamar_mandi:1, stok_tersedia:8,  stok_total:8,  label:'TERSEDIA', jenis:'komersil', fasilitas:'Listrik 1300VA,Air PAM,Carport,Pagar depan', listrik:1300 },
+    { nama:'Tipe 45 Minimalis', tipe:45, harga:250000000, lb:45, lt:120, kamar_tidur:3, kamar_mandi:1, stok_tersedia:6,  stok_total:6,  label:'TERSEDIA', jenis:'komersil', fasilitas:'Listrik 2200VA,Air PAM,Carport,Pagar depan', listrik:2200 },
+    { nama:'Tipe 50',           tipe:50, harga:320000000, lb:50, lt:120, kamar_tidur:3, kamar_mandi:2, stok_tersedia:5,  stok_total:5,  label:'TERSEDIA', jenis:'komersil', fasilitas:'Listrik 2200VA,Air PAM,Carport,Pagar depan', listrik:2200 },
+    { nama:'Tipe 60',           tipe:60, harga:370000000, lb:60, lt:120, kamar_tidur:3, kamar_mandi:2, stok_tersedia:5,  stok_total:5,  label:'TERSEDIA', jenis:'komersil', fasilitas:'Listrik 2200VA,Air PAM,Carport 2 Mobil,Pagar depan', listrik:2200 },
+    { nama:'Tipe 70',           tipe:70, harga:420000000, lb:70, lt:120, kamar_tidur:3, kamar_mandi:2, stok_tersedia:4,  stok_total:4,  label:'TERSEDIA', jenis:'komersil', fasilitas:'Listrik 2200VA,Air PAM,Carport 2 Mobil,Pagar depan', listrik:2200 },
+    { nama:'Tipe 80',           tipe:80, harga:470000000, lb:80, lt:120, kamar_tidur:4, kamar_mandi:2, stok_tersedia:4,  stok_total:4,  label:'TERSEDIA', jenis:'komersil', fasilitas:'Listrik 3500VA,Air PAM,Carport 2 Mobil,Pagar depan', listrik:3500 },
+  ];
   renderUnits();
 }
 
@@ -814,9 +920,11 @@ function renderProgress() {
 // ==============================================================
 function populateKPRSelect() {
   if (!allUnits.length) return;
-  document.getElementById('kprTipe').innerHTML = allUnits.map(u =>
-    `<option value="${u.harga}">${u.nama} — Rp ${parseInt(u.harga).toLocaleString('id')}</option>`
-  ).join('');
+  document.getElementById('kprTipe').innerHTML = allUnits.map(u => {
+    const harga = parseInt(u.harga) || 182000000;
+    const jenis = (u.jenis||'').toLowerCase()==='komersil' ? 'Komersil' : 'Subsidi';
+    return `<option value="${harga}">${u.nama||'Tipe '+u.tipe} — Rp ${harga.toLocaleString('id')} (${jenis})</option>`;
+  }).join('');
   hitungKPR();
 }
 
@@ -824,22 +932,43 @@ function populateKPRSelect() {
 // KALKULATOR KPR
 // ==============================================================
 function hitungKPR() {
-  const harga = parseInt(document.getElementById('kprTipe').value) || 182000000;
+  const sel = document.getElementById('kprTipe');
+  const harga = parseInt(sel.value) || 182000000;
+  const selectedText = sel.options[sel.selectedIndex] ? sel.options[sel.selectedIndex].text : '';
+  const isKomersil = selectedText.includes('Komersil');
+
   const dpPct = parseInt(document.getElementById('kprDP').value);
-  const tenor = parseInt(document.getElementById('kprTenor').value);
-  const bunga = parseFloat(document.getElementById('kprBunga').value);
-  const dp = Math.round(harga * dpPct / 100);
-  const pokok = harga - dp;
+  const tenor  = parseInt(document.getElementById('kprTenor').value);
+  const bunga  = parseFloat(document.getElementById('kprBunga').value);
+  const dp     = Math.round(harga * dpPct / 100);
+  const pokok  = harga - dp;
   const r = bunga/100/12; const n = tenor*12;
   const cicilan = Math.round(pokok*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1));
-  const total = cicilan*n + dp;
-  document.getElementById('dpLabel').textContent = 'Rp '+dp.toLocaleString('id')+' ('+dpPct+'%)';
+  const total   = cicilan*n + dp;
+
+  document.getElementById('dpLabel').textContent    = 'Rp '+dp.toLocaleString('id')+' ('+dpPct+'%)';
   document.getElementById('tenorLabel').textContent = tenor+' tahun';
-  document.getElementById('kprCicilan').textContent = 'Rp '+cicilan.toLocaleString('id');
-  document.getElementById('kprHarga').textContent = 'Rp '+harga.toLocaleString('id');
-  document.getElementById('kprDPVal').textContent = 'Rp '+dp.toLocaleString('id');
-  document.getElementById('kprPokok').textContent = 'Rp '+pokok.toLocaleString('id');
-  document.getElementById('kprTotal').textContent = 'Rp '+total.toLocaleString('id');
+  document.getElementById('kprHarga').textContent   = 'Rp '+harga.toLocaleString('id');
+  document.getElementById('kprDPVal').textContent   = 'Rp '+dp.toLocaleString('id');
+  document.getElementById('kprPokok').textContent   = 'Rp '+pokok.toLocaleString('id');
+
+  const highlightEl = document.querySelector('.kpr-highlight');
+  const lbl = document.querySelector('.cicilan-lbl');
+  const infoEl = document.getElementById('kprInfoKomersil');
+
+  if (isKomersil) {
+    document.getElementById('kprCicilan').textContent = 'HANYA CASH';
+    document.getElementById('kprTotal').textContent   = 'Rp '+harga.toLocaleString('id');
+    if (highlightEl) highlightEl.style.background = '#185FA5';
+    if (lbl) lbl.textContent = 'Metode Pembayaran';
+    if (infoEl) infoEl.style.display = 'block';
+  } else {
+    document.getElementById('kprCicilan').textContent = 'Rp '+cicilan.toLocaleString('id');
+    document.getElementById('kprTotal').textContent   = 'Rp '+total.toLocaleString('id');
+    if (highlightEl) highlightEl.style.background = 'var(--teal-600)';
+    if (lbl) lbl.textContent = 'Cicilan Per Bulan';
+    if (infoEl) infoEl.style.display = 'none';
+  }
 }
 hitungKPR();
 
@@ -962,22 +1091,28 @@ document.addEventListener('keydown', e=>{
 // ==============================================================
 function openModal(idx) {
   const u = allUnits[idx];
-  const harga = parseInt(u.harga)||182000000;
+  const harga = parseInt(u.harga) || 182000000;
   const fasilitas = (u.fasilitas||'Listrik,PAM,Carport').split(',');
+  const isSubsidi = (u.jenis||'').toLowerCase() === 'subsidi' || (parseInt(u.tipe)||parseInt(u.lb)||0) <= 36;
+  const metodeBayar = isSubsidi
+    ? `<span style="background:var(--teal-50);color:var(--teal-800);padding:3px 10px;border-radius:100px;font-size:12px;font-weight:700">🏦 KPR FLPP</span> <span style="background:#E6F1FB;color:#185FA5;padding:3px 10px;border-radius:100px;font-size:12px;font-weight:700">💵 Cash</span>`
+    : `<span style="background:#E6F1FB;color:#185FA5;padding:3px 10px;border-radius:100px;font-size:12px;font-weight:700">💵 Cash / Tunai</span>`;
   document.getElementById('modalBody').innerHTML = `
     <h3>${u.nama}</h3>
-    <div class="modal-price">Rp ${harga.toLocaleString('id')}</div>
+    <div class="modal-price" style="color:${isSubsidi?'var(--teal-600)':'#185FA5'}">Rp ${harga.toLocaleString('id')}</div>
+    <div style="margin-bottom:1rem">${metodeBayar}</div>
     <div class="modal-specs">
-      <div class="modal-spec"><div class="k">Luas Bangunan</div><div class="v">${u.lb} m²</div></div>
-      <div class="modal-spec"><div class="k">Luas Tanah</div><div class="v">${u.lt} m²</div></div>
+      <div class="modal-spec"><div class="k">Luas Bangunan</div><div class="v">${u.lb||u.tipe} m²</div></div>
+      <div class="modal-spec"><div class="k">Luas Tanah</div><div class="v">120 m²</div></div>
       <div class="modal-spec"><div class="k">Kamar Tidur</div><div class="v">${u.kamar_tidur||2} Kamar</div></div>
       <div class="modal-spec"><div class="k">Kamar Mandi</div><div class="v">${u.kamar_mandi||1} Kamar</div></div>
       <div class="modal-spec"><div class="k">Daya Listrik</div><div class="v">${u.listrik||'1.300'} VA</div></div>
-      <div class="modal-spec"><div class="k">Stok Tersisa</div><div class="v">${u.stok_tersedia} Unit</div></div>
+      <div class="modal-spec"><div class="k">Stok Tersisa</div><div class="v">${u.stok_tersedia||'—'} Unit</div></div>
     </div>
     <p style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text-muted)">FASILITAS TERMASUK</p>
     <ul class="modal-list">${fasilitas.map(f=>`<li>${f.trim()}</li>`).join('')}</ul>
-    <button class="modal-btn" onclick="closeModal();goTo('booking')">Booking Unit Ini →</button>`;
+    ${isSubsidi ? '' : '<div style="background:#E6F1FB;border-radius:8px;padding:.75rem;font-size:12px;color:#185FA5;font-weight:600;margin-bottom:1rem">💡 Tipe ini hanya tersedia untuk pembelian Cash/Tunai. Hubungi kami untuk negosiasi harga.</div>'}
+    <button class="modal-btn" style="background:${isSubsidi?'var(--teal-600)':'#185FA5'}" onclick="closeModal();goTo('booking')">Booking Unit Ini →</button>`;
   document.getElementById('modalBg').classList.add('open');
 }
 function closeModal(){ document.getElementById('modalBg').classList.remove('open'); }
