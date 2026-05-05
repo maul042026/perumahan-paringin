@@ -6,41 +6,28 @@
   <title>Asisten Virtual – Garuda Maharam Residence</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       min-height: 100vh;
       background: linear-gradient(135deg, #0f2027 0%, #1a3a2a 50%, #0f2027 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-family: 'Georgia', 'Times New Roman', serif;
       padding: 16px;
     }
-
     #app {
-      width: 100%;
-      max-width: 680px;
-      display: flex;
-      flex-direction: column;
-      height: 92vh;
-      max-height: 860px;
+      width: 100%; max-width: 680px;
+      display: flex; flex-direction: column;
+      height: 92vh; max-height: 860px;
     }
-
-    /* Header */
     .header {
       background: linear-gradient(135deg, #b8860b 0%, #daa520 40%, #8b6914 100%);
       border-radius: 18px 18px 0 0;
       padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
+      display: flex; align-items: center; gap: 14px;
       box-shadow: 0 4px 20px rgba(218,165,32,0.3);
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
     .header::before {
-      content: '';
-      position: absolute; inset: 0;
+      content: ''; position: absolute; inset: 0;
       background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 20px);
     }
     .header-icon { font-size: 36px; position: relative; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); }
@@ -53,26 +40,17 @@
       animation: pulse 2s infinite; position: relative;
     }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
-
-    /* Chat area */
     #chat {
-      flex: 1;
-      overflow-y: auto;
-      padding: 20px 16px;
+      flex: 1; overflow-y: auto; padding: 20px 16px;
       background: rgba(15,32,39,0.95);
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      scrollbar-width: thin;
-      scrollbar-color: #daa520 transparent;
+      display: flex; flex-direction: column; gap: 14px;
+      scrollbar-width: thin; scrollbar-color: #daa520 transparent;
     }
     #chat::-webkit-scrollbar { width: 4px; }
     #chat::-webkit-scrollbar-thumb { background: #daa520; border-radius: 4px; }
-
     .msg-row { display: flex; align-items: flex-end; gap: 8px; }
     .msg-row.user { justify-content: flex-end; }
     .msg-row.assistant { justify-content: flex-start; }
-
     .avatar {
       width: 28px; height: 28px; border-radius: 50%;
       background: linear-gradient(135deg, #b8860b, #daa520);
@@ -80,313 +58,227 @@
       font-size: 14px; flex-shrink: 0;
       box-shadow: 0 2px 8px rgba(218,165,32,0.4);
     }
-
-    .bubble {
-      max-width: 75%;
-      padding: 12px 16px;
-      font-size: 14px;
-      line-height: 1.6;
-      word-break: break-word;
-    }
+    .bubble { max-width: 75%; padding: 12px 16px; font-size: 14px; line-height: 1.6; word-break: break-word; }
     .bubble.assistant {
       border-radius: 18px 18px 18px 4px;
       background: rgba(255,255,255,0.07);
       border: 1px solid rgba(218,165,32,0.2);
-      color: #e8dcc0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      color: #e8dcc0; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     .bubble.user {
       border-radius: 18px 18px 4px 18px;
       background: linear-gradient(135deg, #b8860b, #daa520);
-      color: #fff;
-      box-shadow: 0 2px 12px rgba(218,165,32,0.3);
+      color: #fff; box-shadow: 0 2px 12px rgba(218,165,32,0.3);
     }
-
-    /* Typing indicator */
     .typing { display: flex; gap: 5px; align-items: center; padding: 12px 18px; }
-    .dot {
-      width: 7px; height: 7px; border-radius: 50%; background: #daa520;
-      animation: bounce 1.2s infinite;
-    }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #daa520; animation: bounce 1.2s infinite; }
     .dot:nth-child(2) { animation-delay: 0.2s; }
     .dot:nth-child(3) { animation-delay: 0.4s; }
     @keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
-
-    /* Suggestions */
-    .suggestions-label {
-      font-size: 11px; color: rgba(218,165,32,0.6);
-      margin-bottom: 10px; letter-spacing: 0.05em;
-    }
+    .suggestions-label { font-size: 11px; color: rgba(218,165,32,0.6); margin-bottom: 10px; letter-spacing: 0.05em; }
     .chips { display: flex; flex-wrap: wrap; gap: 8px; }
     .chip {
       padding: 7px 13px; border-radius: 20px;
       border: 1px solid rgba(218,165,32,0.35);
       background: rgba(218,165,32,0.07);
-      color: #daa520; font-size: 12px;
-      cursor: pointer; font-family: inherit;
-      transition: all 0.2s;
+      color: #daa520; font-size: 12px; cursor: pointer; font-family: inherit; transition: all 0.2s;
     }
     .chip:hover { background: rgba(218,165,32,0.18); border-color: #daa520; }
-
-    /* Input area */
     .input-area {
       background: rgba(15,32,39,0.98);
       border-top: 1px solid rgba(218,165,32,0.2);
       border-radius: 0 0 18px 18px;
-      padding: 14px 16px;
-      display: flex;
-      gap: 10px;
-      align-items: flex-end;
+      padding: 14px 16px; display: flex; gap: 10px; align-items: flex-end;
     }
     #userinput {
-      flex: 1;
-      background: rgba(255,255,255,0.06);
+      flex: 1; background: rgba(255,255,255,0.06);
       border: 1px solid rgba(218,165,32,0.25);
-      border-radius: 12px;
-      padding: 11px 14px;
-      color: #e8dcc0;
-      font-size: 14px;
-      font-family: inherit;
-      resize: none;
-      outline: none;
-      line-height: 1.5;
-      max-height: 100px;
-      overflow-y: auto;
-      transition: border-color 0.2s;
-      rows: 1;
+      border-radius: 12px; padding: 11px 14px;
+      color: #e8dcc0; font-size: 14px; font-family: inherit;
+      resize: none; outline: none; line-height: 1.5;
+      max-height: 100px; overflow-y: auto; transition: border-color 0.2s;
     }
     #userinput:focus { border-color: #daa520; }
     #userinput::placeholder { color: rgba(232,220,192,0.35); }
-
     #sendbtn {
       width: 42px; height: 42px; border-radius: 12px;
       background: linear-gradient(135deg, #b8860b, #daa520);
       border: none; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       font-size: 18px; flex-shrink: 0;
-      box-shadow: 0 2px 10px rgba(218,165,32,0.35);
-      transition: all 0.2s;
+      box-shadow: 0 2px 10px rgba(218,165,32,0.35); transition: all 0.2s;
     }
-    #sendbtn:disabled {
-      background: rgba(218,165,32,0.2);
-      box-shadow: none; cursor: not-allowed;
-    }
-
-    .footer {
-      text-align: center; margin-top: 10px;
-      font-size: 11px; color: rgba(218,165,32,0.4);
-      letter-spacing: 0.04em;
-    }
+    #sendbtn:disabled { background: rgba(218,165,32,0.2); box-shadow: none; cursor: not-allowed; }
+    .footer { text-align: center; margin-top: 10px; font-size: 11px; color: rgba(218,165,32,0.4); letter-spacing: 0.04em; }
   </style>
 </head>
 <body>
 <div id="app">
-  <!-- Header -->
   <div class="header">
     <div class="header-icon">🦅</div>
     <div class="header-text">
       <div class="header-title">Garuda Maharam Residence</div>
-      <div class="header-sub">Asisten Virtual • Perumahan Subsidi FLPP</div>
+      <div class="header-sub">Asisten Virtual &bull; Perumahan Subsidi FLPP</div>
     </div>
     <div class="status-dot"></div>
   </div>
-
-  <!-- Chat -->
   <div id="chat"></div>
-
-  <!-- Input -->
   <div class="input-area">
     <textarea id="userinput" placeholder="Tulis pertanyaan Anda di sini..." rows="1"></textarea>
-    <button id="sendbtn" disabled>➤</button>
+    <button id="sendbtn" disabled>&#10148;</button>
   </div>
-
-  <div class="footer">PT Rusdi Rahmi • Paringin, Kabupaten Balangan, Kalimantan Selatan</div>
+  <div class="footer">PT Rusdi Rahmi &bull; Paringin, Kabupaten Balangan, Kalimantan Selatan</div>
 </div>
 
 <script>
-const SYSTEM_PROMPT = `Kamu adalah asisten virtual resmi dari Garuda Maharam Residence, proyek perumahan subsidi (FLPP) yang berlokasi di Paringin, Kabupaten Balangan, Kalimantan Selatan. Proyek ini dikembangkan oleh PT Rusdi Rahmi.
+  // ⬇️ GANTI dengan Web App URL dari Google Apps Script setelah deploy
+  const PROXY_URL = "GANTI_DENGAN_APPS_SCRIPT_URL";
 
-Informasi utama proyek:
-- Nama: Garuda Maharam Residence
-- Lokasi: Paringin, Kabupaten Balangan, Kalimantan Selatan
-- Tipe: Perumahan subsidi program FLPP (Fasilitas Likuiditas Pembiayaan Perumahan)
-- Jumlah unit: 42 unit
-- Developer: PT Rusdi Rahmi
-- KPR melalui: Bank BTN (KPR FLPP)
-- Program: Subsidi pemerintah untuk MBR (Masyarakat Berpenghasilan Rendah)
+  const SUGGESTIONS = [
+    "Berapa harga rumah subsidi di sini?",
+    "Apa syarat KPR FLPP?",
+    "Apakah masih ada unit tersedia?",
+    "Bagaimana proses pembeliannya?",
+    "Lokasi persisnya di mana?",
+    "Berapa cicilan per bulannya?",
+  ];
 
-Informasi KPR FLPP umum:
-- Uang muka ringan (1-5% dari harga rumah)
-- Suku bunga tetap 5% per tahun selama masa cicilan
-- Tenor cicilan hingga 20-30 tahun
-- Bebas PPN untuk rumah subsidi
-- Syarat: WNI, belum pernah memiliki rumah, gaji maksimal sesuai ketentuan pemerintah
-- Pendaftaran melalui sistem SIKUMBANG (Sistem Informasi KPR Subsidi Perumahan)
+  let history = [];
+  let isLoading = false;
 
-Tugas kamu:
-- Menjawab pertanyaan calon pembeli dengan ramah, jelas, dan profesional
-- Memberikan informasi tentang unit, harga, syarat KPR FLPP, proses pembelian
-- Mendorong calon pembeli untuk menghubungi tim marketing atau datang langsung ke lokasi
-- Gunakan bahasa Indonesia yang santai namun profesional
-- Jika ada pertanyaan yang tidak kamu ketahui jawabannya secara spesifik (misal harga pasti, ketersediaan unit terkini), arahkan untuk menghubungi tim marketing langsung
+  const chat = document.getElementById('chat');
+  const input = document.getElementById('userinput');
+  const btn = document.getElementById('sendbtn');
 
-Jangan pernah memberikan informasi yang menyesatkan. Selalu sampaikan bahwa untuk konfirmasi detail terkini, calon pembeli bisa menghubungi tim kami.`;
+  function renderMarkdown(text) {
+    return text
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/\n/g, '<br/>');
+  }
 
-const SUGGESTIONS = [
-  "Berapa harga rumah subsidi di sini?",
-  "Apa syarat KPR FLPP?",
-  "Apakah masih ada unit tersedia?",
-  "Bagaimana proses pembeliannya?",
-  "Lokasi persisnya di mana?",
-  "Berapa cicilan per bulannya?",
-];
+  function addMessage(role, content) {
+    const row = document.createElement('div');
+    row.className = 'msg-row ' + role;
+    if (role === 'assistant') {
+      const avatar = document.createElement('div');
+      avatar.className = 'avatar';
+      avatar.textContent = '🦅';
+      row.appendChild(avatar);
+    }
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble ' + role;
+    bubble.innerHTML = renderMarkdown(content);
+    row.appendChild(bubble);
+    chat.appendChild(row);
+    chat.scrollTop = chat.scrollHeight;
+  }
 
-let history = [];
-let isLoading = false;
-
-const chat = document.getElementById('chat');
-const input = document.getElementById('userinput');
-const btn = document.getElementById('sendbtn');
-
-function renderMarkdown(text) {
-  return text
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/\n/g, '<br/>');
-}
-
-function addMessage(role, content) {
-  const row = document.createElement('div');
-  row.className = `msg-row ${role}`;
-
-  if (role === 'assistant') {
+  function addTyping() {
+    const row = document.createElement('div');
+    row.className = 'msg-row assistant';
+    row.id = 'typing-row';
     const avatar = document.createElement('div');
     avatar.className = 'avatar';
     avatar.textContent = '🦅';
     row.appendChild(avatar);
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble assistant typing';
+    bubble.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+    row.appendChild(bubble);
+    chat.appendChild(row);
+    chat.scrollTop = chat.scrollHeight;
   }
 
-  const bubble = document.createElement('div');
-  bubble.className = `bubble ${role}`;
-  bubble.innerHTML = renderMarkdown(content);
-  row.appendChild(bubble);
+  function removeTyping() {
+    const t = document.getElementById('typing-row');
+    if (t) t.remove();
+  }
 
-  chat.appendChild(row);
-  chat.scrollTop = chat.scrollHeight;
-  return row;
-}
-
-function addTyping() {
-  const row = document.createElement('div');
-  row.className = 'msg-row assistant';
-  row.id = 'typing-row';
-
-  const avatar = document.createElement('div');
-  avatar.className = 'avatar';
-  avatar.textContent = '🦅';
-  row.appendChild(avatar);
-
-  const bubble = document.createElement('div');
-  bubble.className = 'bubble assistant typing';
-  bubble.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
-  row.appendChild(bubble);
-
-  chat.appendChild(row);
-  chat.scrollTop = chat.scrollHeight;
-}
-
-function removeTyping() {
-  const t = document.getElementById('typing-row');
-  if (t) t.remove();
-}
-
-function showSuggestions() {
-  const wrapper = document.createElement('div');
-  wrapper.id = 'suggestions';
-  wrapper.style.marginTop = '8px';
-
-  const label = document.createElement('div');
-  label.className = 'suggestions-label';
-  label.textContent = 'PERTANYAAN UMUM';
-  wrapper.appendChild(label);
-
-  const chips = document.createElement('div');
-  chips.className = 'chips';
-
-  SUGGESTIONS.forEach(s => {
-    const chip = document.createElement('button');
-    chip.className = 'chip';
-    chip.textContent = s;
-    chip.onclick = () => sendMessage(s);
-    chips.appendChild(chip);
-  });
-
-  wrapper.appendChild(chips);
-  chat.appendChild(wrapper);
-  chat.scrollTop = chat.scrollHeight;
-}
-
-async function sendMessage(text) {
-  const userText = text || input.value.trim();
-  if (!userText || isLoading) return;
-
-  // Remove suggestions
-  const sugg = document.getElementById('suggestions');
-  if (sugg) sugg.remove();
-
-  input.value = '';
-  updateBtn();
-
-  addMessage('user', userText);
-  history.push({ role: 'user', content: userText });
-
-  isLoading = true;
-  updateBtn();
-  addTyping();
-
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: SYSTEM_PROMPT,
-        messages: history,
-      }),
+  function showSuggestions() {
+    const wrapper = document.createElement('div');
+    wrapper.id = 'suggestions';
+    wrapper.style.marginTop = '8px';
+    const label = document.createElement('div');
+    label.className = 'suggestions-label';
+    label.textContent = 'PERTANYAAN UMUM';
+    wrapper.appendChild(label);
+    const chips = document.createElement('div');
+    chips.className = 'chips';
+    SUGGESTIONS.forEach(function(s) {
+      const chip = document.createElement('button');
+      chip.className = 'chip';
+      chip.textContent = s;
+      chip.onclick = function() { sendMessage(s); };
+      chips.appendChild(chip);
     });
+    wrapper.appendChild(chips);
+    chat.appendChild(wrapper);
+    chat.scrollTop = chat.scrollHeight;
+  }
 
-    const data = await res.json();
-    const reply = data.content?.[0]?.text || 'Maaf, terjadi kesalahan. Silakan coba lagi.';
-    history.push({ role: 'assistant', content: reply });
-    removeTyping();
-    addMessage('assistant', reply);
-  } catch (e) {
-    removeTyping();
-    addMessage('assistant', 'Maaf, koneksi bermasalah. Silakan coba beberapa saat lagi.');
-  } finally {
-    isLoading = false;
+  async function sendMessage(text) {
+    const userText = text || input.value.trim();
+    if (!userText || isLoading) return;
+
+    const sugg = document.getElementById('suggestions');
+    if (sugg) sugg.remove();
+
+    input.value = '';
     updateBtn();
+    addMessage('user', userText);
+    history.push({ role: 'user', content: userText });
+
+    isLoading = true;
+    updateBtn();
+    addTyping();
+
+    try {
+      const res = await fetch(PROXY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history }),
+      });
+
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+
+      const reply = (data.content && data.content[0] && data.content[0].text)
+        ? data.content[0].text
+        : 'Maaf, tidak ada respons dari server.';
+
+      history.push({ role: 'assistant', content: reply });
+      removeTyping();
+      addMessage('assistant', reply);
+
+    } catch (err) {
+      removeTyping();
+      addMessage('assistant', '⚠️ Gagal menghubungi asisten. Pastikan koneksi internet Anda aktif, atau hubungi tim marketing kami langsung ya.');
+      console.error(err);
+    } finally {
+      isLoading = false;
+      updateBtn();
+    }
   }
-}
 
-function updateBtn() {
-  btn.disabled = isLoading || !input.value.trim();
-}
-
-input.addEventListener('input', updateBtn);
-input.addEventListener('keydown', e => {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    sendMessage();
+  function updateBtn() {
+    btn.disabled = isLoading || !input.value.trim();
   }
-});
-btn.addEventListener('click', () => sendMessage());
 
-// Init
-addMessage('assistant', 'Halo! Saya asisten virtual **Garuda Maharam Residence** 🦅\n\nSaya siap membantu Anda dengan informasi seputar perumahan subsidi FLPP kami di Paringin, Kabupaten Balangan. Ada yang bisa saya bantu?');
-history.push({ role: 'assistant', content: 'Halo! Saya asisten virtual Garuda Maharam Residence 🦅\n\nSaya siap membantu Anda dengan informasi seputar perumahan subsidi FLPP kami di Paringin, Kabupaten Balangan. Ada yang bisa saya bantu?' });
-showSuggestions();
+  input.addEventListener('input', updateBtn);
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+  btn.addEventListener('click', function() { sendMessage(); });
+
+  // Init
+  const greeting = 'Halo! Saya asisten virtual **Garuda Maharam Residence** 🦅\n\nSaya siap membantu Anda dengan informasi seputar perumahan subsidi FLPP kami di Paringin, Kabupaten Balangan. Ada yang bisa saya bantu?';
+  addMessage('assistant', greeting);
+  history.push({ role: 'assistant', content: greeting });
+  showSuggestions();
 </script>
 </body>
 </html>
