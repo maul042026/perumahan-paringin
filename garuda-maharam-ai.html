@@ -131,8 +131,7 @@
 </div>
 
 <script>
-  // ⬇️ GANTI dengan Web App URL dari Google Apps Script setelah deploy
-  const PROXY_URL = "https://script.google.com/macros/s/AKfycbzbX1F3SAELnLf3trKi_ByNeDX-8Do4nl9HQ4e2F_H9zFjoc4OdTJOxFo8EStsPe1cF/exec";
+  const PROXY_URL = "https://script.google.com/macros/s/AKfycbxfMB9KkeugDMHYp92jm6Nvd7IgjiIHaucyEY8lhbaDiAbfiYrbrn8dcDlShqDGID74/exec";
 
   const SUGGESTIONS = [
     "Berapa harga rumah subsidi di sini?",
@@ -163,7 +162,7 @@
     if (role === 'assistant') {
       const avatar = document.createElement('div');
       avatar.className = 'avatar';
-      avatar.textContent = '🦅';
+      avatar.textContent = '\uD83E\uDD85';
       row.appendChild(avatar);
     }
     const bubble = document.createElement('div');
@@ -180,7 +179,7 @@
     row.id = 'typing-row';
     const avatar = document.createElement('div');
     avatar.className = 'avatar';
-    avatar.textContent = '🦅';
+    avatar.textContent = '\uD83E\uDD85';
     row.appendChild(avatar);
     const bubble = document.createElement('div');
     bubble.className = 'bubble assistant typing';
@@ -217,6 +216,36 @@
     chat.scrollTop = chat.scrollHeight;
   }
 
+  // Kirim via form POST (bypass CORS untuk Google Apps Script)
+  function fetchViaForm(url, data) {
+    return new Promise(function(resolve, reject) {
+      var iframe = document.createElement('iframe');
+      iframe.name = 'gas_iframe_' + Date.now();
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+
+      // Karena form POST ke Apps Script tidak bisa baca response di iframe (cross-origin),
+      // kita pakai XMLHttpRequest dengan mode text/plain agar tidak trigger preflight
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', url, true);
+      // Kirim sebagai text/plain — Apps Script tetap bisa parse JSON-nya
+      // dan tidak ada preflight OPTIONS request
+      xhr.setRequestHeader('Content-Type', 'text/plain');
+      xhr.onload = function() {
+        try {
+          resolve(JSON.parse(xhr.responseText));
+        } catch(e) {
+          reject(new Error('Parse error: ' + xhr.responseText));
+        }
+      };
+      xhr.onerror = function() { reject(new Error('Network error')); };
+      xhr.ontimeout = function() { reject(new Error('Timeout')); };
+      xhr.timeout = 30000;
+      xhr.send(JSON.stringify(data));
+      document.body.removeChild(iframe);
+    });
+  }
+
   async function sendMessage(text) {
     const userText = text || input.value.trim();
     if (!userText || isLoading) return;
@@ -234,13 +263,8 @@
     addTyping();
 
     try {
-      const res = await fetch(PROXY_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history }),
-      });
+      const data = await fetchViaForm(PROXY_URL, { messages: history });
 
-      const data = await res.json();
       if (data.error) throw new Error(data.error);
 
       const reply = (data.content && data.content[0] && data.content[0].text)
@@ -253,8 +277,8 @@
 
     } catch (err) {
       removeTyping();
-      addMessage('assistant', '⚠️ Gagal menghubungi asisten. Pastikan koneksi internet Anda aktif, atau hubungi tim marketing kami langsung ya.');
-      console.error(err);
+      addMessage('assistant', 'Maaf, gagal menghubungi asisten. Silakan coba lagi atau hubungi tim marketing kami langsung ya.');
+      console.error('Error:', err);
     } finally {
       isLoading = false;
       updateBtn();
@@ -274,8 +298,7 @@
   });
   btn.addEventListener('click', function() { sendMessage(); });
 
-  // Init
-  const greeting = 'Halo! Saya asisten virtual **Garuda Maharam Residence** 🦅\n\nSaya siap membantu Anda dengan informasi seputar perumahan subsidi FLPP kami di Paringin, Kabupaten Balangan. Ada yang bisa saya bantu?';
+  const greeting = 'Halo! Saya asisten virtual **Garuda Maharam Residence**\n\nSaya siap membantu Anda dengan informasi seputar perumahan subsidi FLPP kami di Paringin, Kabupaten Balangan. Ada yang bisa saya bantu?';
   addMessage('assistant', greeting);
   history.push({ role: 'assistant', content: greeting });
   showSuggestions();
