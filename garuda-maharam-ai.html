@@ -131,7 +131,8 @@
 </div>
 
 <script>
-  const PROXY_URL = "https://script.google.com/macros/s/AKfycbxfMB9KkeugDMHYp92jm6Nvd7IgjiIHaucyEY8lhbaDiAbfiYrbrn8dcDlShqDGID74/exec";
+  // Ganti dengan URL Apps Script terbaru setelah deploy ulang
+  const PROXY_URL = "https://script.google.com/macros/s/AKfycbxGs6xP6-SHDUKg1e9g5T-IxLVD9VXdRwdYMW8MQt8oStxwEuKx05odQ2SOw85UI1no/exec";
 
   const SUGGESTIONS = [
     "Berapa harga rumah subsidi di sini?",
@@ -144,6 +145,7 @@
 
   let history = [];
   let isLoading = false;
+  let cbCounter = 0;
 
   const chat = document.getElementById('chat');
   const input = document.getElementById('userinput');
@@ -162,7 +164,7 @@
     if (role === 'assistant') {
       const avatar = document.createElement('div');
       avatar.className = 'avatar';
-      avatar.textContent = '\uD83E\uDD85';
+      avatar.textContent = '🦅';
       row.appendChild(avatar);
     }
     const bubble = document.createElement('div');
@@ -179,7 +181,7 @@
     row.id = 'typing-row';
     const avatar = document.createElement('div');
     avatar.className = 'avatar';
-    avatar.textContent = '\uD83E\uDD85';
+    avatar.textContent = '🦅';
     row.appendChild(avatar);
     const bubble = document.createElement('div');
     bubble.className = 'bubble assistant typing';
@@ -216,33 +218,34 @@
     chat.scrollTop = chat.scrollHeight;
   }
 
-  // Kirim via form POST (bypass CORS untuk Google Apps Script)
-  function fetchViaForm(url, data) {
+  // JSONP — tidak ada CORS sama sekali karena pakai <script> tag
+  function fetchJSONP(url, params) {
     return new Promise(function(resolve, reject) {
-      var iframe = document.createElement('iframe');
-      iframe.name = 'gas_iframe_' + Date.now();
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
+      var cbName = '__gascb' + (++cbCounter) + '_' + Date.now();
+      var timeout;
 
-      // Karena form POST ke Apps Script tidak bisa baca response di iframe (cross-origin),
-      // kita pakai XMLHttpRequest dengan mode text/plain agar tidak trigger preflight
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', url, true);
-      // Kirim sebagai text/plain — Apps Script tetap bisa parse JSON-nya
-      // dan tidak ada preflight OPTIONS request
-      xhr.setRequestHeader('Content-Type', 'text/plain');
-      xhr.onload = function() {
-        try {
-          resolve(JSON.parse(xhr.responseText));
-        } catch(e) {
-          reject(new Error('Parse error: ' + xhr.responseText));
-        }
+      window[cbName] = function(data) {
+        clearTimeout(timeout);
+        delete window[cbName];
+        if (script.parentNode) script.parentNode.removeChild(script);
+        resolve(data);
       };
-      xhr.onerror = function() { reject(new Error('Network error')); };
-      xhr.ontimeout = function() { reject(new Error('Timeout')); };
-      xhr.timeout = 30000;
-      xhr.send(JSON.stringify(data));
-      document.body.removeChild(iframe);
+
+      timeout = setTimeout(function() {
+        delete window[cbName];
+        if (script.parentNode) script.parentNode.removeChild(script);
+        reject(new Error('Timeout'));
+      }, 30000);
+
+      var query = '?callback=' + cbName + '&messages=' + encodeURIComponent(JSON.stringify(params.messages));
+      var script = document.createElement('script');
+      script.src = url + query;
+      script.onerror = function() {
+        clearTimeout(timeout);
+        delete window[cbName];
+        reject(new Error('Script load error'));
+      };
+      document.head.appendChild(script);
     });
   }
 
@@ -263,7 +266,7 @@
     addTyping();
 
     try {
-      const data = await fetchViaForm(PROXY_URL, { messages: history });
+      const data = await fetchJSONP(PROXY_URL, { messages: history });
 
       if (data.error) throw new Error(data.error);
 
