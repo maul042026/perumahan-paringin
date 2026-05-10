@@ -235,6 +235,32 @@ section{padding:4rem 2rem;max-width:1100px;margin:0 auto}
 .faq-a.open{max-height:300px}
 .faq-a p{padding:0 1.25rem 1rem;font-size:14px;color:var(--text-muted);line-height:1.7}
 
+/* ===== AI CHAT ===== */
+.ai-chat-wrap{margin-top:2rem;border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;background:white;max-width:780px}
+.ai-suggestions{background:var(--gray-50);padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+.ai-suggestion-label{font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:.6rem}
+.ai-suggestion-btns{display:flex;flex-wrap:wrap;gap:.5rem}
+.ai-suggestion-btns button{background:white;border:1.5px solid var(--border);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--text);transition:all .15s;white-space:nowrap}
+.ai-suggestion-btns button:hover{border-color:var(--teal-400);color:var(--teal-600);background:var(--teal-50)}
+.ai-messages{height:360px;overflow-y:auto;padding:1.25rem;display:flex;flex-direction:column;gap:1rem;scroll-behavior:smooth}
+.ai-msg{display:flex;gap:.75rem;align-items:flex-start}
+.ai-msg.user{flex-direction:row-reverse}
+.ai-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;background:var(--gray-50);border:1px solid var(--border)}
+.ai-msg.user .ai-avatar{background:var(--teal-600);color:white;font-size:13px;font-weight:700}
+.ai-bubble{background:var(--gray-50);border-radius:0 12px 12px 12px;padding:.75rem 1rem;font-size:14px;line-height:1.65;color:var(--text);max-width:85%}
+.ai-msg.user .ai-bubble{background:var(--teal-600);color:white;border-radius:12px 0 12px 12px}
+.ai-bubble.typing{display:flex;align-items:center;gap:4px;padding:.75rem 1rem}
+.ai-bubble.typing span{width:7px;height:7px;border-radius:50%;background:var(--gray-400);display:inline-block;animation:typingDot 1.2s infinite}
+.ai-bubble.typing span:nth-child(2){animation-delay:.2s}
+.ai-bubble.typing span:nth-child(3){animation-delay:.4s}
+@keyframes typingDot{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-6px);opacity:1}}
+.ai-input-wrap{display:flex;gap:.5rem;padding:.75rem 1rem;border-top:1px solid var(--border);background:white}
+.ai-input{flex:1;border:1.5px solid var(--border);border-radius:100px;padding:10px 18px;font-size:14px;font-family:inherit;outline:none;transition:border-color .15s}
+.ai-input:focus{border-color:var(--teal-400)}
+.ai-send-btn{background:var(--teal-600);color:white;border:none;border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;flex-shrink:0}
+.ai-send-btn:hover{background:var(--teal-800)}
+.ai-send-btn:disabled{background:var(--gray-400);cursor:not-allowed}
+
 /* ===== ERROR ===== */
 .error-banner{background:#FCEBEB;border:1px solid #F7C1C1;border-radius:var(--radius);padding:1rem 1.25rem;color:#791F1F;font-size:14px;margin-top:1rem;display:none}
 
@@ -331,13 +357,11 @@ footer a:hover{color:white}
 
 <!-- TIPE UNIT -->
 <section id="unit">
-  <!-- <div class="live-badge">🔴 Data langsung dari Google Sheets — diperbarui real-time</div> -->
+  <div class="live-badge">🔴 Data langsung dari Google Sheets — diperbarui real-time</div>
   <div class="section-label">Pilihan Hunian</div>
   <div class="section-title">Tipe Unit Tersedia</div>
   <div class="section-desc">Semua tipe memenuhi standar rumah subsidi FLPP dan siap diajukan KPR.</div>
   <div class="error-banner" id="errorBanner">⚠️ Gagal memuat data. Pastikan URL Google Apps Script sudah benar dan coba refresh halaman.</div>
-  
-  <!-- Filter Tab -->
   <div class="unit-filter-wrap">
     <div class="unit-filter">
       <button class="unit-filter-btn all active" onclick="filterUnit('semua',this)">🏘️ Semua Tipe</button>
@@ -451,16 +475,16 @@ footer a:hover{color:white}
       <div class="siteplan-stat"><div class="snum" id="spLT">100</div><div class="slbl">Luas Tanah (m²)</div></div>
       <div class="siteplan-stat"><div class="snum">2</div><div class="slbl">Kamar Tidur</div></div>
     </div>
-    <!-- <div class="upload-guide"> -->
-      <!-- <h4>📌 Cara Tambah Gambar Siteplan</h4> -->
-      <!-- <ol> -->
-        <!-- <li>Upload gambar siteplan ke <strong>Google Drive</strong></li> -->
-        <!-- <li>Klik kanan → <strong>Bagikan</strong> → ubah ke <strong>"Siapa saja yang memiliki link"</strong></li> -->
-        <!-- <li>Salin link — ambil ID-nya saja (antara <code>/d/</code> dan <code>/view</code>)</li> -->
-        <!-- <li>Di Google Sheets tab <strong>Settings</strong>, tambah baris: <code>siteplan_id</code> | <em>ID file Anda</em></li> -->
-        <!-- <li>Refresh website → gambar langsung muncul!</li> -->
-      <!-- </ol> -->
-    <!-- </div> -->
+    <div class="upload-guide">
+      <h4>📌 Cara Tambah Gambar Siteplan</h4>
+      <ol>
+        <li>Upload gambar siteplan ke <strong>Google Drive</strong></li>
+        <li>Klik kanan → <strong>Bagikan</strong> → ubah ke <strong>"Siapa saja yang memiliki link"</strong></li>
+        <li>Salin link — ambil ID-nya saja (antara <code>/d/</code> dan <code>/view</code>)</li>
+        <li>Di Google Sheets tab <strong>Settings</strong>, tambah baris: <code>siteplan_id</code> | <em>ID file Anda</em></li>
+        <li>Refresh website → gambar langsung muncul!</li>
+      </ol>
+    </div>
   </div>
 </div>
 </section>
@@ -478,20 +502,18 @@ footer a:hover{color:white}
     <button class="galeri-tab" onclick="filterGaleri('finishing',this)">Finishing</button>
     <button class="galeri-tab" onclick="filterGaleri('lokasi',this)">Lokasi</button>
   </div>
-  <div class="galeri-grid" id="galeriGrid">
-    <!-- diisi JS -->
+  <div class="galeri-grid" id="galeriGrid"></div>
+  <div class="upload-guide" style="margin-top:1.5rem">
+    <h4>📌 Cara Tambah Foto ke Galeri</h4>
+    <ol>
+      <li>Upload foto ke <strong>Google Drive</strong> → Bagikan → <strong>"Siapa saja yang memiliki link"</strong></li>
+      <li>Ambil <strong>ID file</strong> dari link (antara <code>/d/</code> dan <code>/view</code>)</li>
+      <li>Di Google Sheets, tambah tab baru bernama <strong>Galeri</strong></li>
+      <li>Buat kolom: <code>judul</code> | <code>kategori</code> | <code>drive_id</code> | <code>tanggal</code></li>
+      <li>Isi satu baris per foto. Kolom <code>kategori</code>: <code>pondasi</code>, <code>struktur</code>, <code>finishing</code>, atau <code>lokasi</code></li>
+      <li>Refresh website — foto langsung tampil di galeri!</li>
+    </ol>
   </div>
-  <!-- <div class="upload-guide" style="margin-top:1.5rem"> -->
-    <!-- <h4>📌 Cara Tambah Foto ke Galeri</h4> -->
-    <!-- <ol> -->
-      <!-- <li>Upload foto ke <strong>Google Drive</strong> → Bagikan → <strong>"Siapa saja yang memiliki link"</strong></li> -->
-      <!-- <li>Ambil <strong>ID file</strong> dari link (antara <code>/d/</code> dan <code>/view</code>)</li> -->
-      <!-- <li>Di Google Sheets, tambah tab baru bernama <strong>Galeri</strong></li> -->
-      <!-- <li>Buat kolom: <code>judul</code> | <code>kategori</code> | <code>drive_id</code> | <code>tanggal</code></li> -->
-      <!-- <li>Isi satu baris per foto. Kolom <code>kategori</code>: <code>pondasi</code>, <code>struktur</code>, <code>finishing</code>, atau <code>lokasi</code></li> -->
-      <!-- <li>Refresh website — foto langsung tampil di galeri!</li> -->
-    <!-- </ol> -->
-  <!-- </div> -->
 </section>
 
 <!-- LIGHTBOX -->
@@ -619,23 +641,47 @@ footer a:hover{color:white}
 </div>
 </section>
 
-<!-- FAQ -->
+<!-- AI CHAT -->
 <section id="faq">
-  <div class="section-label">Tanya Jawab</div>
-  <div class="section-title">Pertanyaan yang Sering Ditanyakan</div>
-  <div class="faq-list">
-    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Apa itu KPR FLPP dan apa bedanya dengan KPR biasa?<span class="arr">▾</span></button>
-      <div class="faq-a"><p>KPR FLPP adalah program pemerintah dengan bunga tetap 5% per tahun seumur kredit. Cicilan tidak berubah dari akad hingga lunas, berbeda dengan KPR komersial yang bunganya bisa naik setiap tahun.</p></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Berapa DP minimal untuk membeli rumah ini?<span class="arr">▾</span></button>
-      <div class="faq-a"><p>DP minimum rumah subsidi FLPP adalah 1% dari harga jual (±Rp 1.820.000). Namun umumnya bank meminta 5–10% untuk proses yang lebih mudah disetujui.</p></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Bank mana saja yang menyalurkan KPR FLPP?<span class="arr">▾</span></button>
-      <div class="faq-a"><p>Di Kalimantan Selatan, bank penyalur meliputi BTN, BRI, Bank Kalsel, dan beberapa BPD lainnya. Tim kami akan membantu mengarahkan ke bank yang paling sesuai dan cepat prosesnya.</p></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Apakah pegawai honorer / tidak tetap bisa mengajukan?<span class="arr">▾</span></button>
-      <div class="faq-a"><p>Bisa. Untuk penghasilan tidak tetap (wiraswasta, honorer, petani), batas maksimal Rp 10 juta/bulan. Dokumen menggunakan Surat Keterangan Penghasilan dari kepala desa/lurah.</p></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Apakah bisa survei lokasi sebelum booking?<span class="arr">▾</span></button>
-      <div class="faq-a"><p>Tentu bisa! Kami sangat menyarankan survei langsung ke lokasi. Hubungi tim kami via WhatsApp untuk mengatur jadwal kunjungan — gratis, tanpa biaya apapun.</p></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Kapan unit bisa ditempati setelah akad KPR?<span class="arr">▾</span></button>
-      <div class="faq-a"><p>Unit yang sudah selesai dibangun dapat langsung diserahterimakan setelah akad KPR. Target serah terima keseluruhan adalah Q2 2026. Jadwal resmi akan diinformasikan setelah booking dikonfirmasi.</p></div></div>
+  <div class="section-label">Asisten AI · Powered by Groq</div>
+  <div class="section-title">Tanya Asisten Kami</div>
+  <div class="section-desc">Tanyakan apapun tentang Garuda Maharam Residence — harga, KPR, syarat, lokasi, atau proses booking. Dijawab langsung oleh AI 24 jam.</div>
+
+  <div class="ai-chat-wrap">
+    <div class="ai-suggestions" id="aiSuggestions">
+      <div class="ai-suggestion-label">💡 Pertanyaan populer — klik untuk langsung tanya:</div>
+      <div class="ai-suggestion-btns">
+        <button onclick="askSuggestion(this)">Apa syarat KPR FLPP?</button>
+        <button onclick="askSuggestion(this)">Tipe mana yang cocok untuk gaji Rp 5 juta?</button>
+        <button onclick="askSuggestion(this)">Berapa DP minimal rumah subsidi?</button>
+        <button onclick="askSuggestion(this)">Bagaimana proses booking sampai akad?</button>
+        <button onclick="askSuggestion(this)">Apakah honorer bisa KPR FLPP?</button>
+        <button onclick="askSuggestion(this)">Apa bedanya tipe subsidi dan komersil?</button>
+        <button onclick="askSuggestion(this)">Bank apa yang menyalurkan FLPP di Kalsel?</button>
+        <button onclick="askSuggestion(this)">Kapan target serah terima unit?</button>
+      </div>
+    </div>
+
+    <div class="ai-messages" id="aiMessages">
+      <div class="ai-msg bot">
+        <div class="ai-avatar">🤖</div>
+        <div class="ai-bubble">
+          Halo! Saya asisten AI Garuda Maharam Residence. Saya siap menjawab pertanyaan Anda seputar perumahan kami — mulai dari harga, tipe unit, syarat KPR FLPP, proses booking, hingga lokasi. Silakan tanya apa saja! 😊
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-input-wrap">
+      <input type="text" id="aiInput" class="ai-input"
+        placeholder="Ketik pertanyaan Anda di sini..."
+        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}">
+      <button class="ai-send-btn" id="aiSendBtn" onclick="sendChat()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+    <div style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:.5rem;padding-bottom:.75rem">
+      Dijawab oleh AI · Untuk kepastian, konfirmasi ke tim kami via WhatsApp
+    </div>
   </div>
 </section>
 
@@ -668,7 +714,7 @@ footer a:hover{color:white}
       </div>
     </div>
   </div>
-  <div class="footer-copy">© PT Rusdi Rahmi Property 2026 · Garuda Maharam Residence · Harga dan stok dapat berubah tanpa pemberitahuan sebelumnya.</div>
+  <div class="footer-copy">© 2026 PT Rusdi Rahmi Property · Garuda Maharam Residence · Harga dan stok dapat berubah tanpa pemberitahuan sebelumnya.</div>
 </footer>
 
 <!-- MODAL UNIT -->
@@ -691,6 +737,12 @@ footer a:hover{color:white}
 // SCRIPT_URL — URL Google Apps Script Anda
 // ==============================================================
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz6VfX1nng0WaC6NP-Ym_ujUNuyNsUg5Jlv3vFGcpi4LeYFp4AAeuC9xBY7O_3v85ef4w/exec';
+
+// ==============================================================
+// GROQ CONFIG
+// ==============================================================
+const GROQ_API_KEY = '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';
+const GROQ_MODEL   = 'llama-3.3-70b-versatile';
 
 let allUnits = [];
 let siteSettings = {};
@@ -738,9 +790,7 @@ function applySettings() {
     document.getElementById('lokasiAlamat').textContent = s.alamat;
     document.getElementById('footerAlamat').textContent = '📍 ' + s.alamat;
   }
-  if (s.gmaps_url) {
-    document.getElementById('lokasiMapLink').href = s.gmaps_url;
-  }
+  if (s.gmaps_url) document.getElementById('lokasiMapLink').href = s.gmaps_url;
   if (s.whatsapp) {
     const num = String(s.whatsapp).replace(/[^0-9]/g,'');
     const wa = document.getElementById('footerWA');
@@ -761,7 +811,11 @@ function applySettings() {
 function renderUnits() {
   const grid = document.getElementById('unitsGrid');
   if (!allUnits.length) { renderFallbackUnits(); return; }
-  const gradients = [
+  renderUnitGroup(grid, allUnits, gradients());
+}
+
+function gradients() {
+  return [
     'linear-gradient(135deg,#E1F5EE,#9FE1CB)',
     'linear-gradient(135deg,#C0DD97,#EAF3DE)',
     'linear-gradient(135deg,#DBEAFE,#BFDBFE)',
@@ -770,54 +824,37 @@ function renderUnits() {
     'linear-gradient(135deg,#EDE9FE,#DDD6FE)',
     'linear-gradient(135deg,#FFEDD5,#FED7AA)'
   ];
-
-  // Pisahkan subsidi dan komersil
-  const subsidi = allUnits.filter(u => (u.jenis||'').toLowerCase() === 'subsidi' || (u.nama||'').toLowerCase().includes('36'));
-  const komersil = allUnits.filter(u => (u.jenis||'').toLowerCase() === 'komersil' || (parseInt(u.tipe)||0) > 36);
-
-  // Render semua dulu (default tampil semua)
-  renderUnitGroup(grid, allUnits, gradients);
 }
 
-function renderUnitGroup(grid, units, gradients) {
-  if (!units.length) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted)">Tidak ada unit yang sesuai filter.</div>'; return; }
+function renderUnitGroup(grid, units, grads) {
+  if (!units.length) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted)">Tidak ada unit yang sesuai filter.</div>';
+    return;
+  }
   grid.innerHTML = units.map((u, i) => {
     const stok = parseInt(u.stok_tersedia) || 0;
     const total = parseInt(u.stok_total) || 0;
     const habis = stok <= 0;
-    const isSubsidi = (u.jenis||'').toLowerCase() === 'subsidi' || (u.nama||'').toLowerCase().includes('36') && !(u.jenis||'').toLowerCase().includes('komersil');
-    const isKomersil = !isSubsidi;
+    const isSubsidi = (u.jenis||'').toLowerCase() === 'subsidi' || ((u.nama||'').toLowerCase().includes('36') && !(u.jenis||'').toLowerCase().includes('komersil'));
     const harga = parseInt(u.harga) || 182000000;
     const label = (u.label||'TERSEDIA').toUpperCase();
     const populer = label === 'POPULER';
-
-    // Badge warna
     let badgeClass = 'tersedia', badgeText = 'TERSEDIA';
     if (habis) { badgeClass = 'habis'; badgeText = 'HABIS'; }
     else if (populer) { badgeClass = 'populer'; badgeText = 'POPULER'; }
     else if (isSubsidi) { badgeClass = 'subsidi-badge'; badgeText = 'SUBSIDI'; }
     else { badgeClass = 'komersil-badge'; badgeText = 'KOMERSIL'; }
-
-    // Tag metode bayar — komersil HANYA Cash, subsidi bisa KPR FLPP + Cash
     const tagHtml = isSubsidi
       ? `<span class="unit-tag kpr">🏦 KPR FLPP</span> <span class="unit-tag cash">💵 Cash</span>`
       : `<span class="unit-tag cash">💵 Cash</span>`;
-
-    // Luas tanah semua 120 m²
-    const lt = 120;
-
-    // Warna harga
-    const priceClass = isKomersil ? 'unit-price komersil-price' : 'unit-price';
-    const cardClass = isKomersil ? 'unit-card komersil-card' : 'unit-card';
-    const keterangan = isSubsidi ? '· harga subsidi' : '· harga komersil';
-
-    // Kamar tidur otomatis dari tipe
     const lb = parseInt(u.lb) || parseInt(u.tipe) || 36;
     const kt = lb >= 70 ? 3 : lb >= 45 ? 3 : 2;
-
+    const priceClass = !isSubsidi ? 'unit-price komersil-price' : 'unit-price';
+    const cardClass = !isSubsidi ? 'unit-card komersil-card' : 'unit-card';
+    const keterangan = isSubsidi ? '· harga subsidi' : '· harga komersil';
     return `
     <div class="${cardClass} ${populer?'featured':''}">
-      <div class="unit-img" style="background:${gradients[i%gradients.length]}">
+      <div class="unit-img" style="background:${grads[i%grads.length]}">
         🏠
         <div class="unit-badge ${badgeClass}">${badgeText}</div>
       </div>
@@ -846,16 +883,10 @@ function filterUnit(jenis, btn) {
   document.querySelectorAll('.unit-filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   const grid = document.getElementById('unitsGrid');
-  const gradients = [
-    'linear-gradient(135deg,#E1F5EE,#9FE1CB)','linear-gradient(135deg,#C0DD97,#EAF3DE)',
-    'linear-gradient(135deg,#DBEAFE,#BFDBFE)','linear-gradient(135deg,#FEF3C7,#FDE68A)',
-    'linear-gradient(135deg,#FCE7F3,#FBCFE8)','linear-gradient(135deg,#EDE9FE,#DDD6FE)',
-    'linear-gradient(135deg,#FFEDD5,#FED7AA)'
-  ];
   let filtered = allUnits;
   if (jenis === 'subsidi') filtered = allUnits.filter(u => (u.jenis||'').toLowerCase()==='subsidi' || (parseInt(u.tipe)||parseInt(u.lb)||0)<=36);
   if (jenis === 'komersil') filtered = allUnits.filter(u => (u.jenis||'').toLowerCase()==='komersil' || (parseInt(u.tipe)||parseInt(u.lb)||0)>36);
-  renderUnitGroup(grid, filtered, gradients);
+  renderUnitGroup(grid, filtered, gradients());
 }
 
 function renderFallbackUnits() {
@@ -890,8 +921,6 @@ function renderProgress() {
   document.getElementById('pbUnitTxt').textContent = tersedia + ' / ' + totalUnit + ' tersisa';
   document.getElementById('pbKonstrTxt').textContent = pctKonstr + '%';
   document.getElementById('pbDokTxt').textContent = pctDok + '%';
-
-  // Update siteplan stats
   document.getElementById('spTotal').textContent = totalUnit;
   if (allUnits[0]) {
     document.getElementById('spLB').textContent = allUnits[0].lb || 36;
@@ -903,7 +932,6 @@ function renderProgress() {
     document.getElementById('pbKonstr').style.width = pctKonstr + '%';
     document.getElementById('pbDok').style.width = pctDok + '%';
     document.getElementById('statTotal').textContent = totalUnit;
-    // Hero stats harga & cicilan otomatis dari data Sheets
     if (allUnits.length) {
       const harga = parseInt(allUnits[0].harga) || 182000000;
       document.getElementById('statHarga').textContent = (harga/1000000).toFixed(0) + ' Jt';
@@ -936,7 +964,6 @@ function hitungKPR() {
   const harga = parseInt(sel.value) || 182000000;
   const selectedText = sel.options[sel.selectedIndex] ? sel.options[sel.selectedIndex].text : '';
   const isKomersil = selectedText.includes('Komersil');
-
   const dpPct = parseInt(document.getElementById('kprDP').value);
   const tenor  = parseInt(document.getElementById('kprTenor').value);
   const bunga  = parseFloat(document.getElementById('kprBunga').value);
@@ -982,14 +1009,13 @@ function renderSiteplan() {
   box.innerHTML = `
     <img src="https://drive.google.com/thumbnail?id=${id}&sz=w1200" alt="Siteplan"
       style="width:100%;display:block;border-radius:var(--radius-lg)"
-      onerror="this.parentElement.innerHTML='<div class=siteplan-placeholder><div style=font-size:3rem>🗺️</div><div>Gambar tidak dapat dimuat. Pastikan file sudah dibagikan publik di Google Drive.</div></div>'">
+      onerror="this.parentElement.innerHTML='<div class=siteplan-placeholder><div style=font-size:3rem>🗺️</div><div>Gambar tidak dapat dimuat.</div></div>'">
     <button class="siteplan-zoom-btn" onclick="window.open('https://drive.google.com/file/d/${id}/view','_blank')">🔍 Perbesar</button>`;
 }
 
 // ==============================================================
 // GALERI
 // ==============================================================
-// Fungsi normalisasi: trim + hapus spasi ganda + lowercase
 function normalizeKat(str) {
   return (str||'').trim().replace(/\s+/g,' ').toLowerCase();
 }
@@ -998,9 +1024,7 @@ async function loadGaleri() {
   try {
     const res = await fetch(SCRIPT_URL + '?action=galeri');
     const data = await res.json();
-    allFotos = Array.isArray(data)
-      ? data.filter(f => f.drive_id && String(f.drive_id).trim())
-      : [];
+    allFotos = Array.isArray(data) ? data.filter(f => f.drive_id && String(f.drive_id).trim()) : [];
     filteredFotos = [...allFotos];
     allFotos.length ? renderGaleri(allFotos) : renderGaleriPlaceholder();
   } catch(e) {
@@ -1019,8 +1043,7 @@ function renderGaleri(fotos) {
     const tgl = f.tanggal || '';
     return `
     <div class="galeri-item" onclick="openLB(${i})">
-      <img src="https://drive.google.com/thumbnail?id=${id}&sz=w600" alt="${judul}"
-        loading="lazy"
+      <img src="https://drive.google.com/thumbnail?id=${id}&sz=w600" alt="${judul}" loading="lazy"
         onerror="this.parentElement.style.background='var(--gray-50)';this.style.display='none'">
       <div class="galeri-overlay"><span>🔍</span></div>
       <div class="galeri-caption">${judul}${tgl?' · '+tgl:''}</div>
@@ -1045,10 +1068,7 @@ function renderGaleriPlaceholder() {
 function filterGaleri(kat, btn) {
   document.querySelectorAll('.galeri-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
-  // normalizeKat: trim + hapus spasi ganda + lowercase — cocok meski Sheets pakai "tampak  depan"
-  const fotos = kat === 'semua'
-    ? allFotos
-    : allFotos.filter(f => normalizeKat(f.kategori) === normalizeKat(kat));
+  const fotos = kat === 'semua' ? allFotos : allFotos.filter(f => normalizeKat(f.kategori) === normalizeKat(kat));
   fotos.length ? renderGaleri(fotos) : renderGaleriPlaceholder();
 }
 
@@ -1061,9 +1081,7 @@ function openLB(idx) {
   document.body.style.overflow = 'hidden';
   document.getElementById('lbThumbs').innerHTML = filteredFotos.map((f,i) => {
     const id = String(f.drive_id).trim();
-    return `<img class="lb-thumb ${i===idx?'active':''}"
-      src="https://drive.google.com/thumbnail?id=${id}&sz=w120"
-      onclick="jumpLB(${i})" alt="">`;
+    return `<img class="lb-thumb ${i===idx?'active':''}" src="https://drive.google.com/thumbnail?id=${id}&sz=w120" onclick="jumpLB(${i})" alt="">`;
   }).join('');
 }
 function updateLB() {
@@ -1111,7 +1129,7 @@ function openModal(idx) {
     </div>
     <p style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text-muted)">FASILITAS TERMASUK</p>
     <ul class="modal-list">${fasilitas.map(f=>`<li>${f.trim()}</li>`).join('')}</ul>
-    ${isSubsidi ? '' : '<div style="background:#E6F1FB;border-radius:8px;padding:.75rem;font-size:12px;color:#185FA5;font-weight:600;margin-bottom:1rem">💡 Tipe ini hanya tersedia untuk pembelian Cash/Tunai. Hubungi kami untuk negosiasi harga.</div>'}
+    ${isSubsidi ? '' : '<div style="background:#E6F1FB;border-radius:8px;padding:.75rem;font-size:12px;color:#185FA5;font-weight:600;margin-bottom:1rem">💡 Tipe ini hanya tersedia untuk pembelian Cash/Tunai.</div>'}
     <button class="modal-btn" style="background:${isSubsidi?'var(--teal-600)':'#185FA5'}" onclick="closeModal();goTo('booking')">Booking Unit Ini →</button>`;
   document.getElementById('modalBg').classList.add('open');
 }
@@ -1153,16 +1171,128 @@ async function submitBooking() {
 }
 
 // ==============================================================
-// FAQ
+// AI CHAT — Menggunakan Groq API (OpenAI-compatible)
 // ==============================================================
-function toggleFAQ(btn) {
-  const a = btn.nextElementSibling;
-  const wasOpen = a.classList.contains('open');
-  document.querySelectorAll('.faq-a.open').forEach(x=>x.classList.remove('open'));
-  document.querySelectorAll('.faq-q.open').forEach(x=>x.classList.remove('open'));
-  if(!wasOpen){a.classList.add('open');btn.classList.add('open');}
+const chatHistory = [];
+
+function buildSystemPrompt() {
+  const units = allUnits.map(u => {
+    const jenis = (u.jenis||'').toLowerCase()==='komersil' ? 'Komersil (Cash saja)' : 'Subsidi (KPR FLPP + Cash)';
+    return `- ${u.nama}: Rp ${parseInt(u.harga).toLocaleString('id')}, LB ${u.lb}m², LT 120m², ${u.kamar_tidur||2} KT, stok ${u.stok_tersedia} unit, ${jenis}`;
+  }).join('\n');
+  const s = siteSettings;
+  return `Kamu adalah asisten penjualan Garuda Maharam Residence, perumahan di Paringin, Kabupaten Balangan, Kalimantan Selatan, dikembangkan oleh PT Rusdi Rahmi Property.
+
+DATA PROYEK:
+- Lokasi: ${s.alamat||'Jl. Lingkar Timur RT 9, Paringin, Kab. Balangan 71662'}
+- Target serah terima: ${s.target_serah||'Q2 2026'}
+- Progress konstruksi: ${s.progress_konstruksi||75}%
+- Kontak WA: ${s.whatsapp||'081258001180'} | Email: ${s.email||'garuda_maharam@gmail.com'}
+
+TIPE UNIT:
+${units||'- Tipe 36 Minimalis: Rp 182.000.000 (Subsidi FLPP)\n- Tipe 42-80: Komersil Cash only'}
+
+KETENTUAN PENTING:
+- Tipe 36: KPR FLPP (bunga 5% tetap, tenor max 20 tahun) ATAU Cash
+- Tipe 42-80: HANYA Cash/Tunai
+- Syarat FLPP: WNI, belum punya rumah, belum pernah terima subsidi, penghasilan max Rp 8 juta/bulan
+- DP minimum FLPP: 1% harga (bank biasanya minta 5-10%)
+- Bank penyalur FLPP Kalsel: BTN, BRI, Bank Kalsel, BPD
+
+CARA MENJAWAB:
+- Bahasa Indonesia yang ramah dan hangat
+- Jawab singkat dan jelas, max 4-5 kalimat
+- Untuk rekomendasi tipe, tanya budget dan kebutuhan calon pembeli
+- Akhiri dengan ajakan booking/survei jika relevan
+- Kalau tidak tahu, arahkan ke WA ${s.whatsapp||'081258001180'}`;
 }
 
+async function sendChat() {
+  const input = document.getElementById('aiInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  appendMsg('user', msg);
+  input.value = '';
+  document.getElementById('aiSuggestions').style.display = 'none';
+
+  const btn = document.getElementById('aiSendBtn');
+  btn.disabled = true;
+  input.disabled = true;
+
+  const typingId = appendTyping();
+  chatHistory.push({ role: 'user', content: msg });
+
+  try {
+    // ── Groq API (OpenAI-compatible) ──────────────────────────
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + GROQ_API_KEY
+      },
+      body: JSON.stringify({
+        model: GROQ_MODEL,
+        max_tokens: 1000,
+        messages: [
+          { role: 'system', content: buildSystemPrompt() },
+          ...chatHistory
+        ]
+      })
+    });
+
+    const data = await res.json();
+
+    // Groq mengembalikan format OpenAI: choices[0].message.content
+    const reply = data.choices?.[0]?.message?.content
+      || data.error?.message
+      || 'Maaf, terjadi kesalahan. Silakan coba lagi.';
+
+    chatHistory.push({ role: 'assistant', content: reply });
+    removeTyping(typingId);
+    appendMsg('bot', reply);
+
+  } catch(err) {
+    removeTyping(typingId);
+    appendMsg('bot', 'Maaf, koneksi bermasalah. Silakan coba lagi atau hubungi kami via WhatsApp. 🙏');
+  }
+
+  btn.disabled = false;
+  input.disabled = false;
+  input.focus();
+}
+
+function askSuggestion(el) {
+  document.getElementById('aiInput').value = el.textContent;
+  sendChat();
+}
+
+function appendMsg(role, text) {
+  const msgs = document.getElementById('aiMessages');
+  const formatted = text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+  const div = document.createElement('div');
+  div.className = 'ai-msg ' + role;
+  div.innerHTML = `<div class="ai-avatar">${role==='bot'?'🤖':'Anda'}</div><div class="ai-bubble">${formatted}</div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function appendTyping() {
+  const msgs = document.getElementById('aiMessages');
+  const id = 'typing-' + Date.now();
+  const div = document.createElement('div');
+  div.className = 'ai-msg bot'; div.id = id;
+  div.innerHTML = `<div class="ai-avatar">🤖</div><div class="ai-bubble typing"><span></span><span></span><span></span></div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return id;
+}
+
+function removeTyping(id) { const el = document.getElementById(id); if(el) el.remove(); }
+
+// ==============================================================
+// SCROLL
+// ==============================================================
 function goTo(id) {
   const el = document.getElementById(id);
   if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
