@@ -4,767 +4,325 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Perumahan Subsidi Garuda Maharam Residence – PT Rusdi Rahmi Property</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════════
-   DESIGN SYSTEM — Garuda Maharam Residence
-   Tema: Luxury Editorial · Earthy Premium · Trust
-   ═══════════════════════════════════════════════════ */
 :root {
-  /* Palette Utama */
-  --forest:   #1C3A2A;
-  --forest-m: #2C5240;
-  --forest-l: #3D6B53;
-  --sage:     #7A9E88;
-  --sage-l:   #B8D4C0;
-  --cream:    #F7F3EC;
-  --cream-d:  #EDE8DF;
-  --linen:    #FAF8F4;
-  --gold:     #C49A3C;
-  --gold-l:   #E8C06A;
-  --gold-pale:#FBF3E0;
-  --sand:     #D4C4A8;
-  --charcoal: #1E2328;
-  --text:     #2D3436;
-  --text-s:   #636E72;
-  --text-xs:  #95A5A6;
-  --blue:     #1A5276;
-  --blue-l:   #E8F4FD;
-  --coral:    #C0392B;
-  --coral-l:  #FADBD8;
-  --amber:    #D68910;
-  --amber-l:  #FEF9E7;
-  --white:    #FFFFFF;
-  --border:   rgba(28,58,42,.10);
-  --shadow-s: 0 2px 12px rgba(28,58,42,.08);
-  --shadow-m: 0 8px 32px rgba(28,58,42,.12);
-  --shadow-l: 0 20px 60px rgba(28,58,42,.16);
-  --r:        10px;
-  --r-l:      16px;
-  --r-xl:     24px;
+  --teal-50:#E1F5EE;--teal-100:#9FE1CB;--teal-400:#1D9E75;--teal-600:#0F6E56;--teal-800:#085041;
+  --green-50:#EAF3DE;--green-600:#3B6D11;--green-800:#27500A;
+  --amber-50:#FAEEDA;--amber-100:#FAC775;--amber-400:#EF9F27;--amber-600:#854F0B;
+  --gray-50:#F1EFE8;--gray-100:#D3D1C7;--gray-400:#888780;--gray-600:#5F5E5A;
+  --coral-50:#FAECE7;--coral-400:#D85A30;--coral-600:#993C1D;
+  --blue-50:#E6F1FB;--blue-600:#185FA5;
+  --text:#1a1a1a;--text-muted:#5F5E5A;--border:rgba(0,0,0,0.10);
+  --radius:12px;--radius-lg:18px;
 }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8f6f0;color:var(--text);line-height:1.6}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* ===== LOADING SCREEN ===== */
+#loadingScreen{position:fixed;inset:0;background:var(--teal-800);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;transition:opacity 0.5s}
+#loadingScreen.hidden{opacity:0;pointer-events:none}
+.loading-logo{font-size:3rem;margin-bottom:1rem}
+.loading-title{font-family:'Playfair Display',serif;color:white;font-size:1.5rem;margin-bottom:0.5rem}
+.loading-sub{color:rgba(255,255,255,0.7);font-size:14px;margin-bottom:2rem}
+.loading-bar{width:200px;height:4px;background:rgba(255,255,255,0.2);border-radius:100px;overflow:hidden}
+.loading-fill{height:100%;background:#9FE1CB;border-radius:100px;width:0%;transition:width 0.3s}
 
-html { scroll-behavior: smooth; }
+/* ===== NAV ===== */
+nav{background:white;border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-logo{width:36px;height:36px;background:var(--teal-600);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px}
+.nav-name{font-weight:700;font-size:15px;line-height:1.2}
+.nav-sub{font-size:11px;color:var(--text-muted)}
+.nav-links{display:flex;gap:1.25rem;align-items:center}
+.nav-links a{font-size:13px;color:var(--text-muted);text-decoration:none;font-weight:500;cursor:pointer}
+.nav-links a:hover{color:var(--teal-600)}
+.btn-primary{background:var(--teal-600);color:white;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.btn-primary:hover{background:var(--teal-800)}
+.btn-outline{background:white;color:var(--teal-600);border:1.5px solid var(--teal-400);border-radius:8px;padding:9px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.btn-outline:hover{background:var(--teal-50)}
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--linen);
-  color: var(--text);
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-}
+/* ===== HERO ===== */
+.hero{background:linear-gradient(135deg,var(--teal-800) 0%,var(--teal-600) 60%,#1D9E75 100%);color:white;padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-10%;width:500px;height:500px;border-radius:50%;background:rgba(255,255,255,0.04)}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:600;margin-bottom:1.5rem}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#9FE1CB;display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.15;margin-bottom:1rem}
+.hero h1 span{color:#9FE1CB}
+.hero p{font-size:1.05rem;opacity:.88;max-width:560px;margin:0 auto 2.5rem}
+.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hero-cta .btn-white{background:white;color:var(--teal-800);border:none;border-radius:8px;padding:12px 24px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
+.hero-cta .btn-ghost{background:transparent;color:white;border:1.5px solid rgba(255,255,255,0.5);border-radius:8px;padding:12px 24px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit}
+.hero-stats{display:flex;justify-content:center;gap:2.5rem;margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,0.2);flex-wrap:wrap}
+.hero-stat .num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700}
+.hero-stat .lbl{font-size:12px;opacity:.75;margin-top:2px}
 
-/* ── TYPOGRAPHY ─────────────────────────────────── */
-.serif { font-family: 'DM Serif Display', serif; }
+/* ===== SECTION ===== */
+section{padding:4rem 2rem;max-width:1100px;margin:0 auto}
+.section-label{font-size:12px;font-weight:700;color:var(--teal-600);letter-spacing:1px;text-transform:uppercase;margin-bottom:.5rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;margin-bottom:.75rem}
+.section-desc{color:var(--text-muted);font-size:1rem;max-width:560px}
 
-h1, h2 { font-family: 'DM Serif Display', serif; }
+/* ===== LIVE BADGE ===== */
+.live-badge{display:inline-flex;align-items:center;gap:6px;background:var(--teal-50);border:1px solid var(--teal-100);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--teal-600);margin-bottom:1.5rem}
+.live-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal-400);display:inline-block;animation:pulse 2s infinite}
 
-/* ── LOADING ─────────────────────────────────────── */
-#loadingScreen {
-  position: fixed; inset: 0; z-index: 9999;
-  background: var(--forest);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  transition: opacity .6s ease, visibility .6s ease;
-}
-#loadingScreen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-.load-emblem {
-  width: 72px; height: 72px; border-radius: 50%;
-  background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 2rem; margin-bottom: 1.5rem;
-  animation: loadPulse 1.5s ease-in-out infinite;
-}
-@keyframes loadPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
-.load-name {
-  font-family: 'DM Serif Display', serif;
-  color: white; font-size: 1.35rem; margin-bottom: .35rem;
-}
-.load-sub { color: rgba(255,255,255,.5); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 2rem; }
-.load-bar { width: 180px; height: 2px; background: rgba(255,255,255,.15); border-radius: 2px; overflow: hidden; }
-.load-fill { height: 100%; background: var(--gold-l); border-radius: 2px; width: 0%; transition: width .35s ease; }
+/* ===== UNIT CARDS ===== */
+.units-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:2rem}
+.unit-card{background:white;border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:transform .2s,box-shadow .2s}
+.unit-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.09)}
+.unit-card.featured{border-color:var(--teal-400)}
+.unit-img{height:170px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative}
+.unit-badge{position:absolute;top:12px;left:12px;color:white;font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px}
+.unit-badge.tersedia{background:var(--teal-600)}
+.unit-badge.populer{background:var(--green-800)}
+.unit-badge.habis{background:var(--gray-600)}
+.unit-body{padding:1.25rem}
+.unit-name{font-size:17px;font-weight:700;margin-bottom:.25rem}
+.unit-price{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--teal-600);margin-bottom:1rem}
+.unit-price span{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted)}
+.unit-specs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:1.25rem}
+.spec{background:var(--gray-50);border-radius:8px;padding:8px;text-align:center}
+.spec .val{font-size:15px;font-weight:700}
+.spec .key{font-size:10px;color:var(--text-muted);margin-top:1px}
+.unit-avail{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;margin-bottom:1rem}
+.unit-avail.ada{color:var(--teal-600)}
+.unit-avail.ada::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--teal-400);display:inline-block}
+.unit-avail.habis{color:var(--gray-600)}
+.unit-footer{display:flex;gap:8px}
+.unit-footer button{flex:1;padding:10px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
 
-/* ── NAVIGATION ──────────────────────────────────── */
-nav {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(250,248,244,.96);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  height: 68px;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 2rem;
-}
-.nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.nav-logo {
-  width: 38px; height: 38px; border-radius: 8px;
-  background: var(--forest);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--gold-l); font-size: 16px; font-weight: 700;
-  letter-spacing: -.5px; font-family: 'DM Serif Display', serif;
-}
-.nav-name-wrap .nav-title { font-size: 14px; font-weight: 600; color: var(--charcoal); line-height: 1.2; }
-.nav-name-wrap .nav-sub { font-size: 10px; color: var(--text-xs); letter-spacing: .04em; }
-.nav-links { display: flex; align-items: center; gap: 1.5rem; }
-.nav-links a {
-  font-size: 13px; font-weight: 500; color: var(--text-s);
-  text-decoration: none; cursor: pointer; transition: color .15s;
-  white-space: nowrap;
-}
-.nav-links a:hover { color: var(--forest); }
-.nav-cta {
-  background: var(--forest); color: white;
-  border: none; border-radius: var(--r); padding: 9px 20px;
-  font-size: 13px; font-weight: 600; cursor: pointer;
-  font-family: inherit; transition: background .15s;
-  white-space: nowrap;
-}
-.nav-cta:hover { background: var(--forest-m); }
+/* ===== UNIT FILTER TABS ===== */
+.unit-filter-wrap{margin-top:1.5rem;margin-bottom:.5rem}
+.unit-filter{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.unit-filter-btn{background:white;border:1.5px solid var(--border);border-radius:100px;padding:8px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--text-muted);transition:all .15s;display:flex;align-items:center;gap:6px}
+.unit-filter-btn.active{color:white;border-color:transparent}
+.unit-filter-btn.all.active{background:var(--teal-600)}
+.unit-filter-btn.subsidi.active{background:#0F6E56}
+.unit-filter-btn.komersil.active{background:#185FA5}
+.unit-section-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:100px;display:inline-flex;align-items:center;gap:6px;margin-bottom:1rem}
+.unit-section-label.subsidi{background:var(--teal-50);color:var(--teal-800)}
+.unit-section-label.komersil{background:var(--blue-50);color:var(--blue-600)}
+.unit-group{margin-bottom:2.5rem}
+.unit-badge.subsidi-badge{background:var(--teal-600)}
+.unit-badge.komersil-badge{background:var(--blue-600)}
+.unit-price.komersil-price{color:var(--blue-600)}
+.unit-card.komersil-card{border-color:rgba(24,95,165,.2)}
+.unit-card.komersil-card:hover{box-shadow:0 12px 32px rgba(24,95,165,.1)}
+.unit-tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;margin-bottom:.5rem}
+.unit-tag.cash{background:#E6F1FB;color:#185FA5}
+.unit-tag.kpr{background:var(--teal-50);color:var(--teal-800)}
+.progress-stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2rem}
+.p-card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem}
+.p-card .big{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700}
+.p-card .label{font-size:12px;color:var(--text-muted);margin-top:2px}
+.pb-wrap{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem}
+.pb-row{margin-bottom:1.25rem}
+.pb-label{display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:8px}
+.pb-track{background:var(--gray-50);border-radius:100px;height:12px;overflow:hidden}
+.pb-fill{height:100%;border-radius:100px;transition:width 1.2s ease}
 
-/* ── HERO ────────────────────────────────────────── */
-.hero {
-  position: relative; overflow: hidden;
-  background: var(--forest);
-  min-height: 90vh;
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 5rem 2rem 4rem;
-}
-/* Geometric BG pattern */
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image:
-    radial-gradient(ellipse 60% 50% at 80% 30%, rgba(196,154,60,.12) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 60% at 10% 70%, rgba(122,158,136,.08) 0%, transparent 50%);
-}
-.hero-grid {
-  position: absolute; inset: 0; opacity: .04;
-  background-image: linear-gradient(rgba(255,255,255,.4) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255,255,255,.4) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-.hero-inner {
-  position: relative; max-width: 1100px; margin: 0 auto; width: 100%;
-}
-.hero-pill {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(196,154,60,.18); border: 1px solid rgba(196,154,60,.35);
-  border-radius: 100px; padding: 7px 16px;
-  font-size: 12px; font-weight: 600; color: var(--gold-l);
-  letter-spacing: .04em; text-transform: uppercase;
-  margin-bottom: 1.75rem;
-}
-.hero-pill::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%;
-  background: var(--gold-l); animation: blink 2s infinite;
-}
-@keyframes blink { 0%,100%{opacity:1}50%{opacity:.3} }
-.hero h1 {
-  font-size: clamp(2.4rem, 5.5vw, 4rem);
-  color: white; line-height: 1.1;
-  margin-bottom: 1.25rem;
-  letter-spacing: -.02em;
-}
-.hero h1 .accent { color: var(--gold-l); font-style: italic; }
-.hero-desc {
-  font-size: 1.05rem; color: rgba(255,255,255,.72);
-  max-width: 520px; margin-bottom: 2.5rem; line-height: 1.7;
-}
-.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 4rem; }
-.btn-hero-primary {
-  background: var(--gold); color: var(--charcoal);
-  border: none; border-radius: var(--r); padding: 14px 28px;
-  font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit;
-  transition: background .15s, transform .15s;
-}
-.btn-hero-primary:hover { background: var(--gold-l); transform: translateY(-1px); }
-.btn-hero-ghost {
-  background: transparent; color: rgba(255,255,255,.85);
-  border: 1.5px solid rgba(255,255,255,.3); border-radius: var(--r);
-  padding: 13px 28px; font-size: 15px; font-weight: 500;
-  cursor: pointer; font-family: inherit; transition: all .15s;
-}
-.btn-hero-ghost:hover { border-color: rgba(255,255,255,.6); color: white; }
+/* ===== KPR ===== */
+.kpr-wrap{background:white;border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;margin-top:2rem}
+.kpr-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+@media(max-width:640px){.kpr-grid{grid-template-columns:1fr}}
+.kpr-inputs label{display:block;font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px;margin-top:1.25rem}
+.kpr-inputs label:first-child{margin-top:0}
+.kpr-inputs select,.kpr-inputs input[type=range]{width:100%}
+.kpr-inputs select{background:var(--gray-50);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:14px;font-family:inherit;color:var(--text)}
+.range-row{display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-top:4px}
+.kpr-result{background:var(--teal-50);border-radius:var(--radius);padding:1.5rem}
+.kpr-result h3{font-size:14px;font-weight:600;color:var(--teal-800);margin-bottom:.75rem}
+.kpr-highlight{background:var(--teal-600);color:white;border-radius:10px;padding:1rem;text-align:center;margin-bottom:1rem}
+.kpr-highlight .cicilan-lbl{font-size:12px;opacity:.8;margin-bottom:4px}
+.kpr-highlight .cicilan-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700}
+.kpr-row{display:flex;justify-content:space-between;font-size:14px;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.06)}
+.kpr-row:last-child{border-bottom:none}
+.kpr-row .lbl{color:var(--text-muted)}
+.kpr-row .val{font-weight:700}
 
-/* Hero stats strip */
-.hero-stats {
-  display: grid; grid-template-columns: repeat(4,1fr);
-  gap: 0; border-top: 1px solid rgba(255,255,255,.1);
-  padding-top: 2.5rem;
-}
-.hero-stat {
-  padding: 0 1.5rem; text-align: center;
-  border-right: 1px solid rgba(255,255,255,.1);
-}
-.hero-stat:first-child { padding-left: 0; text-align: left; }
-.hero-stat:last-child { border-right: none; }
-.stat-num {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.2rem; color: white; line-height: 1;
-  margin-bottom: .25rem;
-}
-.stat-lbl { font-size: 11px; color: rgba(255,255,255,.5); letter-spacing: .06em; text-transform: uppercase; }
+/* ===== LOKASI ===== */
+.lokasi-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+@media(max-width:640px){.lokasi-grid{grid-template-columns:1fr}}
+.lokasi-map{background:var(--teal-50);border:1px solid var(--teal-100);border-radius:var(--radius-lg);height:280px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;color:var(--teal-800);font-weight:600}
+.lokasi-list{display:flex;flex-direction:column;gap:.75rem}
+.lokasi-item{display:flex;align-items:flex-start;gap:12px;background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1rem}
+.lokasi-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.lokasi-item h4{font-size:14px;font-weight:700}
+.lokasi-item p{font-size:12px;color:var(--text-muted)}
 
-/* ── SECTION WRAPPER ─────────────────────────────── */
-.sec { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
-.sec-alt { background: var(--cream); }
-.sec-alt-wrap { background: var(--cream); padding: 5rem 0; }
-.sec-alt-wrap .sec { padding-top: 0; padding-bottom: 0; }
-.sec-eyebrow {
-  font-size: 11px; font-weight: 700; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--gold);
-  margin-bottom: .6rem;
-}
-.sec-title {
-  font-size: clamp(1.7rem, 3vw, 2.4rem);
-  color: var(--charcoal); line-height: 1.2;
-  margin-bottom: .85rem;
-}
-.sec-desc { font-size: 1rem; color: var(--text-s); max-width: 540px; line-height: 1.7; }
+/* ===== SYARAT ===== */
+.syarat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;margin-top:2rem}
+.syarat-card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem}
+.syarat-card h3{font-size:15px;font-weight:700;margin-bottom:.75rem}
+.syarat-card li{font-size:13px;color:var(--text-muted);padding:4px 0 4px 1.5rem;position:relative;list-style:none;border-bottom:1px solid var(--gray-50)}
+.syarat-card li:last-child{border-bottom:none}
+.syarat-card li::before{content:'→';position:absolute;left:0;color:var(--teal-600)}
 
-/* ── KEUNGGULAN / FITUR ──────────────────────────── */
-.feat-grid {
-  display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-  gap: 1rem; margin-top: 2.5rem;
-}
-.feat-card {
-  background: white; border-radius: var(--r-l);
-  padding: 1.5rem; border: 1px solid var(--border);
-  transition: box-shadow .2s, transform .2s;
-}
-.feat-card:hover { box-shadow: var(--shadow-m); transform: translateY(-2px); }
-.feat-icon {
-  width: 44px; height: 44px; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; margin-bottom: 1rem;
-}
-.feat-card h3 { font-size: 14px; font-weight: 700; margin-bottom: .4rem; color: var(--charcoal); }
-.feat-card p { font-size: 13px; color: var(--text-s); line-height: 1.6; }
+/* ===== SITEPLAN ===== */
+.siteplan-wrap{margin-top:2rem}
+.siteplan-img-box{position:relative;background:white;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;cursor:zoom-in}
+.siteplan-img-box img{width:100%;display:block;transition:transform .3s}
+.siteplan-img-box:hover img{transform:scale(1.02)}
+.siteplan-zoom-btn{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.55);color:white;border:none;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;backdrop-filter:blur(4px)}
+.siteplan-placeholder{height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;color:var(--text-muted);background:var(--gray-50);border-radius:var(--radius-lg)}
+.siteplan-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:1.25rem}
+.siteplan-stat{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center}
+.siteplan-stat .snum{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--teal-600)}
+.siteplan-stat .slbl{font-size:12px;color:var(--text-muted);margin-top:2px}
+.upload-guide{background:var(--amber-50);border:1px solid var(--amber-100);border-radius:var(--radius);padding:1.25rem;margin-top:1.25rem}
+.upload-guide h4{font-size:13px;font-weight:700;color:var(--amber-600);margin-bottom:.5rem}
+.upload-guide ol{padding-left:1.25rem;color:var(--text-muted);font-size:13px;line-height:2}
+.upload-guide code{background:rgba(0,0,0,.07);border-radius:4px;padding:1px 6px;font-size:12px;font-family:monospace}
 
-/* ── LIVE BADGE ──────────────────────────────────── */
-.live-badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: rgba(28,58,42,.06); border: 1px solid rgba(28,58,42,.14);
-  border-radius: 100px; padding: 5px 14px;
-  font-size: 12px; font-weight: 600; color: var(--forest);
-  margin-bottom: 1.5rem;
-}
-.live-dot { width: 7px; height: 7px; border-radius: 50%; background: #22C55E; animation: blink 2s infinite; }
+/* ===== GALERI ===== */
+.galeri-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.galeri-tab{background:white;border:1.5px solid var(--border);border-radius:100px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--text-muted);transition:all .15s}
+.galeri-tab.active{background:var(--teal-600);border-color:var(--teal-600);color:white}
+.galeri-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
+.galeri-item{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;cursor:pointer;background:var(--gray-50)}
+.galeri-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.galeri-item:hover img{transform:scale(1.06)}
+.galeri-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;transition:background .2s}
+.galeri-item:hover .galeri-overlay{background:rgba(0,0,0,.28)}
+.galeri-overlay span{color:white;font-size:1.8rem;opacity:0;transition:opacity .2s}
+.galeri-item:hover .galeri-overlay span{opacity:1}
+.galeri-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.65));color:white;font-size:12px;font-weight:600;padding:.5rem .75rem;transform:translateY(100%);transition:transform .2s}
+.galeri-item:hover .galeri-caption{transform:translateY(0)}
+.galeri-placeholder-card{aspect-ratio:4/3;background:var(--gray-50);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted);font-size:12px;gap:.5rem;border:1.5px dashed var(--gray-100)}
 
-/* ── UNIT FILTER ─────────────────────────────────── */
-.filter-strip {
-  display: flex; gap: .6rem; margin-top: 1.75rem; margin-bottom: 0;
-  flex-wrap: wrap;
-}
-.filter-btn {
-  background: white; border: 1.5px solid var(--border);
-  border-radius: 100px; padding: 8px 20px;
-  font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit;
-  color: var(--text-s); transition: all .15s; display: flex; align-items: center; gap: 6px;
-}
-.filter-btn:hover { border-color: var(--sage); color: var(--forest); background: rgba(28,58,42,.04); }
-.filter-btn.active.all    { background: var(--forest); color: white; border-color: var(--forest); }
-.filter-btn.active.sub    { background: var(--forest-l); color: white; border-color: var(--forest-l); }
-.filter-btn.active.kom    { background: var(--blue); color: white; border-color: var(--blue); }
+/* ===== LIGHTBOX ===== */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:500;align-items:center;justify-content:center}
+.lightbox.open{display:flex}
+.lightbox-inner{position:relative;display:flex;flex-direction:column;align-items:center;max-width:92vw}
+.lightbox-inner img{max-width:90vw;max-height:78vh;object-fit:contain;border-radius:8px}
+.lightbox-caption{color:rgba(255,255,255,.75);font-size:13px;margin-top:.75rem;text-align:center}
+.lb-close{position:fixed;top:1.25rem;right:1.25rem;background:rgba(255,255,255,.15);border:none;color:white;width:42px;height:42px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:501}
+.lb-prev,.lb-next{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:none;color:white;width:48px;height:48px;border-radius:50%;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;z-index:501}
+.lb-prev{left:1.25rem}
+.lb-next{right:1.25rem}
+.lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.3)}
+.lb-counter{position:fixed;bottom:4.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.55);font-size:13px;z-index:501}
+.lb-thumbs{display:flex;gap:.5rem;margin-top:.75rem;overflow-x:auto;max-width:80vw;padding-bottom:.25rem}
+.lb-thumb{width:56px;height:42px;object-fit:cover;border-radius:5px;cursor:pointer;opacity:.45;transition:opacity .15s;border:2px solid transparent;flex-shrink:0}
+.lb-thumb.active{opacity:1;border-color:white}
 
-/* ── UNIT GRID ───────────────────────────────────── */
-.units-grid {
-  display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
-  gap: 1.5rem; margin-top: 1.75rem;
-}
-.unit-card {
-  background: white; border-radius: var(--r-xl);
-  border: 1.5px solid var(--border);
-  overflow: hidden; transition: transform .22s, box-shadow .22s;
-}
-.unit-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-l); }
-.unit-card.is-komersil { border-color: rgba(26,82,118,.18); }
-.unit-card.is-featured { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(196,154,60,.08); }
-.unit-thumb {
-  height: 168px; position: relative;
-  display: flex; align-items: center; justify-content: center;
-}
-.unit-thumb-icon { font-size: 3.5rem; }
-.unit-pill {
-  position: absolute; top: 12px; left: 12px;
-  font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
-  padding: 4px 11px; border-radius: 100px; color: white;
-}
-.unit-pill.sub  { background: var(--forest); }
-.unit-pill.kom  { background: var(--blue); }
-.unit-pill.full { background: #636E72; }
-.unit-pill.hot  { background: var(--coral); }
-.unit-body { padding: 1.5rem 1.25rem 1.25rem; }
-.unit-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: .75rem; }
-.utag {
-  font-size: 11px; font-weight: 700; padding: 3px 10px;
-  border-radius: 100px;
-}
-.utag.kpr  { background: rgba(28,58,42,.08); color: var(--forest); }
-.utag.cash { background: var(--blue-l); color: var(--blue); }
-.unit-avail {
-  font-size: 12px; font-weight: 600; margin-bottom: .6rem;
-  display: flex; align-items: center; gap: 6px;
-}
-.unit-avail.ok  { color: var(--forest-l); }
-.unit-avail.ok::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #22C55E; display: inline-block; }
-.unit-avail.no  { color: #636E72; }
-.unit-name { font-size: 17px; font-weight: 700; color: var(--charcoal); margin-bottom: .2rem; }
-.unit-price {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.5rem; margin-bottom: 1rem; line-height: 1.2;
-}
-.unit-price.sub-price { color: var(--forest); }
-.unit-price.kom-price { color: var(--blue); }
-.unit-price small {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px; font-weight: 500; color: var(--text-s);
-}
-.unit-specs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 1rem; }
-.uspec {
-  background: var(--cream); border-radius: 8px;
-  padding: 8px 6px; text-align: center;
-}
-.uspec-val { font-size: 13px; font-weight: 700; color: var(--charcoal); }
-.uspec-key { font-size: 10px; color: var(--text-xs); margin-top: 1px; }
-.unit-actions { display: flex; gap: 8px; }
-.unit-actions button { flex: 1; padding: 10px; border-radius: var(--r); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .15s; }
-.btn-detail { background: white; color: var(--forest); border: 1.5px solid rgba(28,58,42,.25); }
-.btn-detail:hover { background: rgba(28,58,42,.04); }
-.btn-book { background: var(--forest); color: white; border: none; }
-.btn-book:hover { background: var(--forest-m); }
-.btn-book.kom { background: var(--blue); }
-.btn-book.kom:hover { background: #154360; }
-.btn-book:disabled { background: #B2BEC3; cursor: not-allowed; }
+/* ===== BOOKING FORM ===== */
+.booking-wrap{background:white;border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.5rem;margin-top:2rem;max-width:680px;margin-left:auto;margin-right:auto}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:560px){.form-grid{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:.75rem}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:13px;font-weight:600;color:var(--text-muted)}
+.form-group input,.form-group select,.form-group textarea{border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;font-size:14px;font-family:inherit;color:var(--text);background:white;transition:border-color .15s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--teal-400)}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-submit{width:100%;padding:14px;background:var(--teal-600);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+.form-submit:disabled{background:var(--gray-400);cursor:not-allowed}
+.form-submit:hover:not(:disabled){background:var(--teal-800)}
+.booking-success{display:none;text-align:center;padding:2rem}
+.success-icon{font-size:3rem;margin-bottom:1rem}
+.success-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:.5rem}
 
-/* ── PROGRESS ────────────────────────────────────── */
-.prog-cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 1rem; margin-bottom: 2rem; }
-.prog-card {
-  background: white; border: 1px solid var(--border);
-  border-radius: var(--r-l); padding: 1.25rem;
-  transition: box-shadow .15s;
-}
-.prog-card:hover { box-shadow: var(--shadow-s); }
-.prog-num {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.2rem; font-weight: 400; line-height: 1;
-  margin-bottom: .3rem;
-}
-.prog-lbl { font-size: 12px; color: var(--text-s); }
-.prog-bars { background: white; border: 1px solid var(--border); border-radius: var(--r-l); padding: 1.75rem; }
-.pbar-row { margin-bottom: 1.5rem; }
-.pbar-row:last-child { margin-bottom: 0; }
-.pbar-top { display: flex; justify-content: space-between; margin-bottom: 8px; }
-.pbar-label { font-size: 14px; font-weight: 600; color: var(--charcoal); }
-.pbar-val { font-size: 14px; font-weight: 700; }
-.pbar-track { height: 10px; background: var(--cream-d); border-radius: 100px; overflow: hidden; }
-.pbar-fill { height: 100%; border-radius: 100px; transition: width 1.3s cubic-bezier(.4,0,.2,1); }
+/* ===== FAQ ===== */
+.faq-list{margin-top:2rem;display:flex;flex-direction:column;gap:.75rem;max-width:760px}
+.faq-item{background:white;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:1rem 1.25rem;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--text)}
+.faq-q .arr{font-size:18px;color:var(--teal-600);transition:transform .2s}
+.faq-q.open .arr{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-a.open{max-height:300px}
+.faq-a p{padding:0 1.25rem 1rem;font-size:14px;color:var(--text-muted);line-height:1.7}
 
-/* ── KPR CALCULATOR ──────────────────────────────── */
-.kpr-card {
-  background: white; border: 1px solid var(--border);
-  border-radius: var(--r-xl); padding: 2rem; margin-top: 2rem;
-}
-.kpr-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-@media(max-width:640px){ .kpr-layout { grid-template-columns: 1fr; } }
-.kpr-inputs label {
-  display: block; font-size: 12px; font-weight: 700;
-  color: var(--text-s); letter-spacing: .04em; text-transform: uppercase;
-  margin-bottom: 6px; margin-top: 1.25rem;
-}
-.kpr-inputs label:first-child { margin-top: 0; }
-.kpr-inputs select, .kpr-inputs input[type=range] { width: 100%; }
-.kpr-inputs select {
-  background: var(--cream); border: 1px solid var(--border);
-  border-radius: var(--r); padding: 10px 12px;
-  font-size: 14px; font-family: inherit; color: var(--text);
-  appearance: none; cursor: pointer;
-}
-.range-info { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-xs); margin-top: 5px; }
-.kpr-result-panel {
-  background: var(--forest); border-radius: var(--r-l);
-  padding: 1.75rem; display: flex; flex-direction: column; gap: 0;
-}
-.kpr-main {
-  background: rgba(255,255,255,.1); border-radius: 10px;
-  padding: 1.25rem; text-align: center; margin-bottom: 1.25rem;
-  border: 1px solid rgba(255,255,255,.12);
-}
-.kpr-main-lbl { font-size: 11px; color: rgba(255,255,255,.6); letter-spacing: .06em; text-transform: uppercase; margin-bottom: .4rem; }
-.kpr-main-val {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2rem; color: white; line-height: 1;
-}
-.kpr-rows { display: flex; flex-direction: column; gap: 0; }
-.kpr-row-item { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
-.kpr-row-item:last-child { border-bottom: none; }
-.kpr-row-item .k { font-size: 13px; color: rgba(255,255,255,.6); }
-.kpr-row-item .v { font-size: 13px; color: white; font-weight: 600; }
-.kpr-note { font-size: 11px; color: rgba(255,255,255,.4); margin-top: .75rem; line-height: 1.5; }
-.kpr-komersil-info {
-  display: none; background: var(--blue-l); border-radius: 8px;
-  padding: .75rem 1rem; margin-top: .75rem;
-  font-size: 12px; color: var(--blue); font-weight: 600;
-}
+/* ===== AI CHAT ===== */
+.ai-chat-wrap{margin-top:2rem;border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;background:white;max-width:780px}
+.ai-suggestions{background:var(--gray-50);padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+.ai-suggestion-label{font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:.6rem}
+.ai-suggestion-btns{display:flex;flex-wrap:wrap;gap:.5rem}
+.ai-suggestion-btns button{background:white;border:1.5px solid var(--border);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--text);transition:all .15s;white-space:nowrap}
+.ai-suggestion-btns button:hover{border-color:var(--teal-400);color:var(--teal-600);background:var(--teal-50)}
+.ai-messages{height:360px;overflow-y:auto;padding:1.25rem;display:flex;flex-direction:column;gap:1rem;scroll-behavior:smooth}
+.ai-msg{display:flex;gap:.75rem;align-items:flex-start}
+.ai-msg.user{flex-direction:row-reverse}
+.ai-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;background:var(--gray-50);border:1px solid var(--border)}
+.ai-msg.user .ai-avatar{background:var(--teal-600);color:white;font-size:13px;font-weight:700}
+.ai-bubble{background:var(--gray-50);border-radius:0 12px 12px 12px;padding:.75rem 1rem;font-size:14px;line-height:1.65;color:var(--text);max-width:85%}
+.ai-msg.user .ai-bubble{background:var(--teal-600);color:white;border-radius:12px 0 12px 12px}
+.ai-bubble.typing{display:flex;align-items:center;gap:4px;padding:.75rem 1rem}
+.ai-bubble.typing span{width:7px;height:7px;border-radius:50%;background:var(--gray-400);display:inline-block;animation:typingDot 1.2s infinite}
+.ai-bubble.typing span:nth-child(2){animation-delay:.2s}
+.ai-bubble.typing span:nth-child(3){animation-delay:.4s}
+@keyframes typingDot{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-6px);opacity:1}}
+.ai-input-wrap{display:flex;gap:.5rem;padding:.75rem 1rem;border-top:1px solid var(--border);background:white}
+.ai-input{flex:1;border:1.5px solid var(--border);border-radius:100px;padding:10px 18px;font-size:14px;font-family:inherit;outline:none;transition:border-color .15s}
+.ai-input:focus{border-color:var(--teal-400)}
+.ai-send-btn{background:var(--teal-600);color:white;border:none;border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;flex-shrink:0}
+.ai-send-btn:hover{background:var(--teal-800)}
+.ai-send-btn:disabled{background:var(--gray-400);cursor:not-allowed}
 
-/* ── SITEPLAN ────────────────────────────────────── */
-.siteplan-box {
-  position: relative; background: white; border: 1px solid var(--border);
-  border-radius: var(--r-xl); overflow: hidden; cursor: zoom-in; margin-top: 2rem;
-}
-.siteplan-box img { width: 100%; display: block; transition: transform .4s ease; }
-.siteplan-box:hover img { transform: scale(1.015); }
-.siteplan-zoom {
-  position: absolute; bottom: 14px; right: 14px;
-  background: rgba(28,58,42,.85); color: white; border: none;
-  border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600;
-  cursor: pointer; font-family: inherit; backdrop-filter: blur(8px);
-}
-.siteplan-placeholder {
-  height: 360px; display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: .75rem; color: var(--text-s);
-  background: var(--cream); border-radius: var(--r-xl);
-}
-.siteplan-info {
-  display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
-  gap: 1rem; margin-top: 1.25rem;
-}
-.sinfo-card {
-  background: white; border: 1px solid var(--border);
-  border-radius: var(--r-l); padding: 1rem; text-align: center;
-}
-.sinfo-num { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--forest); }
-.sinfo-lbl { font-size: 12px; color: var(--text-s); margin-top: 2px; }
+/* ===== ERROR ===== */
+.error-banner{background:#FCEBEB;border:1px solid #F7C1C1;border-radius:var(--radius);padding:1rem 1.25rem;color:#791F1F;font-size:14px;margin-top:1rem;display:none}
 
-/* ── GALERI ──────────────────────────────────────── */
-.galeri-tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-.gtab {
-  background: white; border: 1.5px solid var(--border);
-  border-radius: 100px; padding: 7px 18px;
-  font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit;
-  color: var(--text-s); transition: all .15s;
-}
-.gtab.active { background: var(--forest); border-color: var(--forest); color: white; }
-.galeri-grid {
-  display: grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap: 1rem;
-}
-.galeri-item {
-  position: relative; border-radius: var(--r-l); overflow: hidden;
-  aspect-ratio: 4/3; cursor: pointer; background: var(--cream);
-}
-.galeri-item img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  transition: transform .35s ease;
-}
-.galeri-item:hover img { transform: scale(1.06); }
-.galeri-overlay {
-  position: absolute; inset: 0; background: rgba(28,58,42,0);
-  display: flex; align-items: center; justify-content: center;
-  transition: background .2s;
-}
-.galeri-item:hover .galeri-overlay { background: rgba(28,58,42,.32); }
-.galeri-overlay span { color: white; font-size: 1.6rem; opacity: 0; transition: opacity .2s; }
-.galeri-item:hover .galeri-overlay span { opacity: 1; }
-.galeri-cap {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  background: linear-gradient(transparent, rgba(28,58,42,.75));
-  color: white; font-size: 12px; font-weight: 600;
-  padding: .5rem .75rem; transform: translateY(100%); transition: transform .2s;
-}
-.galeri-item:hover .galeri-cap { transform: translateY(0); }
-.galeri-ph {
-  aspect-ratio: 4/3; background: var(--cream-d); border-radius: var(--r-l);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: .4rem; color: var(--text-xs); font-size: 12px;
-  border: 1.5px dashed var(--sand);
-}
+/* ===== MODAL ===== */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center;padding:1rem}
+.modal-bg.open{display:flex}
+.modal{background:white;border-radius:var(--radius-lg);max-width:480px;width:100%;padding:2rem;position:relative;max-height:90vh;overflow-y:auto}
+.modal-close{position:absolute;top:1rem;right:1rem;background:var(--gray-50);border:none;width:32px;height:32px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-muted)}
+.modal h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:.25rem}
+.modal-price{font-size:1.6rem;font-weight:700;color:var(--teal-600);font-family:'Playfair Display',serif;margin-bottom:1.5rem}
+.modal-specs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
+.modal-spec{background:var(--gray-50);border-radius:8px;padding:10px 12px}
+.modal-spec .k{font-size:11px;color:var(--text-muted);margin-bottom:2px}
+.modal-spec .v{font-size:14px;font-weight:700}
+.modal-list{margin-bottom:1.5rem}
+.modal-list li{font-size:13px;color:var(--text-muted);padding:4px 0 4px 1.5rem;position:relative;list-style:none}
+.modal-list li::before{content:'✓';position:absolute;left:0;color:var(--teal-600);font-weight:700}
+.modal-btn{width:100%;padding:13px;background:var(--teal-600);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
 
-/* ── LIGHTBOX ────────────────────────────────────── */
-.lightbox { display: none; position: fixed; inset: 0; background: rgba(28,58,42,.95); z-index: 500; align-items: center; justify-content: center; }
-.lightbox.open { display: flex; }
-.lb-inner { display: flex; flex-direction: column; align-items: center; max-width: 92vw; }
-.lb-inner img { max-width: 90vw; max-height: 78vh; object-fit: contain; border-radius: 8px; }
-.lb-cap { color: rgba(255,255,255,.7); font-size: 13px; margin-top: .75rem; }
-.lb-close { position: fixed; top: 1.25rem; right: 1.25rem; background: rgba(255,255,255,.12); border: none; color: white; width: 42px; height: 42px; border-radius: 50%; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 501; }
-.lb-prev, .lb-next { position: fixed; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,.12); border: none; color: white; width: 48px; height: 48px; border-radius: 50%; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 501; transition: background .15s; }
-.lb-prev { left: 1.25rem; } .lb-next { right: 1.25rem; }
-.lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,.25); }
-.lb-counter { position: fixed; bottom: 4.5rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,.5); font-size: 13px; z-index: 501; }
-.lb-thumbs { display: flex; gap: .5rem; margin-top: .75rem; overflow-x: auto; max-width: 80vw; padding-bottom: .25rem; }
-.lb-thumb { width: 54px; height: 40px; object-fit: cover; border-radius: 5px; cursor: pointer; opacity: .4; transition: opacity .15s; border: 2px solid transparent; flex-shrink: 0; }
-.lb-thumb.active { opacity: 1; border-color: var(--gold-l); }
+/* ===== FOOTER ===== */
+footer{background:var(--teal-800);color:rgba(255,255,255,.85);padding:3rem 2rem;margin-top:4rem}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2rem}
+@media(max-width:640px){.footer-inner{grid-template-columns:1fr}}
+footer h4{color:white;font-size:14px;font-weight:700;margin-bottom:1rem}
+footer p,footer a{font-size:13px;line-height:1.8;color:rgba(255,255,255,.7);text-decoration:none;display:block}
+footer a:hover{color:white}
+.footer-copy{max-width:1100px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.15);font-size:12px;color:rgba(255,255,255,.5)}
 
-/* ── LOKASI ──────────────────────────────────────── */
-.lokasi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
-@media(max-width:640px){ .lokasi-grid { grid-template-columns: 1fr; } }
-.lokasi-map-box {
-  background: linear-gradient(135deg, rgba(28,58,42,.06) 0%, rgba(28,58,42,.02) 100%);
-  border: 1px solid var(--border); border-radius: var(--r-xl);
-  height: 290px; display: flex; flex-direction: column; align-items: center;
-  justify-content: center; gap: 1rem; color: var(--forest);
-}
-.lokasi-map-icon { font-size: 2.5rem; }
-.lokasi-map-addr { font-size: 15px; font-weight: 700; text-align: center; line-height: 1.4; }
-.lokasi-map-city { font-size: 12px; color: var(--text-s); }
-.btn-maps {
-  background: var(--forest); color: white; border: none; border-radius: 8px;
-  padding: 9px 20px; font-size: 13px; font-weight: 600; cursor: pointer;
-  font-family: inherit; text-decoration: none; display: inline-block; transition: background .15s;
-}
-.btn-maps:hover { background: var(--forest-m); }
-.lokasi-list { display: flex; flex-direction: column; gap: .75rem; }
-.lokasi-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  background: white; border: 1px solid var(--border);
-  border-radius: var(--r-l); padding: 1rem;
-  transition: box-shadow .15s;
-}
-.lokasi-item:hover { box-shadow: var(--shadow-s); }
-.lokasi-icon {
-  width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center; font-size: 18px;
-}
-.lokasi-item h4 { font-size: 14px; font-weight: 700; color: var(--charcoal); margin-bottom: 2px; }
-.lokasi-item p { font-size: 12px; color: var(--text-s); }
+/* ===== WHATSAPP FLOAT ICON ===== */
+.wa-float{position:fixed;bottom:1.75rem;right:1.75rem;z-index:150;display:flex;flex-direction:column;align-items:flex-end;gap:.5rem}
+.wa-tooltip{background:rgba(0,0,0,.75);color:white;font-size:12px;font-weight:600;padding:6px 12px;border-radius:100px;white-space:nowrap;opacity:0;transform:translateX(8px);transition:opacity .2s,transform .2s;pointer-events:none}
+.wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0)}
+.wa-btn{background:#25D366;color:white;border:none;border-radius:50%;width:58px;height:58px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s,box-shadow .2s;text-decoration:none;cursor:pointer;animation:waPulse 2.5s infinite}
+.wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.6);animation:none}
+.wa-btn svg{width:30px;height:30px;fill:white}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}50%{box-shadow:0 4px 28px rgba(37,211,102,.75)}}
 
-/* ── SYARAT ──────────────────────────────────────── */
-.syarat-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 1.25rem; margin-top: 2rem; }
-.syarat-card {
-  background: white; border: 1px solid var(--border); border-radius: var(--r-l); padding: 1.5rem;
-  transition: box-shadow .15s;
-}
-.syarat-card:hover { box-shadow: var(--shadow-s); }
-.syarat-card h3 { font-size: 15px; font-weight: 700; color: var(--charcoal); margin-bottom: .85rem; }
-.syarat-card li {
-  font-size: 13px; color: var(--text-s); padding: 6px 0 6px 1.5rem;
-  position: relative; list-style: none;
-  border-bottom: 1px solid var(--cream-d);
-}
-.syarat-card li:last-child { border-bottom: none; }
-.syarat-card li::before { content: '→'; position: absolute; left: 0; color: var(--forest); font-weight: 600; }
-
-/* ── BOOKING ─────────────────────────────────────── */
-.booking-card {
-  background: white; border: 1px solid var(--border); border-radius: var(--r-xl);
-  padding: 2.5rem; max-width: 700px; margin: 2rem auto 0;
-  box-shadow: var(--shadow-m);
-}
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-@media(max-width:560px){ .form-grid { grid-template-columns: 1fr; } }
-.fg { display: flex; flex-direction: column; gap: 6px; margin-bottom: .75rem; }
-.fg.full { grid-column: 1/-1; }
-.fg label { font-size: 12px; font-weight: 700; color: var(--text-s); letter-spacing: .04em; text-transform: uppercase; }
-.fg input, .fg select, .fg textarea {
-  border: 1.5px solid rgba(28,58,42,.15); border-radius: var(--r);
-  padding: 11px 14px; font-size: 14px; font-family: inherit;
-  color: var(--text); background: var(--linen); transition: border-color .15s;
-}
-.fg input:focus, .fg select:focus, .fg textarea:focus {
-  outline: none; border-color: var(--forest); background: white;
-}
-.fg textarea { resize: vertical; min-height: 80px; }
-.btn-book-submit {
-  width: 100%; padding: 15px; background: var(--forest); color: white;
-  border: none; border-radius: var(--r-l); font-size: 16px; font-weight: 700;
-  cursor: pointer; font-family: inherit; transition: background .15s, transform .15s;
-}
-.btn-book-submit:hover:not(:disabled) { background: var(--forest-m); transform: translateY(-1px); }
-.btn-book-submit:disabled { background: #B2BEC3; cursor: not-allowed; transform: none; }
-.book-success { display: none; text-align: center; padding: 2rem; }
-.success-icon { font-size: 3rem; margin-bottom: 1rem; }
-.success-title { font-family: 'DM Serif Display', serif; font-size: 1.6rem; margin-bottom: .5rem; color: var(--charcoal); }
-.success-note { background: rgba(28,58,42,.06); border-radius: var(--r); padding: 1rem; font-size: 13px; color: var(--forest); font-weight: 500; }
-
-/* ── AI CHAT ─────────────────────────────────────── */
-.ai-wrap {
-  margin-top: 2rem; border-radius: var(--r-xl); overflow: hidden;
-  border: 1px solid var(--border); max-width: 800px;
-  box-shadow: var(--shadow-l);
-}
-.ai-header {
-  background: linear-gradient(135deg, #1A1A2E 0%, #16213E 60%, #0F3460 100%);
-  padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 12px;
-}
-.ai-header-icon {
-  width: 42px; height: 42px; border-radius: 12px;
-  background: linear-gradient(135deg, var(--gold-dark,#B8860B), var(--gold));
-  display: flex; align-items: center; justify-content: center; font-size: 20px;
-  box-shadow: 0 4px 12px rgba(196,154,60,.3);
-}
-.ai-header-text .ai-title { font-size: 15px; font-weight: 700; color: white; }
-.ai-header-text .ai-sub { font-size: 11px; color: rgba(255,255,255,.5); margin-top: 1px; }
-.ai-status-dot {
-  margin-left: auto; width: 9px; height: 9px; border-radius: 50%;
-  background: #4ADE80; box-shadow: 0 0 0 3px rgba(74,222,128,.25); animation: blink 2s infinite;
-}
-.ai-chips-wrap { background: #0D1117; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,.06); }
-.ai-chips-lbl { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 8px; }
-.ai-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.ai-chip {
-  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
-  border-radius: 20px; padding: 5px 13px; font-size: 12px; font-weight: 500;
-  cursor: pointer; font-family: inherit; color: rgba(255,255,255,.7);
-  transition: all .2s;
-}
-.ai-chip:hover { background: rgba(196,154,60,.2); border-color: rgba(196,154,60,.4); color: var(--gold-l); }
-.ai-messages {
-  height: 340px; overflow-y: auto; padding: 1.25rem 1rem;
-  display: flex; flex-direction: column; gap: 1rem;
-  background: #0D1117;
-  scrollbar-width: thin; scrollbar-color: rgba(196,154,60,.3) transparent;
-}
-.ai-messages::-webkit-scrollbar { width: 4px; }
-.ai-messages::-webkit-scrollbar-thumb { background: rgba(196,154,60,.3); border-radius: 4px; }
-.ai-msg { display: flex; gap: 8px; align-items: flex-end; }
-.ai-msg.user { flex-direction: row-reverse; }
-.ai-av {
-  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center; font-size: 13px;
-  background: linear-gradient(135deg, #B8860B, var(--gold));
-  box-shadow: 0 2px 8px rgba(196,154,60,.3);
-}
-.ai-msg.user .ai-av { background: var(--forest); font-size: 11px; font-weight: 700; color: rgba(255,255,255,.9); }
-.ai-bub {
-  max-width: 78%; padding: 10px 14px; font-size: 13.5px; line-height: 1.65;
-  word-break: break-word;
-}
-.ai-msg.bot .ai-bub {
-  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
-  border-radius: 14px 14px 14px 3px; color: rgba(255,255,255,.85);
-}
-.ai-msg.user .ai-bub {
-  background: linear-gradient(135deg, #B8860B, var(--gold));
-  color: white; border-radius: 14px 14px 3px 14px;
-  box-shadow: 0 2px 12px rgba(196,154,60,.25);
-}
-.ai-bub.typing { display: flex; align-items: center; gap: 5px; padding: 12px 16px; }
-.ai-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); animation: typingDot 1.2s infinite; }
-.ai-dot:nth-child(2){ animation-delay:.2s } .ai-dot:nth-child(3){ animation-delay:.4s }
-@keyframes typingDot { 0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1} }
-.ai-input-row {
-  display: flex; gap: 8px; padding: 12px 14px;
-  background: #161B22; border-top: 1px solid rgba(255,255,255,.06);
-}
-.ai-input-field {
-  flex: 1; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
-  border-radius: 10px; padding: 10px 14px; color: rgba(255,255,255,.9);
-  font-size: 14px; font-family: inherit; outline: none; transition: border-color .2s;
-}
-.ai-input-field:focus { border-color: rgba(196,154,60,.5); }
-.ai-input-field::placeholder { color: rgba(255,255,255,.25); }
-.ai-send {
-  background: linear-gradient(135deg, #B8860B, var(--gold));
-  border: none; border-radius: 10px; width: 42px; height: 42px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; flex-shrink: 0; transition: all .2s;
-  box-shadow: 0 2px 10px rgba(196,154,60,.3);
-}
-.ai-send:disabled { background: rgba(255,255,255,.1); box-shadow: none; cursor: not-allowed; }
-.ai-send:hover:not(:disabled) { transform: scale(1.05); }
-.ai-footer { background: #0D1117; padding: 8px; text-align: center; font-size: 10px; color: rgba(255,255,255,.25); letter-spacing: .04em; }
-
-/* ── ERROR BANNER ────────────────────────────────── */
-.err-banner {
-  background: #FDEDED; border: 1px solid #F5C6CB;
-  border-radius: var(--r); padding: .875rem 1.25rem;
-  color: #721C24; font-size: 14px; margin-top: 1rem; display: none;
-}
-
-/* ── MODAL ───────────────────────────────────────── */
-.modal-bg { display: none; position: fixed; inset: 0; background: rgba(28,58,42,.5); z-index: 200; align-items: center; justify-content: center; padding: 1rem; backdrop-filter: blur(4px); }
-.modal-bg.open { display: flex; }
-.modal-box {
-  background: white; border-radius: var(--r-xl); max-width: 490px; width: 100%;
-  padding: 2rem; position: relative; max-height: 90vh; overflow-y: auto;
-  box-shadow: var(--shadow-l);
-}
-.modal-close {
-  position: absolute; top: 1rem; right: 1rem;
-  background: var(--cream); border: none; width: 32px; height: 32px;
-  border-radius: 50%; font-size: 18px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; color: var(--text-s);
-}
-.modal-box h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: .25rem; color: var(--charcoal); }
-.modal-price { font-family: 'DM Serif Display', serif; font-size: 1.75rem; margin-bottom: 1rem; line-height: 1.2; }
-.modal-specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1.5rem; }
-.mspec { background: var(--cream); border-radius: 8px; padding: 10px 12px; }
-.mspec .k { font-size: 11px; color: var(--text-s); margin-bottom: 2px; }
-.mspec .v { font-size: 14px; font-weight: 700; color: var(--charcoal); }
-.mlist { margin-bottom: 1.5rem; }
-.mlist li { font-size: 13px; color: var(--text-s); padding: 5px 0 5px 1.5rem; position: relative; list-style: none; border-bottom: 1px solid var(--cream-d); }
-.mlist li:last-child { border-bottom: none; }
-.mlist li::before { content: '✓'; position: absolute; left: 0; color: var(--forest); font-weight: 700; }
-.modal-cta { width: 100%; padding: 13px; color: white; border: none; border-radius: var(--r-l); font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; transition: opacity .15s; }
-.modal-cta:hover { opacity: .9; }
-
-/* ── FOOTER ──────────────────────────────────────── */
-footer {
-  background: var(--charcoal); color: rgba(255,255,255,.8);
-  padding: 4rem 2rem 2rem; margin-top: 5rem;
-}
-.footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; }
-@media(max-width:640px){ .footer-inner { grid-template-columns: 1fr; gap: 2rem; } }
-.footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
-.footer-logo { width: 36px; height: 36px; background: var(--forest); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gold-l); font-family: 'DM Serif Display', serif; font-size: 15px; font-weight: 400; }
-.footer-brand-name { font-family: 'DM Serif Display', serif; font-size: 15px; color: white; }
-footer p { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.8; }
-footer h4 { font-size: 13px; font-weight: 700; color: white; margin-bottom: 1rem; letter-spacing: .04em; text-transform: uppercase; }
-footer a { font-size: 13px; color: rgba(255,255,255,.5); text-decoration: none; display: block; line-height: 2; transition: color .15s; cursor: pointer; }
-footer a:hover { color: var(--gold-l); }
-.footer-divider { max-width: 1100px; margin: 2.5rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-.footer-copy { font-size: 12px; color: rgba(255,255,255,.3); }
-.footer-badges { display: flex; gap: .75rem; flex-wrap: wrap; }
-.fbadge { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 100px; padding: 4px 12px; font-size: 11px; color: rgba(255,255,255,.5); font-weight: 500; }
-
-/* ── WA FLOAT ────────────────────────────────────── */
-.wa-float { position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 150; display: flex; flex-direction: column; align-items: flex-end; gap: .5rem; }
-.wa-tip { background: rgba(28,58,42,.9); color: white; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 100px; white-space: nowrap; opacity: 0; transform: translateX(6px); transition: all .2s; pointer-events: none; backdrop-filter: blur(8px); }
-.wa-float:hover .wa-tip { opacity: 1; transform: translateX(0); }
-.wa-btn {
-  background: #25D366; border: none; border-radius: 50%;
-  width: 56px; height: 56px; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 20px rgba(37,211,102,.4); cursor: pointer; text-decoration: none;
-  animation: waBounce 2.5s ease-in-out infinite; transition: transform .2s, box-shadow .2s;
-}
-.wa-btn:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,.55); animation: none; }
-.wa-btn svg { width: 28px; height: 28px; fill: white; }
-@keyframes waBounce { 0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)} 50%{box-shadow:0 6px 28px rgba(37,211,102,.65)} }
-
-/* ── RESPONSIVE ──────────────────────────────────── */
-@media(max-width:900px){
-  .hero-stats { grid-template-columns: repeat(2,1fr); }
-  .hero-stat { border-right: none; padding-left: 1rem; }
-}
+/* ===== RESPONSIVE ===== */
 @media(max-width:640px){
-  .nav-links { display: none; }
-  .hero { padding: 4rem 1.5rem 3rem; min-height: auto; }
-  .hero-stats { grid-template-columns: 1fr 1fr; }
-  .sec { padding: 3.5rem 1.25rem; }
-  .booking-card { padding: 1.5rem; }
-  .ai-messages { height: 280px; }
+  .nav-links{display:none}
+  .hero{padding:3.5rem 1.5rem 3rem}
+  section{padding:3rem 1.25rem}
+  .booking-wrap{padding:1.5rem}
 }
-
-/* ── MISC UTILITIES ──────────────────────────────── */
-input[type=range] { accent-color: var(--forest); }
 </style>
 </head>
 <body>
 
 <!-- LOADING -->
 <div id="loadingScreen">
-  <div class="load-emblem">🦅</div>
-  <div class="load-name">Garuda Maharam Residence</div>
-  <div class="load-sub">PT Rusdi Rahmi Property</div>
-  <div class="load-bar"><div class="load-fill" id="loadBar"></div></div>
+  <div class="loading-logo">🏠</div>
+  <div class="loading-title">Garuda Maharam Residence</div>
+  <div class="loading-sub">Memuat data terbaru...</div>
+  <div class="loading-bar"><div class="loading-fill" id="loadBar"></div></div>
 </div>
 
 <!-- NAV -->
 <nav>
   <div class="nav-brand">
     <div class="nav-logo">GM</div>
-    <div class="nav-name-wrap">
-      <div class="nav-title" id="navNama">Garuda Maharam Residence</div>
+    <div>
+      <div class="nav-name" id="navNama">Garuda Maharam Residence</div>
       <div class="nav-sub">PT Rusdi Rahmi Property · Paringin, Balangan</div>
     </div>
   </div>
@@ -775,135 +333,85 @@ input[type=range] { accent-color: var(--forest); }
     <a onclick="goTo('galeri')">Galeri</a>
     <a onclick="goTo('lokasi')">Lokasi</a>
     <a onclick="goTo('syarat')">Syarat</a>
-    <a onclick="goTo('faq')">Tanya AI</a>
-    <button class="nav-cta" onclick="goTo('booking')">Booking Sekarang</button>
+    <a onclick="goTo('faq')">FAQ</a>
+    <button class="btn-primary" onclick="goTo('booking')">Booking Sekarang</button>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-inner">
-    <div class="hero-pill">🏠 Program Rumah Subsidi FLPP 2026</div>
-    <h1>Rumah Impian,<br><span class="accent">Terjangkau &amp; Berkelas</span><br>di Paringin</h1>
-    <p class="hero-desc" id="heroDesc">Hunian subsidi pemerintah dengan cicilan terjangkau. DP ringan, proses mudah, lokasi strategis di jantung Kabupaten Balangan, Kalimantan Selatan.</p>
-    <div class="hero-actions">
-      <button class="btn-hero-primary" onclick="goTo('booking')">📋 Booking Unit Sekarang</button>
-      <button class="btn-hero-ghost" onclick="goTo('kpr')">🧮 Hitung Cicilan Saya</button>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="stat-num" id="statTotal">42</div>
-        <div class="stat-lbl">Total Unit</div>
-      </div>
-      <div class="hero-stat">
-        <div class="stat-num" id="statCicilan">1,75 Jt</div>
-        <div class="stat-lbl">Cicilan / Bulan</div>
-      </div>
-      <div class="hero-stat">
-        <div class="stat-num" id="statHarga">182 Jt</div>
-        <div class="stat-lbl">Harga Subsidi</div>
-      </div>
-      <div class="hero-stat">
-        <div class="stat-num">20 Th</div>
-        <div class="stat-lbl">Tenor KPR</div>
-      </div>
-    </div>
+  <div class="hero-badge">🏠 PROGRAM RUMAH SUBSIDI FLPP 2026</div>
+  <h1>Rumah Impian<br><span>Terjangkau &amp; Berkualitas</span><br>di Paringin</h1>
+  <p id="heroDesc">Hunian subsidi pemerintah dengan cicilan terjangkau. DP ringan, proses mudah, lokasi strategis di jantung Kabupaten Balangan.</p>
+  <div class="hero-cta">
+    <button class="btn-white" onclick="goTo('booking')">📋 Booking Unit</button>
+    <button class="btn-ghost" onclick="goTo('kpr')">🧮 Hitung Cicilan</button>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num" id="statTotal">42</div><div class="lbl">Total Unit</div></div>
+    <div class="hero-stat"><div class="num" id="statCicilan">1,75 Jt</div><div class="lbl">Cicilan/Bulan</div></div>
+    <div class="hero-stat"><div class="num" id="statHarga">182 Jt</div><div class="lbl">Harga Subsidi</div></div>
+    <div class="hero-stat"><div class="num">20 Th</div><div class="lbl">Tenor KPR</div></div>
   </div>
 </div>
 
-<!-- KEUNGGULAN -->
-<div class="sec" style="padding-bottom:0">
-  <div class="sec-eyebrow">Mengapa Memilih Kami</div>
-  <div class="sec-title">Keunggulan Garuda Maharam Residence</div>
-  <div class="feat-grid">
-    <div class="feat-card">
-      <div class="feat-icon" style="background:#E8F5E9">🏦</div>
-      <h3>Subsidi Pemerintah FLPP</h3>
-      <p>Bunga tetap 5% per tahun seumur kredit. Cicilan tidak berubah dari akad hingga lunas.</p>
+<!-- TIPE UNIT -->
+<section id="unit">
+  <div class="live-badge">🔴 Data langsung dari Google Sheets — diperbarui real-time</div>
+  <div class="section-label">Pilihan Hunian</div>
+  <div class="section-title">Tipe Unit Tersedia</div>
+  <div class="section-desc">Semua tipe memenuhi standar rumah subsidi FLPP dan siap diajukan KPR.</div>
+  <div class="error-banner" id="errorBanner">⚠️ Gagal memuat data. Pastikan URL Google Apps Script sudah benar dan coba refresh halaman.</div>
+  <div class="unit-filter-wrap">
+    <div class="unit-filter">
+      <button class="unit-filter-btn all active" onclick="filterUnit('semua',this)">🏘️ Semua Tipe</button>
+      <button class="unit-filter-btn subsidi" onclick="filterUnit('subsidi',this)">🏦 Subsidi FLPP</button>
+      <button class="unit-filter-btn komersil" onclick="filterUnit('komersil',this)">🏠 Komersil</button>
     </div>
-    <div class="feat-card">
-      <div class="feat-icon" style="background:#FBF3E0">📍</div>
-      <h3>Lokasi Strategis</h3>
-      <p>Jl. Lingkar Timur Paringin, dekat sekolah, puskesmas, pasar, dan kantor pemerintahan.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon" style="background:#E3F2FD">🏗️</div>
-      <h3>Material Berkualitas</h3>
-      <p>Bata merah plester, atap genteng metal, lantai keramik, kusen aluminium, instalasi listrik SNI.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon" style="background:#F3E5F5">📄</div>
-      <h3>Legalitas Lengkap</h3>
-      <p>SHM, IMB/PBG, terdaftar di SIKUMBANG BP Tapera. Proses aman dan transparan.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon" style="background:#E8F5E9">⚡</div>
-      <h3>Siap Huni</h3>
-      <p>Sudah termasuk listrik PLN, air PAM, carport, dan pagar depan. Langsung bisa ditempati.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon" style="background:#FFF3E0">💬</div>
-      <h3>Developer Lokal Terpercaya</h3>
-      <p>PT Rusdi Rahmi Property, developer lokal Paringin yang bisa ditemui dan dikonfirmasi langsung.</p>
-    </div>
-  </div>
-</div>
-
-<!-- UNIT -->
-<section class="sec" id="unit">
-  <div class="live-badge"><span class="live-dot"></span>Data langsung dari Google Sheets — real-time</div>
-  <div class="sec-eyebrow">Pilihan Hunian</div>
-  <div class="sec-title">Tipe Unit Tersedia</div>
-  <div class="sec-desc">Tipe subsidi bisa KPR FLPP atau Cash. Tipe komersil hanya Cash/Tunai.</div>
-  <div class="err-banner" id="errorBanner">⚠️ Gagal memuat data. Pastikan URL Apps Script benar dan coba refresh halaman.</div>
-  <div class="filter-strip">
-    <button class="filter-btn all active" onclick="filterUnit('semua',this)">🏘️ Semua Tipe</button>
-    <button class="filter-btn sub" onclick="filterUnit('subsidi',this)">🏦 Subsidi FLPP</button>
-    <button class="filter-btn kom" onclick="filterUnit('komersil',this)">🏠 Komersil</button>
   </div>
   <div class="units-grid" id="unitsGrid">
-    <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-xs)">
-      <div style="font-size:2rem;margin-bottom:.5rem">⏳</div><div>Memuat data unit...</div>
+    <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted)">
+      <div style="font-size:2rem;margin-bottom:.5rem">⏳</div>
+      <div>Memuat data unit...</div>
     </div>
   </div>
 </section>
 
 <!-- PROGRESS -->
-<div class="sec-alt-wrap">
-<div class="sec" id="progress">
-  <div class="sec-eyebrow">Update Proyek</div>
-  <div class="sec-title">Progress Pembangunan</div>
-  <div class="prog-cards">
-    <div class="prog-card"><div class="prog-num" id="pTotal">—</div><div class="prog-lbl">Total Unit</div></div>
-    <div class="prog-card"><div class="prog-num" id="pTersedia" style="color:var(--amber)">—</div><div class="prog-lbl">Unit Tersedia</div></div>
-    <div class="prog-card"><div class="prog-num" id="pTerjual" style="color:var(--coral)">—</div><div class="prog-lbl">Terjual/Booking</div></div>
-    <div class="prog-card"><div class="prog-num" id="pTarget" style="font-size:1.4rem">—</div><div class="prog-lbl">Target Serah Terima</div></div>
+<section style="background:#f8f6f0;max-width:100%;padding:4rem 0">
+<div style="max-width:1100px;margin:0 auto;padding:0 2rem">
+  <div class="section-label">Update Proyek</div>
+  <div class="section-title">Progress Pembangunan</div>
+  <div class="progress-stat">
+    <div class="p-card"><div class="big" id="pTotal">—</div><div class="label">Total Unit</div></div>
+    <div class="p-card"><div class="big" style="color:#EF9F27" id="pTersedia">—</div><div class="label">Unit Tersedia</div></div>
+    <div class="p-card"><div class="big" style="color:#D85A30" id="pTerjual">—</div><div class="label">Terjual/Booking</div></div>
+    <div class="p-card"><div class="big" id="pTarget">—</div><div class="label">Target Serah Terima</div></div>
   </div>
-  <div class="prog-bars">
-    <div class="pbar-row">
-      <div class="pbar-top"><span class="pbar-label">Ketersediaan Unit</span><span class="pbar-val" id="pbUnitTxt" style="color:var(--forest)">—</span></div>
-      <div class="pbar-track"><div class="pbar-fill" id="pbUnit" style="width:0%;background:var(--forest)"></div></div>
+  <div class="pb-wrap">
+    <div class="pb-row">
+      <div class="pb-label"><span>Ketersediaan Unit</span><span id="pbUnitTxt" style="color:var(--teal-600)">—</span></div>
+      <div class="pb-track"><div class="pb-fill" id="pbUnit" style="width:0%;background:var(--teal-600)"></div></div>
     </div>
-    <div class="pbar-row">
-      <div class="pbar-top"><span class="pbar-label">Progress Konstruksi</span><span class="pbar-val" id="pbKonstrTxt" style="color:var(--amber)">—</span></div>
-      <div class="pbar-track"><div class="pbar-fill" id="pbKonstr" style="width:0%;background:var(--amber)"></div></div>
+    <div class="pb-row">
+      <div class="pb-label"><span>Progress Konstruksi</span><span id="pbKonstrTxt" style="color:#EF9F27">—</span></div>
+      <div class="pb-track"><div class="pb-fill" id="pbKonstr" style="width:0%;background:#EF9F27"></div></div>
     </div>
-    <div class="pbar-row" style="margin-bottom:0">
-      <div class="pbar-top"><span class="pbar-label">Kelengkapan Dokumen (PBG/IMB)</span><span class="pbar-val" id="pbDokTxt" style="color:var(--coral)">—</span></div>
-      <div class="pbar-track"><div class="pbar-fill" id="pbDok" style="width:0%;background:var(--coral)"></div></div>
+    <div class="pb-row" style="margin-bottom:0">
+      <div class="pb-label"><span>Kelengkapan Dokumen (PBG/IMB)</span><span id="pbDokTxt" style="color:#D85A30">—</span></div>
+      <div class="pb-track"><div class="pb-fill" id="pbDok" style="width:0%;background:#D85A30"></div></div>
     </div>
   </div>
 </div>
-</div>
+</section>
 
-<!-- KPR -->
-<section class="sec" id="kpr">
-  <div class="sec-eyebrow">Kalkulator KPR FLPP</div>
-  <div class="sec-title">Simulasi Cicilan KPR</div>
-  <div class="sec-desc">Hitung estimasi cicilan bulanan sesuai kemampuan finansial Anda.</div>
-  <div class="kpr-card">
-    <div class="kpr-layout">
+<!-- SIMULASI KPR -->
+<section id="kpr">
+  <div class="section-label">Kalkulator KPR FLPP</div>
+  <div class="section-title">Simulasi Cicilan KPR</div>
+  <div class="section-desc">Hitung estimasi cicilan bulanan sesuai kemampuan finansial Anda.</div>
+  <div class="kpr-wrap">
+    <div class="kpr-grid">
       <div class="kpr-inputs">
         <label>Tipe Unit</label>
         <select id="kprTipe" onchange="hitungKPR()">
@@ -917,73 +425,95 @@ input[type=range] { accent-color: var(--forest); }
         </select>
         <label>Uang Muka (DP)</label>
         <input type="range" id="kprDP" min="1" max="30" value="10" step="1" oninput="hitungKPR()">
-        <div class="range-info"><span id="dpLabel">Rp 18.200.000 (10%)</span><span>Maks 30%</span></div>
+        <div class="range-row"><span id="dpLabel">Rp 18.200.000 (10%)</span><span>Maks 30%</span></div>
         <label>Tenor KPR</label>
         <input type="range" id="kprTenor" min="5" max="20" value="20" step="1" oninput="hitungKPR()">
-        <div class="range-info"><span id="tenorLabel">20 tahun</span><span>Maks 20 tahun</span></div>
+        <div class="range-row"><span id="tenorLabel">20 tahun</span><span>Maks 20 tahun</span></div>
         <label>Suku Bunga</label>
         <select id="kprBunga" onchange="hitungKPR()">
-          <option value="5">5% / tahun — KPR FLPP (Subsidi, Tetap)</option>
-          <option value="10">10% / tahun — KPR Komersil (estimasi)</option>
-          <option value="12">12% / tahun — KPR Komersil (estimasi tinggi)</option>
+          <option value="5">5% / tahun (KPR FLPP – Subsidi, Tetap)</option>
+          <option value="10">10% / tahun (KPR Komersil – estimasi)</option>
+          <option value="12">12% / tahun (KPR Komersil – estimasi tinggi)</option>
         </select>
       </div>
-      <div class="kpr-result-panel">
-        <div class="kpr-main">
-          <div class="kpr-main-lbl">Cicilan Per Bulan</div>
-          <div class="kpr-main-val" id="kprCicilan">Rp 1.760.000</div>
+      <div class="kpr-result">
+        <h3>📊 Estimasi Cicilan KPR</h3>
+        <div class="kpr-highlight">
+          <div class="cicilan-lbl">Cicilan Per Bulan</div>
+          <div class="cicilan-val" id="kprCicilan">Rp 1.760.000</div>
         </div>
-        <div class="kpr-rows">
-          <div class="kpr-row-item"><span class="k">Harga Rumah</span><span class="v" id="kprHarga">Rp 182.000.000</span></div>
-          <div class="kpr-row-item"><span class="k">Uang Muka</span><span class="v" id="kprDPVal">Rp 18.200.000</span></div>
-          <div class="kpr-row-item"><span class="k">Pokok Pinjaman</span><span class="v" id="kprPokok">Rp 163.800.000</span></div>
-          <div class="kpr-row-item"><span class="k">Total Bayar</span><span class="v" id="kprTotal">Rp 422.400.000</span></div>
-        </div>
-        <div class="kpr-komersil-info" id="kprInfoKomersil">
+        <div class="kpr-row"><span class="lbl">Harga Rumah</span><span class="val" id="kprHarga">Rp 182.000.000</span></div>
+        <div class="kpr-row"><span class="lbl">Uang Muka</span><span class="val" id="kprDPVal">Rp 18.200.000</span></div>
+        <div class="kpr-row"><span class="lbl">Pokok Pinjaman</span><span class="val" id="kprPokok">Rp 163.800.000</span></div>
+        <div class="kpr-row"><span class="lbl">Total Bayar</span><span class="val" id="kprTotal">Rp 422.400.000</span></div>
+        <div id="kprInfoKomersil" style="display:none;margin-top:.75rem;background:#E6F1FB;border-radius:8px;padding:.75rem 1rem;font-size:12px;color:#185FA5;font-weight:600">
           💵 Tipe komersil hanya tersedia dengan pembayaran <strong>Cash / Tunai</strong>. Hubungi kami untuk negosiasi harga dan jadwal pembayaran.
         </div>
-        <div class="kpr-note">*Estimasi saja. Angka final ditentukan bank penyalur FLPP (untuk tipe subsidi).</div>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:.5rem">*Estimasi saja. Angka final ditentukan bank penyalur FLPP (untuk tipe subsidi).</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SITEPLAN -->
-<div class="sec-alt-wrap">
-<div class="sec" id="siteplan">
-  <div class="sec-eyebrow">Denah Kawasan</div>
-  <div class="sec-title">Siteplan Garuda Maharam Residence</div>
-  <div class="sec-desc">Tata letak unit dan fasilitas di dalam kawasan perumahan.</div>
-  <div class="siteplan-box" id="siteplanBox">
-    <div class="siteplan-placeholder">
-      <div style="font-size:3rem">🗺️</div>
-      <div style="font-weight:700;font-size:15px;color:var(--charcoal)">Siteplan Garuda Maharam Residence</div>
-      <div style="font-size:13px;color:var(--text-s)">Segera tersedia</div>
+<section id="siteplan" style="background:#f8f6f0;max-width:100%;padding:4rem 0">
+<div style="max-width:1100px;margin:0 auto;padding:0 2rem">
+  <div class="section-label">Denah Kawasan</div>
+  <div class="section-title">Siteplan Garuda Maharam Residence</div>
+  <div class="section-desc">Tata letak unit dan fasilitas di dalam kawasan perumahan.</div>
+  <div class="siteplan-wrap">
+    <div class="siteplan-img-box" id="siteplanBox">
+      <div class="siteplan-placeholder" id="siteplanPlaceholder">
+        <div style="font-size:3rem">🗺️</div>
+        <div style="font-weight:600;font-size:15px;color:var(--text)">Siteplan Garuda Maharam Residence</div>
+        <div style="font-size:13px">Tambahkan <code style="background:rgba(0,0,0,.07);padding:1px 6px;border-radius:4px">siteplan_id</code> di Google Sheets tab Settings</div>
+      </div>
+    </div>
+    <div class="siteplan-info">
+      <div class="siteplan-stat"><div class="snum" id="spTotal">42</div><div class="slbl">Total Kavling</div></div>
+      <div class="siteplan-stat"><div class="snum" id="spLB">36</div><div class="slbl">Luas Bangunan (m²)</div></div>
+      <div class="siteplan-stat"><div class="snum" id="spLT">100</div><div class="slbl">Luas Tanah (m²)</div></div>
+      <div class="siteplan-stat"><div class="snum">2</div><div class="slbl">Kamar Tidur</div></div>
+    </div>
+    <div class="upload-guide">
+      <h4>📌 Cara Tambah Gambar Siteplan</h4>
+      <ol>
+        <li>Upload gambar siteplan ke <strong>Google Drive</strong></li>
+        <li>Klik kanan → <strong>Bagikan</strong> → ubah ke <strong>"Siapa saja yang memiliki link"</strong></li>
+        <li>Salin link — ambil ID-nya saja (antara <code>/d/</code> dan <code>/view</code>)</li>
+        <li>Di Google Sheets tab <strong>Settings</strong>, tambah baris: <code>siteplan_id</code> | <em>ID file Anda</em></li>
+        <li>Refresh website → gambar langsung muncul!</li>
+      </ol>
     </div>
   </div>
-  <div class="siteplan-info">
-    <div class="sinfo-card"><div class="sinfo-num" id="spTotal">42</div><div class="sinfo-lbl">Total Kavling</div></div>
-    <div class="sinfo-card"><div class="sinfo-num" id="spLB">36</div><div class="sinfo-lbl">Luas Bangunan (m²)</div></div>
-    <div class="sinfo-card"><div class="sinfo-num">120</div><div class="sinfo-lbl">Luas Tanah (m²)</div></div>
-    <div class="sinfo-card"><div class="sinfo-num">2+</div><div class="sinfo-lbl">Kamar Tidur</div></div>
-  </div>
 </div>
-</div>
+</section>
 
 <!-- GALERI -->
-<section class="sec" id="galeri">
-  <div class="sec-eyebrow">Dokumentasi Proyek</div>
-  <div class="sec-title">Galeri Pembangunan</div>
-  <div class="sec-desc">Foto progres terkini langsung dari lokasi — diperbarui berkala.</div>
-  <div class="galeri-tabs" style="margin-top:1.5rem">
-    <button class="gtab active" onclick="filterGaleri('semua',this)">Semua</button>
-    <button class="gtab" onclick="filterGaleri('tampak depan',this)">Tampak Depan</button>
-    <button class="gtab" onclick="filterGaleri('pondasi',this)">Pondasi</button>
-    <button class="gtab" onclick="filterGaleri('struktur',this)">Struktur</button>
-    <button class="gtab" onclick="filterGaleri('finishing',this)">Finishing</button>
-    <button class="gtab" onclick="filterGaleri('lokasi',this)">Lokasi</button>
+<section id="galeri">
+  <div class="section-label">Dokumentasi Proyek</div>
+  <div class="section-title">Galeri Pembangunan</div>
+  <div class="section-desc">Foto progres terkini langsung dari lokasi — diperbarui berkala.</div>
+  <div class="galeri-tabs">
+    <button class="galeri-tab active" onclick="filterGaleri('semua',this)">Semua</button>
+    <button class="galeri-tab" onclick="filterGaleri('tampak depan',this)">Tampak Depan</button>
+    <button class="galeri-tab" onclick="filterGaleri('pondasi',this)">Pondasi</button>
+    <button class="galeri-tab" onclick="filterGaleri('struktur',this)">Struktur</button>
+    <button class="galeri-tab" onclick="filterGaleri('finishing',this)">Finishing</button>
+    <button class="galeri-tab" onclick="filterGaleri('lokasi',this)">Lokasi</button>
   </div>
   <div class="galeri-grid" id="galeriGrid"></div>
+  <div class="upload-guide" style="margin-top:1.5rem">
+    <h4>📌 Cara Tambah Foto ke Galeri</h4>
+    <ol>
+      <li>Upload foto ke <strong>Google Drive</strong> → Bagikan → <strong>"Siapa saja yang memiliki link"</strong></li>
+      <li>Ambil <strong>ID file</strong> dari link (antara <code>/d/</code> dan <code>/view</code>)</li>
+      <li>Di Google Sheets, tambah tab baru bernama <strong>Galeri</strong></li>
+      <li>Buat kolom: <code>judul</code> | <code>kategori</code> | <code>drive_id</code> | <code>tanggal</code></li>
+      <li>Isi satu baris per foto. Kolom <code>kategori</code>: <code>pondasi</code>, <code>struktur</code>, <code>finishing</code>, atau <code>lokasi</code></li>
+      <li>Refresh website — foto langsung tampil di galeri!</li>
+    </ol>
+  </div>
 </section>
 
 <!-- LIGHTBOX -->
@@ -991,40 +521,40 @@ input[type=range] { accent-color: var(--forest); }
   <button class="lb-close" onclick="closeLB()">✕</button>
   <button class="lb-prev" onclick="lbNav(-1)">‹</button>
   <button class="lb-next" onclick="lbNav(1)">›</button>
-  <div class="lb-inner">
+  <div class="lightbox-inner">
     <img id="lbImg" src="" alt="">
-    <div class="lb-cap" id="lbCaption"></div>
+    <div class="lightbox-caption" id="lbCaption"></div>
     <div class="lb-thumbs" id="lbThumbs"></div>
   </div>
   <div class="lb-counter" id="lbCounter"></div>
 </div>
 
 <!-- LOKASI -->
-<div class="sec-alt-wrap">
-<div class="sec" id="lokasi">
-  <div class="sec-eyebrow">Lokasi &amp; Aksesibilitas</div>
-  <div class="sec-title">Strategis di Paringin, Balangan</div>
+<section id="lokasi" style="background:#f8f6f0;max-width:100%;padding:4rem 0">
+<div style="max-width:1100px;margin:0 auto;padding:0 2rem">
+  <div class="section-label">Lokasi &amp; Aksesibilitas</div>
+  <div class="section-title">Strategis di Paringin, Balangan</div>
   <div class="lokasi-grid">
-    <div class="lokasi-map-box">
-      <div class="lokasi-map-icon">📍</div>
-      <div class="lokasi-map-addr" id="lokasiAlamat">Jl. Lingkar Timur RT 9, Paringin</div>
-      <div class="lokasi-map-city">Kabupaten Balangan, Kalimantan Selatan</div>
-      <a id="lokasiMapLink" href="https://maps.app.goo.gl/zdVzL2cJLB9nLRrw9" target="_blank" class="btn-maps">📍 Buka di Google Maps</a>
+    <div class="lokasi-map">
+      <div style="font-size:3rem">📍</div>
+      <div style="font-weight:700;font-size:16px;text-align:center" id="lokasiAlamat">Jl. Lingkar Timur RT 9, Paringin</div>
+      <div style="font-size:13px;color:var(--teal-600)">Kabupaten Balangan, Kalimantan Selatan</div>
+      <a id="lokasiMapLink" href="https://maps.app.goo.gl/zdVzL2cJLB9nLRrw9" target="_blank" style="background:var(--teal-600);color:white;padding:8px 20px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:600">📍 Buka di Google Maps</a>
     </div>
     <div class="lokasi-list">
-      <div class="lokasi-item"><div class="lokasi-icon" style="background:#E8F5E9">🏫</div><div><h4>Sekolah Negeri</h4><p>SD/SMP/SMA ±500m – 1km dari lokasi</p></div></div>
-      <div class="lokasi-item"><div class="lokasi-icon" style="background:#FFF3E0">🏥</div><div><h4>Puskesmas &amp; RSUD</h4><p>Puskesmas ±1km, RSUD Balangan ±3km</p></div></div>
-      <div class="lokasi-item"><div class="lokasi-icon" style="background:#E8F5E9">🛒</div><div><h4>Pasar &amp; Pertokoan</h4><p>Pasar Paringin ±1,5km dari lokasi</p></div></div>
-      <div class="lokasi-item"><div class="lokasi-icon" style="background:#E3F2FD">🏛️</div><div><h4>Kantor Pemerintahan</h4><p>Kantor Bupati Balangan ±2km</p></div></div>
+      <div class="lokasi-item"><div class="lokasi-icon" style="background:#E1F5EE">🏫</div><div><h4>Sekolah Negeri</h4><p>SD/SMP/SMA ±500m – 1km dari lokasi</p></div></div>
+      <div class="lokasi-item"><div class="lokasi-icon" style="background:#FAEEDA">🏥</div><div><h4>Puskesmas &amp; RSUD</h4><p>Puskesmas ±1km, RSUD Balangan ±3km</p></div></div>
+      <div class="lokasi-item"><div class="lokasi-icon" style="background:#EAF3DE">🛒</div><div><h4>Pasar &amp; Pertokoan</h4><p>Pasar Paringin ±1,5km dari lokasi</p></div></div>
+      <div class="lokasi-item"><div class="lokasi-icon" style="background:#E6F1FB">🏛️</div><div><h4>Kantor Pemerintahan</h4><p>Kantor Bupati Balangan ±2km</p></div></div>
     </div>
   </div>
 </div>
-</div>
+</section>
 
 <!-- SYARAT -->
-<section class="sec" id="syarat">
-  <div class="sec-eyebrow">Persyaratan KPR FLPP</div>
-  <div class="sec-title">Siapa yang Bisa Mengajukan?</div>
+<section id="syarat">
+  <div class="section-label">Persyaratan KPR FLPP</div>
+  <div class="section-title">Siapa yang Bisa Mengajukan?</div>
   <div class="syarat-grid">
     <div class="syarat-card"><h3>👤 Syarat Umum</h3><ul>
       <li>WNI, min. 21 tahun / sudah menikah</li>
@@ -1052,18 +582,18 @@ input[type=range] { accent-color: var(--forest); }
 </section>
 
 <!-- BOOKING -->
-<div class="sec-alt-wrap">
-<div class="sec" id="booking">
-  <div class="sec-eyebrow">Formulir Pemesanan</div>
-  <div class="sec-title">Booking Unit Sekarang</div>
-  <div class="sec-desc">Isi formulir di bawah. Tim kami akan menghubungi Anda dalam 1×24 jam.</div>
-  <div class="booking-card">
+<section id="booking" style="background:#f8f6f0;max-width:100%;padding:4rem 0">
+<div style="max-width:1100px;margin:0 auto;padding:0 2rem">
+  <div class="section-label">Formulir Pemesanan</div>
+  <div class="section-title">Booking Unit Sekarang</div>
+  <div class="section-desc">Isi formulir di bawah. Tim kami akan menghubungi Anda dalam 1×24 jam.</div>
+  <div class="booking-wrap">
     <div id="bookingForm">
       <div class="form-grid">
-        <div class="fg"><label>Nama Lengkap *</label><input type="text" id="fNama" placeholder="Sesuai KTP"></div>
-        <div class="fg"><label>No. HP / WhatsApp *</label><input type="tel" id="fHP" placeholder="08xxxxxxxxxx"></div>
-        <div class="fg"><label>Email</label><input type="email" id="fEmail" placeholder="contoh@email.com"></div>
-        <div class="fg"><label>Pekerjaan</label>
+        <div class="form-group"><label>Nama Lengkap *</label><input type="text" id="fNama" placeholder="Sesuai KTP"></div>
+        <div class="form-group"><label>No. HP / WhatsApp *</label><input type="tel" id="fHP" placeholder="08xxxxxxxxxx"></div>
+        <div class="form-group"><label>Email</label><input type="email" id="fEmail" placeholder="contoh@email.com"></div>
+        <div class="form-group"><label>Pekerjaan</label>
           <select id="fPekerjaan">
             <option value="">-- Pilih --</option>
             <option>PNS/ASN</option><option>TNI/Polri</option>
@@ -1071,7 +601,7 @@ input[type=range] { accent-color: var(--forest); }
             <option>Petani/Nelayan</option><option>Lainnya</option>
           </select>
         </div>
-        <div class="fg"><label>Tipe Unit yang Diminati *</label>
+        <div class="form-group"><label>Tipe Unit yang Diminati *</label>
           <select id="fUnit">
             <option value="">-- Pilih Tipe --</option>
             <option>Tipe 36 Minimalis (Subsidi - Rp 182 Jt)</option>
@@ -1084,30 +614,32 @@ input[type=range] { accent-color: var(--forest); }
             <option>Belum yakin, minta konsultasi</option>
           </select>
         </div>
-        <div class="fg"><label>Penghasilan Bulanan</label>
+        <div class="form-group"><label>Penghasilan Bulanan</label>
           <select id="fGaji">
             <option value="">-- Pilih Range --</option>
             <option>Di bawah Rp 3 juta</option><option>Rp 3 – 5 juta</option>
             <option>Rp 5 – 8 juta</option><option>Rp 8 – 10 juta</option>
           </select>
         </div>
-        <div class="fg full"><label>Pertanyaan / Catatan</label>
+        <div class="form-group full"><label>Pertanyaan / Catatan</label>
           <textarea id="fCatatan" placeholder="Tuliskan pertanyaan atau kebutuhan khusus Anda..."></textarea>
         </div>
       </div>
-      <p style="font-size:12px;color:var(--text-xs);margin-bottom:1rem">* Wajib diisi. Data Anda aman dan hanya digunakan untuk keperluan konfirmasi.</p>
-      <div class="err-banner" id="formError"></div>
-      <button class="btn-book-submit" id="btnSubmit" onclick="submitBooking()">📋 Kirim Permintaan Booking</button>
+      <p style="font-size:12px;color:var(--text-muted);margin-bottom:1rem">* Wajib diisi. Data Anda aman dan hanya digunakan untuk keperluan konfirmasi.</p>
+      <div class="error-banner" id="formError"></div>
+      <button class="form-submit" id="btnSubmit" onclick="submitBooking()">📋 Kirim Permintaan Booking</button>
     </div>
-    <div class="book-success" id="bookingSuccess">
+    <div class="booking-success" id="bookingSuccess">
       <div class="success-icon">✅</div>
       <div class="success-title">Booking Berhasil Dikirim!</div>
-      <p style="color:var(--text-s);font-size:14px;margin-bottom:1.5rem">Terima kasih, <strong id="successNama"></strong>! Tim kami akan menghubungi <strong id="successHP"></strong> dalam 1×24 jam.</p>
-      <div class="success-note">Atau hubungi langsung via WhatsApp di nomor yang tertera di bawah halaman.</div>
+      <p style="color:var(--text-muted);font-size:14px;margin-bottom:1.5rem">Terima kasih, <strong id="successNama"></strong>! Tim kami akan menghubungi <strong id="successHP"></strong> dalam 1×24 jam.</p>
+      <div style="background:var(--teal-50);border-radius:10px;padding:1rem;font-size:13px;color:var(--teal-800)">
+        Atau hubungi langsung via WhatsApp di nomor yang tertera di bawah halaman.
+      </div>
     </div>
   </div>
 </div>
-</div>
+</section>
 
 <!-- AI CHAT -->
 <section id="faq">
@@ -1157,15 +689,12 @@ input[type=range] { accent-color: var(--forest); }
 <footer>
   <div class="footer-inner">
     <div>
-      <div class="footer-brand">
-        <div class="footer-logo">GM</div>
-        <div class="footer-brand-name">Garuda Maharam Residence</div>
-      </div>
+      <h4>🏠 Garuda Maharam Residence</h4>
       <p>Perumahan subsidi berkualitas oleh PT Rusdi Rahmi Property. Hunian layak dan terjangkau untuk masyarakat Kabupaten Balangan, Kalimantan Selatan.</p>
       <p style="margin-top:1rem" id="footerAlamat">📍 Jl. Lingkar Timur RT 9, Paringin, Kab. Balangan 71662</p>
     </div>
     <div>
-      <h4>Navigasi</h4>
+      <h4>Tautan Cepat</h4>
       <a onclick="goTo('unit')">Tipe Unit</a>
       <a onclick="goTo('kpr')">Simulasi KPR</a>
       <a onclick="goTo('siteplan')">Siteplan</a>
@@ -1175,36 +704,28 @@ input[type=range] { accent-color: var(--forest); }
     </div>
     <div>
       <h4>Hubungi Kami</h4>
-      <a id="footerWA" href="https://wa.me/6281258001180" target="_blank">📱 +62 812-5800-1180 (WA)</a>
+      <a id="footerWA" href="https://wa.me/6281258001180" target="_blank">📱 +62 812-5800-1180 (WhatsApp)</a>
       <a id="footerEmail" href="mailto:garuda_maharam@gmail.com">📧 garuda_maharam@gmail.com</a>
       <a>🕐 Senin–Sabtu, 08.00–17.00 WITA</a>
-      <div style="margin-top:1.25rem">
+      <div style="margin-top:1rem">
         <h4>Terdaftar di</h4>
         <p>✅ SIKUMBANG (BP Tapera)</p>
         <p>✅ Bank BTN – Penyalur FLPP</p>
       </div>
     </div>
   </div>
-  <div class="footer-divider">
-    <div class="footer-copy">© 2026 PT Rusdi Rahmi Property · Garuda Maharam Residence</div>
-    <div class="footer-badges">
-      <span class="fbadge">FLPP 2026</span>
-      <span class="fbadge">SHM</span>
-      <span class="fbadge">IMB/PBG</span>
-      <span class="fbadge">SIKUMBANG</span>
-    </div>
-  </div>
+  <div class="footer-copy">© 2026 PT Rusdi Rahmi Property · Garuda Maharam Residence · Harga dan stok dapat berubah tanpa pemberitahuan sebelumnya.</div>
 </footer>
 
-<!-- MODAL -->
+<!-- MODAL UNIT -->
 <div class="modal-bg" id="modalBg" onclick="closeModalOutside(event)">
-  <div class="modal-box"><button class="modal-close" onclick="closeModal()">✕</button><div id="modalBody"></div></div>
+  <div class="modal"><button class="modal-close" onclick="closeModal()">✕</button><div id="modalBody"></div></div>
 </div>
 
-<!-- WA FLOAT -->
+<!-- WA FLOAT ICON -->
 <div class="wa-float">
-  <div class="wa-tip">💬 Tanya via WhatsApp</div>
-  <a class="wa-btn" id="waFloat" href="https://wa.me/6281258001180?text=Halo%2C%20saya%20ingin%20informasi%20Garuda%20Maharam%20Residence" target="_blank">
+  <div class="wa-tooltip">💬 Tanya via WhatsApp</div>
+  <a class="wa-btn" id="waFloat" href="https://wa.me/6281258001180?text=Halo%2C%20saya%20ingin%20informasi%20Garuda%20Maharam%20Residence" target="_blank" title="Chat WhatsApp">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </svg>
