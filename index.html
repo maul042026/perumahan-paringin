@@ -475,16 +475,6 @@ footer a:hover{color:white}
       <div class="siteplan-stat"><div class="snum" id="spLT">100</div><div class="slbl">Luas Tanah (m²)</div></div>
       <div class="siteplan-stat"><div class="snum">2</div><div class="slbl">Kamar Tidur</div></div>
     </div>
-    <div class="upload-guide">
-      <h4>📌 Cara Tambah Gambar Siteplan</h4>
-      <ol>
-        <li>Upload gambar siteplan ke <strong>Google Drive</strong></li>
-        <li>Klik kanan → <strong>Bagikan</strong> → ubah ke <strong>"Siapa saja yang memiliki link"</strong></li>
-        <li>Salin link — ambil ID-nya saja (antara <code>/d/</code> dan <code>/view</code>)</li>
-        <li>Di Google Sheets tab <strong>Settings</strong>, tambah baris: <code>siteplan_id</code> | <em>ID file Anda</em></li>
-        <li>Refresh website → gambar langsung muncul!</li>
-      </ol>
-    </div>
   </div>
 </div>
 </section>
@@ -503,17 +493,6 @@ footer a:hover{color:white}
     <button class="galeri-tab" onclick="filterGaleri('lokasi',this)">Lokasi</button>
   </div>
   <div class="galeri-grid" id="galeriGrid"></div>
-  <div class="upload-guide" style="margin-top:1.5rem">
-    <h4>📌 Cara Tambah Foto ke Galeri</h4>
-    <ol>
-      <li>Upload foto ke <strong>Google Drive</strong> → Bagikan → <strong>"Siapa saja yang memiliki link"</strong></li>
-      <li>Ambil <strong>ID file</strong> dari link (antara <code>/d/</code> dan <code>/view</code>)</li>
-      <li>Di Google Sheets, tambah tab baru bernama <strong>Galeri</strong></li>
-      <li>Buat kolom: <code>judul</code> | <code>kategori</code> | <code>drive_id</code> | <code>tanggal</code></li>
-      <li>Isi satu baris per foto. Kolom <code>kategori</code>: <code>pondasi</code>, <code>struktur</code>, <code>finishing</code>, atau <code>lokasi</code></li>
-      <li>Refresh website — foto langsung tampil di galeri!</li>
-    </ol>
-  </div>
 </section>
 
 <!-- LIGHTBOX -->
