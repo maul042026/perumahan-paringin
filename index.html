@@ -3,418 +3,488 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Perumahan Subsidi Garuda Maharam Residence – PT Rusdi Rahmi Property</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<title>Garuda Maharam Residence – PT Rusdi Rahmi Property</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --teal-50:#E1F5EE;--teal-100:#9FE1CB;--teal-400:#1D9E75;--teal-600:#0F6E56;--teal-800:#085041;
-  --green-50:#EAF3DE;--green-600:#3B6D11;--green-800:#27500A;
-  --amber-50:#FAEEDA;--amber-100:#FAC775;--amber-400:#EF9F27;--amber-600:#854F0B;
-  --gray-50:#F1EFE8;--gray-100:#D3D1C7;--gray-400:#888780;--gray-600:#5F5E5A;
-  --coral-50:#FAECE7;--coral-400:#D85A30;--coral-600:#993C1D;
-  --blue-50:#E6F1FB;--blue-600:#185FA5;
-  --text:#1a1a1a;--text-muted:#5F5E5A;--border:rgba(0,0,0,0.10);
-  --radius:12px;--radius-lg:18px;
+  --teal:     #0B8C68;
+  --teal-d:   #065E46;
+  --teal-l:   #D0F0E5;
+  --teal-ll:  #F0FAF6;
+  --gold:     #C9963A;
+  --gold-l:   #FDF4E3;
+  --blue:     #1862B5;
+  --blue-l:   #E8F1FD;
+  --coral:    #D04F2E;
+  --gray-900: #141210;
+  --gray-700: #3A3834;
+  --gray-500: #706E69;
+  --gray-300: #C4C2BB;
+  --gray-100: #F5F4F0;
+  --white:    #FFFFFF;
+  --border:   rgba(0,0,0,0.09);
+  --r:        10px;
+  --r-lg:     18px;
+  --r-xl:     26px;
+  --shadow:   0 2px 20px rgba(0,0,0,0.07);
+  --shadow-lg:0 8px 40px rgba(0,0,0,0.12);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8f6f0;color:var(--text);line-height:1.6}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#FAFAF8;color:var(--gray-900);line-height:1.6;overflow-x:hidden}
 
-/* ===== LOADING SCREEN ===== */
-#loadingScreen{position:fixed;inset:0;background:var(--teal-800);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999;transition:opacity 0.5s}
-#loadingScreen.hidden{opacity:0;pointer-events:none}
-.loading-logo{font-size:3rem;margin-bottom:1rem}
-.loading-title{font-family:'Playfair Display',serif;color:white;font-size:1.5rem;margin-bottom:0.5rem}
-.loading-sub{color:rgba(255,255,255,0.7);font-size:14px;margin-bottom:2rem}
-.loading-bar{width:200px;height:4px;background:rgba(255,255,255,0.2);border-radius:100px;overflow:hidden}
-.loading-fill{height:100%;background:#9FE1CB;border-radius:100px;width:0%;transition:width 0.3s}
+/* ─── LOADING ─── */
+#ls{position:fixed;inset:0;background:var(--gray-900);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .6s ease}
+#ls.out{opacity:0;pointer-events:none}
+.ls-logo{width:64px;height:64px;background:var(--teal);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;animation:pulse-icon 2s infinite}
+@keyframes pulse-icon{0%,100%{box-shadow:0 0 0 0 rgba(11,140,104,.5)}70%{box-shadow:0 0 0 16px rgba(11,140,104,0)}}
+.ls-logo svg{width:34px;height:34px;fill:white}
+.ls-name{font-family:'Nunito',sans-serif;color:white;font-size:1.3rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.3rem}
+.ls-sub{color:rgba(255,255,255,.4);font-size:13px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:2.5rem}
+.ls-bar{width:160px;height:3px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden}
+.ls-fill{height:100%;background:var(--teal);border-radius:10px;width:0%;transition:width .4s ease}
 
-/* ===== NAV ===== */
-nav{background:white;border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100}
-.nav-brand{display:flex;align-items:center;gap:10px}
-.nav-logo{width:36px;height:36px;background:var(--teal-600);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px}
-.nav-name{font-weight:700;font-size:15px;line-height:1.2}
-.nav-sub{font-size:11px;color:var(--text-muted)}
-.nav-links{display:flex;gap:1.25rem;align-items:center}
-.nav-links a{font-size:13px;color:var(--text-muted);text-decoration:none;font-weight:500;cursor:pointer}
-.nav-links a:hover{color:var(--teal-600)}
-.btn-primary{background:var(--teal-600);color:white;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
-.btn-primary:hover{background:var(--teal-800)}
-.btn-outline{background:white;color:var(--teal-600);border:1.5px solid var(--teal-400);border-radius:8px;padding:9px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
-.btn-outline:hover{background:var(--teal-50)}
+/* ─── NAV ─── */
+nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:68px;display:flex;align-items:center;padding:0 2.5rem;gap:2rem}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+.nav-icon{width:40px;height:40px;background:var(--gray-900);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.nav-icon svg{width:22px;height:22px;fill:white}
+.nav-text .n1{font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--gray-900);letter-spacing:-.02em;line-height:1.2}
+.nav-text .n2{font-size:11px;color:var(--gray-500);letter-spacing:.03em}
+.nav-links{display:flex;align-items:center;gap:.25rem;margin-left:auto}
+.nav-links a{font-size:13px;font-weight:500;color:var(--gray-500);padding:6px 14px;border-radius:8px;cursor:pointer;text-decoration:none;transition:all .15s;white-space:nowrap}
+.nav-links a:hover{color:var(--gray-900);background:var(--gray-100)}
+.nav-cta{background:var(--gray-900);color:var(--white)!important;border-radius:9px!important;padding:9px 20px!important;font-weight:600!important;transition:background .15s!important}
+.nav-cta:hover{background:var(--teal)!important;color:white!important}
 
-/* ===== HERO ===== */
-.hero{background:linear-gradient(135deg,var(--teal-800) 0%,var(--teal-600) 60%,#1D9E75 100%);color:white;padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-40%;right:-10%;width:500px;height:500px;border-radius:50%;background:rgba(255,255,255,0.04)}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:600;margin-bottom:1.5rem}
-.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#9FE1CB;display:inline-block;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;line-height:1.15;margin-bottom:1rem}
-.hero h1 span{color:#9FE1CB}
-.hero p{font-size:1.05rem;opacity:.88;max-width:560px;margin:0 auto 2.5rem}
-.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.hero-cta .btn-white{background:white;color:var(--teal-800);border:none;border-radius:8px;padding:12px 24px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
-.hero-cta .btn-ghost{background:transparent;color:white;border:1.5px solid rgba(255,255,255,0.5);border-radius:8px;padding:12px 24px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit}
-.hero-stats{display:flex;justify-content:center;gap:2.5rem;margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,0.2);flex-wrap:wrap}
-.hero-stat .num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700}
-.hero-stat .lbl{font-size:12px;opacity:.75;margin-top:2px}
+/* ─── HERO ─── */
+.hero{min-height:92vh;background:var(--gray-900);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 5rem;position:relative;overflow:hidden}
+.hero-noise{position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:200px}
+.hero-glow{position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(ellipse,rgba(11,140,104,.35) 0%,transparent 65%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:-100px;right:-100px;width:500px;height:400px;background:radial-gradient(ellipse,rgba(201,150,58,.2) 0%,transparent 65%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:7px 18px;font-size:12px;font-weight:500;color:rgba(255,255,255,.7);letter-spacing:.04em;text-transform:uppercase;margin-bottom:2rem;position:relative}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:#4EE3AB;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1{font-family:'Nunito',sans-serif;font-size:clamp(2.8rem,7vw,5.5rem);font-weight:800;color:white;line-height:1.0;letter-spacing:-.02em;margin-bottom:1.5rem;position:relative}
+.hero h1 em{font-style:normal;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.35)}
+.hero h1 .accent{color:#4EE3AB}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,.55);max-width:480px;line-height:1.75;margin:0 auto 2.5rem;font-weight:300}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative}
+.btn-hero-main{background:var(--teal);color:white;border:none;border-radius:12px;padding:14px 28px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;letter-spacing:-.01em}
+.btn-hero-main:hover{background:#0AA07A;transform:translateY(-1px)}
+.btn-hero-ghost{background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px 28px;font-size:15px;font-weight:500;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s}
+.btn-hero-ghost:hover{background:rgba(255,255,255,.14);color:white}
+.hero-stats-row{display:flex;justify-content:center;gap:0;margin-top:5rem;border-top:1px solid rgba(255,255,255,.08);padding-top:3rem;flex-wrap:wrap;position:relative}
+.hstat{padding:0 3rem;border-right:1px solid rgba(255,255,255,.08);text-align:center}
+.hstat:last-child{border-right:none}
+.hstat-num{font-family:'Nunito',sans-serif;font-size:2.2rem;font-weight:800;color:white;letter-spacing:-.02em;line-height:1}
+.hstat-num span{color:#4EE3AB}
+.hstat-lbl{font-size:12px;color:rgba(255,255,255,.4);margin-top:.4rem;letter-spacing:.04em;text-transform:uppercase}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.3);font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.3),transparent);animation:scrollDown 1.8s infinite}
+@keyframes scrollDown{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
-/* ===== SECTION ===== */
-section{padding:4rem 2rem;max-width:1100px;margin:0 auto}
-.section-label{font-size:12px;font-weight:700;color:var(--teal-600);letter-spacing:1px;text-transform:uppercase;margin-bottom:.5rem}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;margin-bottom:.75rem}
-.section-desc{color:var(--text-muted);font-size:1rem;max-width:560px}
+/* ─── SECTION BASE ─── */
+.section{padding:5rem 2rem;max-width:1120px;margin:0 auto}
+.s-label{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem}
+.s-title{font-family:'Nunito',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:.75rem}
+.s-desc{color:var(--gray-500);font-size:1rem;max-width:520px;line-height:1.75;font-weight:300}
+.s-head{margin-bottom:3rem}
 
-/* ===== LIVE BADGE ===== */
-.live-badge{display:inline-flex;align-items:center;gap:6px;background:var(--teal-50);border:1px solid var(--teal-100);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--teal-600);margin-bottom:1.5rem}
-.live-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal-400);display:inline-block;animation:pulse 2s infinite}
+/* ─── LIVE INDICATOR ─── */
+.live-chip{display:inline-flex;align-items:center;gap:7px;background:var(--teal-ll);border:1px solid var(--teal-l);border-radius:100px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--teal-d);margin-bottom:1.25rem}
+.live-chip::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);animation:blink 2s infinite}
+.err-box{background:#FEF0EE;border:1px solid #F8C5BB;border-radius:var(--r);padding:1rem 1.25rem;color:#7A2A18;font-size:13px;display:none;margin-bottom:1rem}
 
-/* ===== UNIT CARDS ===== */
-.units-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:2rem}
-.unit-card{background:white;border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:transform .2s,box-shadow .2s}
-.unit-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.09)}
-.unit-card.featured{border-color:var(--teal-400)}
-.unit-img{height:170px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative}
-.unit-badge{position:absolute;top:12px;left:12px;color:white;font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px}
-.unit-badge.tersedia{background:var(--teal-600)}
-.unit-badge.populer{background:var(--green-800)}
-.unit-badge.habis{background:var(--gray-600)}
-.unit-body{padding:1.25rem}
-.unit-name{font-size:17px;font-weight:700;margin-bottom:.25rem}
-.unit-price{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--teal-600);margin-bottom:1rem}
-.unit-price span{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:500;color:var(--text-muted)}
-.unit-specs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:1.25rem}
-.spec{background:var(--gray-50);border-radius:8px;padding:8px;text-align:center}
-.spec .val{font-size:15px;font-weight:700}
-.spec .key{font-size:10px;color:var(--text-muted);margin-top:1px}
-.unit-avail{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;margin-bottom:1rem}
-.unit-avail.ada{color:var(--teal-600)}
-.unit-avail.ada::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--teal-400);display:inline-block}
-.unit-avail.habis{color:var(--gray-600)}
-.unit-footer{display:flex;gap:8px}
-.unit-footer button{flex:1;padding:10px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+/* ─── UNIT FILTERS ─── */
+.filter-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.fbtn{background:white;border:1.5px solid var(--border);border-radius:100px;padding:8px 22px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;color:var(--gray-500);transition:all .15s}
+.fbtn:hover{border-color:var(--gray-300)}
+.fbtn.act-all{background:var(--gray-900);color:white;border-color:var(--gray-900)}
+.fbtn.act-subsidi{background:var(--teal);color:white;border-color:var(--teal)}
+.fbtn.act-komersil{background:var(--blue);color:white;border-color:var(--blue)}
 
-/* ===== UNIT FILTER TABS ===== */
-.unit-filter-wrap{margin-top:1.5rem;margin-bottom:.5rem}
-.unit-filter{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
-.unit-filter-btn{background:white;border:1.5px solid var(--border);border-radius:100px;padding:8px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--text-muted);transition:all .15s;display:flex;align-items:center;gap:6px}
-.unit-filter-btn.active{color:white;border-color:transparent}
-.unit-filter-btn.all.active{background:var(--teal-600)}
-.unit-filter-btn.subsidi.active{background:#0F6E56}
-.unit-filter-btn.komersil.active{background:#185FA5}
-.unit-section-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:100px;display:inline-flex;align-items:center;gap:6px;margin-bottom:1rem}
-.unit-section-label.subsidi{background:var(--teal-50);color:var(--teal-800)}
-.unit-section-label.komersil{background:var(--blue-50);color:var(--blue-600)}
-.unit-group{margin-bottom:2.5rem}
-.unit-badge.subsidi-badge{background:var(--teal-600)}
-.unit-badge.komersil-badge{background:var(--blue-600)}
-.unit-price.komersil-price{color:var(--blue-600)}
-.unit-card.komersil-card{border-color:rgba(24,95,165,.2)}
-.unit-card.komersil-card:hover{box-shadow:0 12px 32px rgba(24,95,165,.1)}
-.unit-tag{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;margin-bottom:.5rem}
-.unit-tag.cash{background:#E6F1FB;color:#185FA5}
-.unit-tag.kpr{background:var(--teal-50);color:var(--teal-800)}
-.progress-stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2rem}
-.p-card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem}
-.p-card .big{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700}
-.p-card .label{font-size:12px;color:var(--text-muted);margin-top:2px}
-.pb-wrap{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem}
-.pb-row{margin-bottom:1.25rem}
-.pb-label{display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:8px}
-.pb-track{background:var(--gray-50);border-radius:100px;height:12px;overflow:hidden}
-.pb-fill{height:100%;border-radius:100px;transition:width 1.2s ease}
+/* ─── UNIT CARDS ─── */
+.units-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.ucard{background:white;border-radius:var(--r-xl);border:1px solid var(--border);overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:default}
+.ucard:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.ucard-hero{height:180px;position:relative;display:flex;align-items:flex-end;padding:1rem}
+.ucard-hero-bg{position:absolute;inset:0}
+.ubadge{position:relative;z-index:1;display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:5px 12px;border-radius:100px;letter-spacing:.04em;text-transform:uppercase}
+.ubadge.sub{background:var(--teal);color:white}
+.ubadge.kom{background:var(--blue);color:white}
+.ubadge.pop{background:var(--gold);color:white}
+.ubadge.hbs{background:var(--gray-500);color:white}
+.ucard-body{padding:1.25rem 1.5rem 1.5rem}
+.ucard-tags{display:flex;gap:.4rem;margin-bottom:.75rem;flex-wrap:wrap}
+.utag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px}
+.utag.kpr{background:var(--teal-ll);color:var(--teal-d)}
+.utag.cash{background:var(--blue-l);color:var(--blue)}
+.ucard-name{font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.3rem}
+.ucard-price{font-family:'Nunito',sans-serif;font-size:1.65rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.15rem}
+.ucard-price.sub{color:var(--teal-d)}
+.ucard-price.kom{color:var(--blue)}
+.ucard-price small{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:400;color:var(--gray-500)}
+.ucard-avail{font-size:12px;font-weight:500;margin-bottom:1.25rem}
+.ucard-avail.ada{color:var(--teal)}
+.ucard-avail.hbs{color:var(--gray-500)}
+.ucard-specs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:1.25rem}
+.uspec{background:var(--gray-100);border-radius:8px;padding:10px 8px;text-align:center}
+.uspec .sv{font-size:15px;font-weight:600;letter-spacing:-.02em}
+.uspec .sk{font-size:10px;color:var(--gray-500);margin-top:1px;letter-spacing:.02em}
+.ucard-foot{display:flex;gap:8px}
+.btn-detail{flex:1;background:var(--gray-100);color:var(--gray-700);border:none;border-radius:10px;padding:11px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:background .15s}
+.btn-detail:hover{background:var(--gray-300)}
+.btn-book{flex:2;background:var(--gray-900);color:white;border:none;border-radius:10px;padding:11px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:background .15s}
+.btn-book:hover{background:var(--teal)}
+.btn-book:disabled{background:var(--gray-300);cursor:not-allowed}
 
-/* ===== KPR ===== */
-.kpr-wrap{background:white;border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;margin-top:2rem}
-.kpr-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
-@media(max-width:640px){.kpr-grid{grid-template-columns:1fr}}
-.kpr-inputs label{display:block;font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px;margin-top:1.25rem}
-.kpr-inputs label:first-child{margin-top:0}
-.kpr-inputs select,.kpr-inputs input[type=range]{width:100%}
-.kpr-inputs select{background:var(--gray-50);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:14px;font-family:inherit;color:var(--text)}
-.range-row{display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-top:4px}
-.kpr-result{background:var(--teal-50);border-radius:var(--radius);padding:1.5rem}
-.kpr-result h3{font-size:14px;font-weight:600;color:var(--teal-800);margin-bottom:.75rem}
-.kpr-highlight{background:var(--teal-600);color:white;border-radius:10px;padding:1rem;text-align:center;margin-bottom:1rem}
-.kpr-highlight .cicilan-lbl{font-size:12px;opacity:.8;margin-bottom:4px}
-.kpr-highlight .cicilan-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700}
-.kpr-row{display:flex;justify-content:space-between;font-size:14px;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.06)}
-.kpr-row:last-child{border-bottom:none}
-.kpr-row .lbl{color:var(--text-muted)}
-.kpr-row .val{font-weight:700}
+/* ─── PROGRESS SECTION ─── */
+.prog-section{background:var(--gray-900);padding:5rem 2rem}
+.prog-inner{max-width:1120px;margin:0 auto}
+.prog-section .s-label{color:#4EE3AB}
+.prog-section .s-title{color:white}
+.prog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2.5rem}
+.pcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--r-lg);padding:1.25rem}
+.pcard .pb{font-family:'Nunito',sans-serif;font-size:2rem;font-weight:800;color:white;letter-spacing:-.02em}
+.pcard .pl{font-size:11px;color:rgba(255,255,255,.4);margin-top:.25rem;letter-spacing:.06em;text-transform:uppercase}
+.pbars{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--r-lg);padding:1.75rem}
+.prow{margin-bottom:1.5rem}
+.prow:last-child{margin-bottom:0}
+.prow-head{display:flex;justify-content:space-between;font-size:13px;font-weight:500;margin-bottom:.75rem;color:rgba(255,255,255,.7)}
+.prow-pct{font-weight:700;color:white}
+.ptrack{background:rgba(255,255,255,.08);border-radius:100px;height:8px;overflow:hidden}
+.pfill{height:100%;border-radius:100px;transition:width 1.4s cubic-bezier(.16,1,.3,1)}
 
-/* ===== LOKASI ===== */
-.lokasi-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
-@media(max-width:640px){.lokasi-grid{grid-template-columns:1fr}}
-.lokasi-map{background:var(--teal-50);border:1px solid var(--teal-100);border-radius:var(--radius-lg);height:280px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;color:var(--teal-800);font-weight:600}
-.lokasi-list{display:flex;flex-direction:column;gap:.75rem}
-.lokasi-item{display:flex;align-items:flex-start;gap:12px;background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1rem}
-.lokasi-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.lokasi-item h4{font-size:14px;font-weight:700}
-.lokasi-item p{font-size:12px;color:var(--text-muted)}
+/* ─── KPR ─── */
+.kpr-wrap{background:white;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;margin-top:2rem}
+.kpr-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media(max-width:680px){.kpr-grid{grid-template-columns:1fr}}
+.kpr-left{padding:2rem;border-right:1px solid var(--border)}
+.kpr-lbl{font-size:12px;font-weight:600;color:var(--gray-500);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.5rem;margin-top:1.25rem;display:block}
+.kpr-lbl:first-child{margin-top:0}
+.kpr-sel{width:100%;background:var(--gray-100);border:1px solid transparent;border-radius:10px;padding:11px 14px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--gray-900);outline:none;transition:border-color .15s}
+.kpr-sel:focus{border-color:var(--teal)}
+.kpr-range{width:100%;accent-color:var(--teal);height:4px;cursor:pointer}
+.kpr-range-vals{display:flex;justify-content:space-between;font-size:12px;color:var(--gray-500);margin-top:.35rem}
+.kpr-right{padding:2rem;background:var(--gray-100)}
+.kpr-highlight{background:var(--gray-900);border-radius:var(--r-lg);padding:1.5rem;text-align:center;margin-bottom:1.25rem}
+.kpr-hl-lbl{font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem}
+.kpr-hl-val{font-family:'Nunito',sans-serif;font-size:2.2rem;font-weight:800;color:white;letter-spacing:-.02em}
+.kpr-hl-val.kom{color:#79BFFF}
+.kpr-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px}
+.kpr-row:last-of-type{border-bottom:none}
+.kpr-row .k{color:var(--gray-500);font-weight:300}
+.kpr-row .v{font-weight:600}
+.kpr-kom-note{background:var(--blue-l);border-radius:10px;padding:1rem;font-size:12px;color:var(--blue);font-weight:500;margin-top:.75rem;display:none}
 
-/* ===== SYARAT ===== */
-.syarat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;margin-top:2rem}
-.syarat-card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem}
-.syarat-card h3{font-size:15px;font-weight:700;margin-bottom:.75rem}
-.syarat-card li{font-size:13px;color:var(--text-muted);padding:4px 0 4px 1.5rem;position:relative;list-style:none;border-bottom:1px solid var(--gray-50)}
-.syarat-card li:last-child{border-bottom:none}
-.syarat-card li::before{content:'→';position:absolute;left:0;color:var(--teal-600)}
+/* ─── SITEPLAN ─── */
+.sp-section{background:var(--gray-100);padding:5rem 2rem}
+.sp-inner{max-width:1120px;margin:0 auto}
+.sp-box{background:white;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;position:relative}
+.sp-placeholder{height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;color:var(--gray-500)}
+.sp-ph-icon{width:64px;height:64px;background:var(--gray-100);border-radius:16px;display:flex;align-items:center;justify-content:center}
+.sp-ph-icon svg{width:32px;height:32px;stroke:var(--gray-300);fill:none}
+.sp-zoom{position:absolute;bottom:1rem;right:1rem;background:rgba(0,0,0,.6);color:white;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;backdrop-filter:blur(8px)}
+.sp-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-top:1.25rem}
+.sp-stat{background:white;border:1px solid var(--border);border-radius:var(--r);padding:1rem;text-align:center}
+.sp-stat .sn{font-family:'Nunito',sans-serif;font-size:1.6rem;font-weight:800;color:var(--teal);letter-spacing:-.02em}
+.sp-stat .sl{font-size:11px;color:var(--gray-500);margin-top:.2rem;letter-spacing:.04em}
 
-/* ===== SITEPLAN ===== */
-.siteplan-wrap{margin-top:2rem}
-.siteplan-img-box{position:relative;background:white;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;cursor:zoom-in}
-.siteplan-img-box img{width:100%;display:block;transition:transform .3s}
-.siteplan-img-box:hover img{transform:scale(1.02)}
-.siteplan-zoom-btn{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.55);color:white;border:none;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;backdrop-filter:blur(4px)}
-.siteplan-placeholder{height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;color:var(--text-muted);background:var(--gray-50);border-radius:var(--radius-lg)}
-.siteplan-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:1.25rem}
-.siteplan-stat{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center}
-.siteplan-stat .snum{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--teal-600)}
-.siteplan-stat .slbl{font-size:12px;color:var(--text-muted);margin-top:2px}
-.upload-guide{background:var(--amber-50);border:1px solid var(--amber-100);border-radius:var(--radius);padding:1.25rem;margin-top:1.25rem}
-.upload-guide h4{font-size:13px;font-weight:700;color:var(--amber-600);margin-bottom:.5rem}
-.upload-guide ol{padding-left:1.25rem;color:var(--text-muted);font-size:13px;line-height:2}
-.upload-guide code{background:rgba(0,0,0,.07);border-radius:4px;padding:1px 6px;font-size:12px;font-family:monospace}
+/* ─── GALLERY ─── */
+.gal-tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:2rem}
+.gtab{background:white;border:1.5px solid var(--border);border-radius:100px;padding:7px 18px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;color:var(--gray-500);transition:all .15s}
+.gtab:hover{border-color:var(--gray-300)}
+.gtab.act{background:var(--gray-900);border-color:var(--gray-900);color:white}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.75rem}
+.gal-item{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3;cursor:pointer;background:var(--gray-100)}
+.gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.gal-item:hover img{transform:scale(1.08)}
+.gal-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;transition:background .25s}
+.gal-item:hover .gal-overlay{background:rgba(0,0,0,.35)}
+.gal-overlay svg{opacity:0;transition:opacity .25s;fill:none;stroke:white;stroke-width:2}
+.gal-item:hover .gal-overlay svg{opacity:1}
+.gal-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.7));color:white;font-size:12px;font-weight:500;padding:.75rem .9rem .6rem;transform:translateY(100%);transition:transform .25s}
+.gal-item:hover .gal-cap{transform:translateY(0)}
+.gal-ph{aspect-ratio:4/3;background:var(--gray-100);border-radius:var(--r-lg);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--gray-300);font-size:12px;gap:.4rem;border:1.5px dashed var(--gray-300)}
+.gal-ph svg{width:28px;height:28px;stroke:var(--gray-300);fill:none}
 
-/* ===== GALERI ===== */
-.galeri-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
-.galeri-tab{background:white;border:1.5px solid var(--border);border-radius:100px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--text-muted);transition:all .15s}
-.galeri-tab.active{background:var(--teal-600);border-color:var(--teal-600);color:white}
-.galeri-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
-.galeri-item{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;cursor:pointer;background:var(--gray-50)}
-.galeri-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
-.galeri-item:hover img{transform:scale(1.06)}
-.galeri-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;transition:background .2s}
-.galeri-item:hover .galeri-overlay{background:rgba(0,0,0,.28)}
-.galeri-overlay span{color:white;font-size:1.8rem;opacity:0;transition:opacity .2s}
-.galeri-item:hover .galeri-overlay span{opacity:1}
-.galeri-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.65));color:white;font-size:12px;font-weight:600;padding:.5rem .75rem;transform:translateY(100%);transition:transform .2s}
-.galeri-item:hover .galeri-caption{transform:translateY(0)}
-.galeri-placeholder-card{aspect-ratio:4/3;background:var(--gray-50);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted);font-size:12px;gap:.5rem;border:1.5px dashed var(--gray-100)}
+/* ─── LIGHTBOX ─── */
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:1000;align-items:center;justify-content:center}
+.lb.open{display:flex}
+.lb-close{position:fixed;top:1.5rem;right:1.5rem;background:rgba(255,255,255,.12);border:none;color:white;width:44px;height:44px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;z-index:1001}
+.lb-close:hover{background:rgba(255,255,255,.22)}
+.lb-prev,.lb-next{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:white;width:52px;height:52px;border-radius:50%;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;z-index:1001}
+.lb-prev{left:1.5rem}.lb-next{right:1.5rem}
+.lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.2)}
+.lb-inner{position:relative;display:flex;flex-direction:column;align-items:center;max-width:90vw}
+.lb-inner img{max-width:88vw;max-height:76vh;object-fit:contain;border-radius:12px}
+.lb-cap{color:rgba(255,255,255,.6);font-size:13px;margin-top:.75rem;text-align:center}
+.lb-counter{position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.4);font-size:12px;z-index:1001}
+.lb-thumbs{display:flex;gap:.4rem;margin-top:.75rem;overflow-x:auto;max-width:80vw;padding-bottom:.2rem}
+.lb-thumb{width:52px;height:40px;object-fit:cover;border-radius:6px;cursor:pointer;opacity:.4;transition:opacity .15s;border:2px solid transparent;flex-shrink:0}
+.lb-thumb.act{opacity:1;border-color:white}
 
-/* ===== LIGHTBOX ===== */
-.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:500;align-items:center;justify-content:center}
-.lightbox.open{display:flex}
-.lightbox-inner{position:relative;display:flex;flex-direction:column;align-items:center;max-width:92vw}
-.lightbox-inner img{max-width:90vw;max-height:78vh;object-fit:contain;border-radius:8px}
-.lightbox-caption{color:rgba(255,255,255,.75);font-size:13px;margin-top:.75rem;text-align:center}
-.lb-close{position:fixed;top:1.25rem;right:1.25rem;background:rgba(255,255,255,.15);border:none;color:white;width:42px;height:42px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:501}
-.lb-prev,.lb-next{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.15);border:none;color:white;width:48px;height:48px;border-radius:50%;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;z-index:501}
-.lb-prev{left:1.25rem}
-.lb-next{right:1.25rem}
-.lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.3)}
-.lb-counter{position:fixed;bottom:4.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.55);font-size:13px;z-index:501}
-.lb-thumbs{display:flex;gap:.5rem;margin-top:.75rem;overflow-x:auto;max-width:80vw;padding-bottom:.25rem}
-.lb-thumb{width:56px;height:42px;object-fit:cover;border-radius:5px;cursor:pointer;opacity:.45;transition:opacity .15s;border:2px solid transparent;flex-shrink:0}
-.lb-thumb.active{opacity:1;border-color:white}
+/* ─── LOKASI ─── */
+.loc-section{background:var(--gray-900);padding:5rem 2rem}
+.loc-inner{max-width:1120px;margin:0 auto}
+.loc-section .s-label{color:#4EE3AB}
+.loc-section .s-title{color:white}
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.5rem}
+@media(max-width:680px){.loc-grid{grid-template-columns:1fr}}
+.loc-map-box{background:rgba(11,140,104,.12);border:1px solid rgba(11,140,104,.25);border-radius:var(--r-xl);padding:2.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem;text-align:center;min-height:280px}
+.loc-pin-icon{width:56px;height:56px;background:var(--teal);border-radius:14px;display:flex;align-items:center;justify-content:center}
+.loc-pin-icon svg{width:28px;height:28px;fill:white}
+.loc-addr{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;color:white;line-height:1.4}
+.loc-sub{font-size:13px;color:rgba(255,255,255,.45)}
+.loc-map-btn{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:white;padding:10px 22px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:600;transition:background .15s}
+.loc-map-btn:hover{background:#0AA07A}
+.loc-items{display:flex;flex-direction:column;gap:.75rem}
+.loc-item{display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:var(--r-lg);padding:1.1rem}
+.loc-item-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.loc-item h4{font-size:14px;font-weight:600;color:white;margin-bottom:.2rem}
+.loc-item p{font-size:12px;color:rgba(255,255,255,.45)}
 
-/* ===== BOOKING FORM ===== */
-.booking-wrap{background:white;border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.5rem;margin-top:2rem;max-width:680px;margin-left:auto;margin-right:auto}
+/* ─── SYARAT ─── */
+.req-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem;margin-top:2.5rem}
+.req-card{background:white;border:1px solid var(--border);border-radius:var(--r-xl);padding:1.75rem}
+.req-card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem}
+.req-card h3{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;letter-spacing:-.02em;margin-bottom:1rem}
+.req-list{list-style:none}
+.req-list li{font-size:13px;color:var(--gray-500);padding:5px 0 5px 1.5rem;position:relative;border-bottom:1px solid var(--gray-100);line-height:1.5}
+.req-list li:last-child{border-bottom:none}
+.req-list li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;background:var(--teal)}
+
+/* ─── BOOKING ─── */
+.booking-section{background:var(--gray-100);padding:5rem 2rem}
+.booking-inner{max-width:1120px;margin:0 auto}
+.booking-wrap{background:white;border:1px solid var(--border);border-radius:var(--r-xl);padding:2.5rem;max-width:700px;margin:2rem auto 0}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 @media(max-width:560px){.form-grid{grid-template-columns:1fr}}
-.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:.75rem}
-.form-group.full{grid-column:1/-1}
-.form-group label{font-size:13px;font-weight:600;color:var(--text-muted)}
-.form-group input,.form-group select,.form-group textarea{border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;font-size:14px;font-family:inherit;color:var(--text);background:white;transition:border-color .15s}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--teal-400)}
-.form-group textarea{resize:vertical;min-height:80px}
-.form-submit{width:100%;padding:14px;background:var(--teal-600);color:white;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
-.form-submit:disabled{background:var(--gray-400);cursor:not-allowed}
-.form-submit:hover:not(:disabled){background:var(--teal-800)}
-.booking-success{display:none;text-align:center;padding:2rem}
-.success-icon{font-size:3rem;margin-bottom:1rem}
-.success-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:.5rem}
+.fg{display:flex;flex-direction:column;gap:.45rem;margin-bottom:.5rem}
+.fg.full{grid-column:1/-1}
+.fg label{font-size:12px;font-weight:600;color:var(--gray-500);letter-spacing:.04em;text-transform:uppercase}
+.fg input,.fg select,.fg textarea{border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--gray-900);background:white;transition:border-color .15s;outline:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--teal)}
+.fg textarea{resize:vertical;min-height:80px}
+.btn-submit{width:100%;padding:15px;background:var(--gray-900);color:white;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:background .15s;margin-top:.5rem}
+.btn-submit:hover:not(:disabled){background:var(--teal)}
+.btn-submit:disabled{background:var(--gray-300);cursor:not-allowed}
+.form-err{background:#FEF0EE;border:1px solid #F8C5BB;border-radius:10px;padding:.9rem 1.1rem;color:#7A2A18;font-size:13px;display:none;margin-top:.5rem}
+.book-success{display:none;text-align:center;padding:2.5rem 1rem}
+.suc-ico{width:64px;height:64px;background:var(--teal-ll);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
+.suc-ico svg{width:32px;height:32px;stroke:var(--teal);fill:none}
+.suc-title{font-family:'Nunito',sans-serif;font-size:1.5rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.5rem}
+.suc-note{background:var(--teal-ll);border-radius:12px;padding:1rem;font-size:13px;color:var(--teal-d);margin-top:1.25rem}
 
-/* ===== FAQ ===== */
-.faq-list{margin-top:2rem;display:flex;flex-direction:column;gap:.75rem;max-width:760px}
-.faq-item{background:white;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
-.faq-q{width:100%;text-align:left;background:none;border:none;padding:1rem 1.25rem;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--text)}
-.faq-q .arr{font-size:18px;color:var(--teal-600);transition:transform .2s}
-.faq-q.open .arr{transform:rotate(180deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
-.faq-a.open{max-height:300px}
-.faq-a p{padding:0 1.25rem 1rem;font-size:14px;color:var(--text-muted);line-height:1.7}
-
-/* ===== AI CHAT ===== */
-.ai-chat-wrap{margin-top:2rem;border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;background:white;max-width:780px}
-.ai-suggestions{background:var(--gray-50);padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
-.ai-suggestion-label{font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:.6rem}
-.ai-suggestion-btns{display:flex;flex-wrap:wrap;gap:.5rem}
-.ai-suggestion-btns button{background:white;border:1.5px solid var(--border);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--text);transition:all .15s;white-space:nowrap}
-.ai-suggestion-btns button:hover{border-color:var(--teal-400);color:var(--teal-600);background:var(--teal-50)}
-.ai-messages{height:360px;overflow-y:auto;padding:1.25rem;display:flex;flex-direction:column;gap:1rem;scroll-behavior:smooth}
+/* ─── AI CHAT ─── */
+.ai-wrap{background:white;border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden;max-width:800px;margin-top:2rem}
+.ai-sugg{background:var(--gray-100);padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+.ai-sugg-lbl{font-size:11px;font-weight:600;color:var(--gray-500);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.65rem}
+.ai-sugg-btns{display:flex;flex-wrap:wrap;gap:.4rem}
+.ai-sugg-btns button{background:white;border:1px solid var(--border);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:500;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;color:var(--gray-700);transition:all .15s;white-space:nowrap}
+.ai-sugg-btns button:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-ll)}
+.ai-msgs{height:380px;overflow-y:auto;padding:1.5rem;display:flex;flex-direction:column;gap:1rem;scroll-behavior:smooth}
 .ai-msg{display:flex;gap:.75rem;align-items:flex-start}
 .ai-msg.user{flex-direction:row-reverse}
-.ai-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;background:var(--gray-50);border:1px solid var(--border)}
-.ai-msg.user .ai-avatar{background:var(--teal-600);color:white;font-size:13px;font-weight:700}
-.ai-bubble{background:var(--gray-50);border-radius:0 12px 12px 12px;padding:.75rem 1rem;font-size:14px;line-height:1.65;color:var(--text);max-width:85%}
-.ai-msg.user .ai-bubble{background:var(--teal-600);color:white;border-radius:12px 0 12px 12px}
-.ai-bubble.typing{display:flex;align-items:center;gap:4px;padding:.75rem 1rem}
-.ai-bubble.typing span{width:7px;height:7px;border-radius:50%;background:var(--gray-400);display:inline-block;animation:typingDot 1.2s infinite}
-.ai-bubble.typing span:nth-child(2){animation-delay:.2s}
-.ai-bubble.typing span:nth-child(3){animation-delay:.4s}
-@keyframes typingDot{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-6px);opacity:1}}
-.ai-input-wrap{display:flex;gap:.5rem;padding:.75rem 1rem;border-top:1px solid var(--border);background:white}
-.ai-input{flex:1;border:1.5px solid var(--border);border-radius:100px;padding:10px 18px;font-size:14px;font-family:inherit;outline:none;transition:border-color .15s}
-.ai-input:focus{border-color:var(--teal-400)}
-.ai-send-btn{background:var(--teal-600);color:white;border:none;border-radius:50%;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;flex-shrink:0}
-.ai-send-btn:hover{background:var(--teal-800)}
-.ai-send-btn:disabled{background:var(--gray-400);cursor:not-allowed}
+.ai-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:var(--gray-100);border:1px solid var(--border)}
+.ai-msg.user .ai-av{background:var(--gray-900);color:white;font-size:12px;font-weight:700;font-family:'Nunito',sans-serif}
+.ai-bub{background:var(--gray-100);border-radius:4px 14px 14px 14px;padding:.85rem 1.1rem;font-size:14px;line-height:1.7;color:var(--gray-900);max-width:82%}
+.ai-msg.user .ai-bub{background:var(--gray-900);color:white;border-radius:14px 4px 14px 14px}
+.ai-bub.typing{display:flex;align-items:center;gap:5px;padding:.85rem 1.1rem}
+.ai-bub.typing span{width:7px;height:7px;border-radius:50%;background:var(--gray-300);animation:td 1.2s infinite}
+.ai-bub.typing span:nth-child(2){animation-delay:.2s}
+.ai-bub.typing span:nth-child(3){animation-delay:.4s}
+@keyframes td{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-6px);opacity:1}}
+.ai-input-row{display:flex;gap:.5rem;padding:.9rem 1.1rem;border-top:1px solid var(--border);background:white}
+.ai-inp{flex:1;border:1.5px solid var(--border);border-radius:100px;padding:10px 20px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:border-color .15s}
+.ai-inp:focus{border-color:var(--teal)}
+.ai-send{background:var(--gray-900);color:white;border:none;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;flex-shrink:0}
+.ai-send:hover{background:var(--teal)}
+.ai-send:disabled{background:var(--gray-300);cursor:not-allowed}
+.ai-send svg{width:18px;height:18px;fill:none;stroke:white;stroke-width:2.5}
+.ai-foot{text-align:center;font-size:11px;color:var(--gray-300);padding:.6rem 1rem 1rem}
 
-/* ===== ERROR ===== */
-.error-banner{background:#FCEBEB;border:1px solid #F7C1C1;border-radius:var(--radius);padding:1rem 1.25rem;color:#791F1F;font-size:14px;margin-top:1rem;display:none}
-
-/* ===== MODAL ===== */
-.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center;padding:1rem}
+/* ─── MODAL ─── */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:500;align-items:center;justify-content:center;padding:1rem}
 .modal-bg.open{display:flex}
-.modal{background:white;border-radius:var(--radius-lg);max-width:480px;width:100%;padding:2rem;position:relative;max-height:90vh;overflow-y:auto}
-.modal-close{position:absolute;top:1rem;right:1rem;background:var(--gray-50);border:none;width:32px;height:32px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-muted)}
-.modal h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:.25rem}
-.modal-price{font-size:1.6rem;font-weight:700;color:var(--teal-600);font-family:'Playfair Display',serif;margin-bottom:1.5rem}
+.modal{background:white;border-radius:var(--r-xl);max-width:500px;width:100%;padding:0;position:relative;max-height:90vh;overflow-y:auto}
+.modal-head{padding:1.75rem 1.75rem 1.25rem;border-bottom:1px solid var(--border)}
+.modal-close{position:absolute;top:1.25rem;right:1.25rem;background:var(--gray-100);border:none;width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gray-500);transition:background .15s}
+.modal-close:hover{background:var(--gray-300)}
+.modal-body{padding:1.5rem 1.75rem 1.75rem}
+.modal-price{font-family:'Nunito',sans-serif;font-size:1.8rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.25rem}
 .modal-specs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
-.modal-spec{background:var(--gray-50);border-radius:8px;padding:10px 12px}
-.modal-spec .k{font-size:11px;color:var(--text-muted);margin-bottom:2px}
-.modal-spec .v{font-size:14px;font-weight:700}
-.modal-list{margin-bottom:1.5rem}
-.modal-list li{font-size:13px;color:var(--text-muted);padding:4px 0 4px 1.5rem;position:relative;list-style:none}
-.modal-list li::before{content:'✓';position:absolute;left:0;color:var(--teal-600);font-weight:700}
-.modal-btn{width:100%;padding:13px;background:var(--teal-600);color:white;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
+.mspec{background:var(--gray-100);border-radius:10px;padding:12px 14px}
+.mspec .mk{font-size:11px;color:var(--gray-500);letter-spacing:.04em;margin-bottom:3px}
+.mspec .mv{font-size:14px;font-weight:600}
+.mlist{margin-bottom:1.5rem;list-style:none}
+.mlist li{font-size:13px;color:var(--gray-500);padding:5px 0 5px 1.5rem;position:relative;border-bottom:1px solid var(--gray-100);line-height:1.5}
+.mlist li:last-child{border-bottom:none}
+.mlist li::before{content:'✓';position:absolute;left:0;color:var(--teal);font-weight:700}
+.modal-cta{width:100%;padding:14px;background:var(--gray-900);color:white;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:background .15s}
+.modal-cta:hover{background:var(--teal)}
 
-/* ===== FOOTER ===== */
-footer{background:var(--teal-800);color:rgba(255,255,255,.85);padding:3rem 2rem;margin-top:4rem}
-.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2rem}
-@media(max-width:640px){.footer-inner{grid-template-columns:1fr}}
-footer h4{color:white;font-size:14px;font-weight:700;margin-bottom:1rem}
-footer p,footer a{font-size:13px;line-height:1.8;color:rgba(255,255,255,.7);text-decoration:none;display:block}
-footer a:hover{color:white}
-.footer-copy{max-width:1100px;margin:2rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.15);font-size:12px;color:rgba(255,255,255,.5)}
+/* ─── FOOTER ─── */
+footer{background:var(--gray-900);color:rgba(255,255,255,.6);padding:4rem 2rem 2rem}
+.foot-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem}
+@media(max-width:680px){.foot-inner{grid-template-columns:1fr}}
+footer h4{font-family:'Nunito',sans-serif;color:white;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:1.1rem}
+.foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem}
+.foot-logo{width:40px;height:40px;background:white;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.foot-logo svg{width:22px;height:22px;fill:var(--gray-900)}
+.foot-name{font-family:'Nunito',sans-serif;color:white;font-size:15px;font-weight:700;letter-spacing:-.02em;line-height:1.2}
+.foot-sub{font-size:11px;color:rgba(255,255,255,.35);letter-spacing:.04em}
+footer p{font-size:13px;line-height:1.9;max-width:340px}
+.foot-link{font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;display:block;padding:3px 0;transition:color .15s;cursor:pointer}
+.foot-link:hover{color:white}
+.foot-copy{max-width:1120px;margin:3rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08);font-size:12px;color:rgba(255,255,255,.3);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.foot-badge{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+.fbadge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:4px 12px;font-size:11px;color:rgba(255,255,255,.5)}
 
-/* ===== WHATSAPP FLOAT ICON ===== */
-.wa-float{position:fixed;bottom:1.75rem;right:1.75rem;z-index:150;display:flex;flex-direction:column;align-items:flex-end;gap:.5rem}
-.wa-tooltip{background:rgba(0,0,0,.75);color:white;font-size:12px;font-weight:600;padding:6px 12px;border-radius:100px;white-space:nowrap;opacity:0;transform:translateX(8px);transition:opacity .2s,transform .2s;pointer-events:none}
-.wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0)}
-.wa-btn{background:#25D366;color:white;border:none;border-radius:50%;width:58px;height:58px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s,box-shadow .2s;text-decoration:none;cursor:pointer;animation:waPulse 2.5s infinite}
-.wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.6);animation:none}
+/* ─── WA FLOAT ─── */
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:300;display:flex;flex-direction:column;align-items:flex-end;gap:.5rem}
+.wa-tip{background:rgba(0,0,0,.75);backdrop-filter:blur(8px);color:white;font-size:12px;font-weight:500;padding:7px 14px;border-radius:100px;white-space:nowrap;opacity:0;transform:translateX(10px);transition:all .2s;pointer-events:none}
+.wa-float:hover .wa-tip{opacity:1;transform:translateX(0)}
+.wa-btn{background:#25D366;color:white;border:none;border-radius:50%;width:60px;height:60px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(37,211,102,.45);transition:all .2s;text-decoration:none}
+.wa-btn:hover{transform:scale(1.08);box-shadow:0 6px 32px rgba(37,211,102,.6)}
 .wa-btn svg{width:30px;height:30px;fill:white}
-@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}50%{box-shadow:0 4px 28px rgba(37,211,102,.75)}}
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:640px){
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  nav{padding:0 1.25rem;gap:1rem}
   .nav-links{display:none}
-  .hero{padding:3.5rem 1.5rem 3rem}
-  section{padding:3rem 1.25rem}
-  .booking-wrap{padding:1.5rem}
+  .nav-cta{display:block!important}
+  .hero{padding:5rem 1.5rem 4rem}
+  .hstat{padding:0 1.5rem}
+  .section{padding:3.5rem 1.25rem}
+  .prog-section,.sp-section,.loc-section,.booking-section{padding:3.5rem 1.25rem}
+  .kpr-left{border-right:none;border-bottom:1px solid var(--border)}
+  .foot-inner{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
 <!-- LOADING -->
-<div id="loadingScreen">
-  <div class="loading-logo">🏠</div>
-  <div class="loading-title">Garuda Maharam Residence</div>
-  <div class="loading-sub">PT Rusdi Rahmi Property</div>
-  <div class="loading-bar"><div class="loading-fill" id="loadBar"></div></div>
+<div id="ls">
+  <div class="ls-logo">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9" fill="rgba(0,0,0,.25)"/></svg>
+  </div>
+  <div class="ls-name">Garuda Maharam Residence</div>
+  <div class="ls-sub">PT Rusdi Rahmi Property</div>
+  <div class="ls-bar"><div class="ls-fill" id="lsFill"></div></div>
 </div>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-brand">
-    <div class="nav-logo">GM</div>
-    <div>
-      <div class="nav-name" id="navNama">Garuda Maharam Residence</div>
-      <div class="nav-sub">PT Rusdi Rahmi Property · Paringin, Balangan</div>
+  <a class="nav-brand" onclick="goTo('top')">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9" fill="rgba(255,255,255,.3)"/></svg>
     </div>
-  </div>
+    <div class="nav-text">
+      <div class="n1">Garuda Maharam</div>
+      <div class="n2">Paringin, Kab. Balangan</div>
+    </div>
+  </a>
   <div class="nav-links">
-    <a onclick="goTo('unit')">Tipe Unit</a>
+    <a onclick="goTo('unit')">Unit</a>
     <a onclick="goTo('kpr')">Simulasi KPR</a>
     <a onclick="goTo('siteplan')">Siteplan</a>
     <a onclick="goTo('galeri')">Galeri</a>
     <a onclick="goTo('lokasi')">Lokasi</a>
     <a onclick="goTo('syarat')">Syarat</a>
-    <a onclick="goTo('faq')">FAQ</a>
-    <button class="btn-primary" onclick="goTo('booking')">Booking Sekarang</button>
+    <a onclick="goTo('faq')">AI Chat</a>
+    <a class="nav-cta" onclick="goTo('booking')">Booking Unit →</a>
   </div>
 </nav>
 
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">🏠 PROGRAM RUMAH SUBSIDI FLPP 2026</div>
-  <h1>Rumah Impian<br><span>Terjangkau &amp; Berkualitas</span><br>di Paringin</h1>
-  <p id="heroDesc">Hunian subsidi pemerintah dengan cicilan terjangkau. DP ringan, proses mudah, lokasi strategis di jantung Kabupaten Balangan.</p>
-  <div class="hero-cta">
-    <button class="btn-white" onclick="goTo('booking')">📋 Booking Unit</button>
-    <button class="btn-ghost" onclick="goTo('kpr')">🧮 Hitung Cicilan</button>
+<div class="hero" id="top">
+  <div class="hero-noise"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-badge"><span class="hero-dot"></span> Program Rumah Subsidi FLPP 2026</div>
+  <h1>Rumah Impian<br><em>Terjangkau</em><br>di <span class="accent">Paringin</span></h1>
+  <p class="hero-sub" id="heroDesc">Hunian subsidi pemerintah dengan cicilan ringan. DP minimal, proses mudah, lokasi strategis di jantung Kabupaten Balangan.</p>
+  <div class="hero-actions">
+    <button class="btn-hero-main" onclick="goTo('booking')">Booking Unit Sekarang</button>
+    <button class="btn-hero-ghost" onclick="goTo('kpr')">Hitung Cicilan →</button>
   </div>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="num" id="statTotal">42</div><div class="lbl">Total Unit</div></div>
-    <div class="hero-stat"><div class="num" id="statCicilan">1,75 Jt</div><div class="lbl">Cicilan/Bulan</div></div>
-    <div class="hero-stat"><div class="num" id="statHarga">182 Jt</div><div class="lbl">Harga Subsidi</div></div>
-    <div class="hero-stat"><div class="num">20 Th</div><div class="lbl">Tenor KPR</div></div>
+  <div class="hero-stats-row">
+    <div class="hstat"><div class="hstat-num" id="statTotal">42</div><div class="hstat-lbl">Total Unit</div></div>
+    <div class="hstat"><div class="hstat-num"><span id="statCicilan">1,75</span> <span style="font-size:1.4rem">Jt</span></div><div class="hstat-lbl">Cicilan/Bulan</div></div>
+    <div class="hstat"><div class="hstat-num"><span id="statHarga">182</span> <span style="font-size:1.4rem">Jt</span></div><div class="hstat-lbl">Harga Subsidi</div></div>
+    <div class="hstat"><div class="hstat-num">20 <span style="font-size:1.4rem">Th</span></div><div class="hstat-lbl">Tenor KPR</div></div>
+  </div>
+  <div class="hero-scroll" onclick="goTo('unit')">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
   </div>
 </div>
 
-<!-- TIPE UNIT -->
-<section id="unit">
-  <div class="live-badge">🔴 Data langsung dari Google Sheets — diperbarui real-time</div>
-  <div class="section-label">Pilihan Hunian</div>
-  <div class="section-title">Tipe Unit Tersedia</div>
-  <div class="section-desc">Semua tipe memenuhi standar rumah subsidi FLPP dan siap diajukan KPR.</div>
-  <div class="error-banner" id="errorBanner">⚠️ Gagal memuat data. Pastikan URL Google Apps Script sudah benar dan coba refresh halaman.</div>
-  <div class="unit-filter-wrap">
-    <div class="unit-filter">
-      <button class="unit-filter-btn all active" onclick="filterUnit('semua',this)">🏘️ Semua Tipe</button>
-      <button class="unit-filter-btn subsidi" onclick="filterUnit('subsidi',this)">🏦 Subsidi FLPP</button>
-      <button class="unit-filter-btn komersil" onclick="filterUnit('komersil',this)">🏠 Komersil</button>
-    </div>
+<!-- UNIT SECTION -->
+<section class="section" id="unit">
+  <div class="s-head">
+    <div class="live-chip">Data real-time dari Google Sheets</div>
+    <div class="s-label">Pilihan Hunian</div>
+    <h2 class="s-title">Tipe Unit Tersedia</h2>
+    <p class="s-desc">Semua tipe memenuhi standar rumah subsidi FLPP dan siap diajukan KPR ke bank penyalur.</p>
+  </div>
+  <div class="err-box" id="errBox">⚠️ Gagal memuat data. Pastikan URL Google Apps Script sudah benar.</div>
+  <div class="filter-row">
+    <button class="fbtn act-all" onclick="filterUnit('semua',this,'act-all')">Semua Tipe</button>
+    <button class="fbtn" onclick="filterUnit('subsidi',this,'act-subsidi')">Subsidi FLPP</button>
+    <button class="fbtn" onclick="filterUnit('komersil',this,'act-komersil')">Komersil</button>
   </div>
   <div class="units-grid" id="unitsGrid">
-    <div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted)">
-      <div style="font-size:2rem;margin-bottom:.5rem">⏳</div>
-      <div>Memuat data unit...</div>
+    <div style="grid-column:1/-1;text-align:center;padding:4rem;color:var(--gray-300)">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:.75rem;display:block;margin-left:auto;margin-right:auto"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <div>Memuat data unit…</div>
     </div>
   </div>
 </section>
 
 <!-- PROGRESS -->
-<section style="background:#f8f6f0;max-width:100%;padding:4rem 0">
-<div style="max-width:1100px;margin:0 auto;padding:0 2rem">
-  <div class="section-label">Update Proyek</div>
-  <div class="section-title">Progress Pembangunan</div>
-  <div class="progress-stat">
-    <div class="p-card"><div class="big" id="pTotal">—</div><div class="label">Total Unit</div></div>
-    <div class="p-card"><div class="big" style="color:#EF9F27" id="pTersedia">—</div><div class="label">Unit Tersedia</div></div>
-    <div class="p-card"><div class="big" style="color:#D85A30" id="pTerjual">—</div><div class="label">Terjual/Booking</div></div>
-    <div class="p-card"><div class="big" id="pTarget">—</div><div class="label">Target Serah Terima</div></div>
-  </div>
-  <div class="pb-wrap">
-    <div class="pb-row">
-      <div class="pb-label"><span>Ketersediaan Unit</span><span id="pbUnitTxt" style="color:var(--teal-600)">—</span></div>
-      <div class="pb-track"><div class="pb-fill" id="pbUnit" style="width:0%;background:var(--teal-600)"></div></div>
+<div class="prog-section">
+  <div class="prog-inner">
+    <div class="s-label">Update Proyek</div>
+    <h2 class="s-title" style="color:white;margin-bottom:2.5rem">Progress Pembangunan</h2>
+    <div class="prog-grid">
+      <div class="pcard"><div class="pb" id="pTotal">—</div><div class="pl">Total Unit</div></div>
+      <div class="pcard"><div class="pb" style="color:#4EE3AB" id="pTersedia">—</div><div class="pl">Unit Tersedia</div></div>
+      <div class="pcard"><div class="pb" style="color:#FFC86E" id="pTerjual">—</div><div class="pl">Terjual/Booking</div></div>
+      <div class="pcard"><div class="pb" id="pTarget">—</div><div class="pl">Target Serah</div></div>
     </div>
-    <div class="pb-row">
-      <div class="pb-label"><span>Progress Konstruksi</span><span id="pbKonstrTxt" style="color:#EF9F27">—</span></div>
-      <div class="pb-track"><div class="pb-fill" id="pbKonstr" style="width:0%;background:#EF9F27"></div></div>
-    </div>
-    <div class="pb-row" style="margin-bottom:0">
-      <div class="pb-label"><span>Kelengkapan Dokumen (PBG/IMB)</span><span id="pbDokTxt" style="color:#D85A30">—</span></div>
-      <div class="pb-track"><div class="pb-fill" id="pbDok" style="width:0%;background:#D85A30"></div></div>
+    <div class="pbars">
+      <div class="prow">
+        <div class="prow-head"><span style="color:rgba(255,255,255,.55)">Ketersediaan Unit</span><span class="prow-pct" id="pbUnitTxt">—</span></div>
+        <div class="ptrack"><div class="pfill" id="pbUnit" style="width:0%;background:#4EE3AB"></div></div>
+      </div>
+      <div class="prow">
+        <div class="prow-head"><span style="color:rgba(255,255,255,.55)">Progress Konstruksi</span><span class="prow-pct" id="pbKonstrTxt">—</span></div>
+        <div class="ptrack"><div class="pfill" id="pbKonstr" style="width:0%;background:#FFC86E"></div></div>
+      </div>
+      <div class="prow">
+        <div class="prow-head"><span style="color:rgba(255,255,255,.55)">Kelengkapan Dokumen (PBG/IMB)</span><span class="prow-pct" id="pbDokTxt">—</span></div>
+        <div class="ptrack"><div class="pfill" id="pbDok" style="width:0%;background:#79BFFF"></div></div>
+      </div>
     </div>
   </div>
 </div>
-</section>
 
-<!-- SIMULASI KPR -->
-<section id="kpr">
-  <div class="section-label">Kalkulator KPR FLPP</div>
-  <div class="section-title">Simulasi Cicilan KPR</div>
-  <div class="section-desc">Hitung estimasi cicilan bulanan sesuai kemampuan finansial Anda.</div>
+<!-- KPR -->
+<section class="section" id="kpr">
+  <div class="s-head">
+    <div class="s-label">Kalkulator KPR FLPP</div>
+    <h2 class="s-title">Simulasi Cicilan KPR</h2>
+    <p class="s-desc">Hitung estimasi cicilan bulanan sesuai kemampuan finansial Anda.</p>
+  </div>
   <div class="kpr-wrap">
     <div class="kpr-grid">
-      <div class="kpr-inputs">
-        <label>Tipe Unit</label>
-        <select id="kprTipe" onchange="hitungKPR()">
+      <div class="kpr-left">
+        <span class="kpr-lbl" style="margin-top:0">Tipe Unit</span>
+        <select class="kpr-sel" id="kprTipe" onchange="hitungKPR()">
           <option value="182000000">Tipe 36 Minimalis – Rp 182.000.000 (Subsidi)</option>
           <option value="238000000">Tipe 42 Minimalis – Rp 238.000.000 (Komersil)</option>
           <option value="250000000">Tipe 45 Minimalis – Rp 250.000.000 (Komersil)</option>
@@ -423,320 +493,357 @@ footer a:hover{color:white}
           <option value="420000000">Tipe 70 – Rp 420.000.000 (Komersil)</option>
           <option value="470000000">Tipe 80 – Rp 470.000.000 (Komersil)</option>
         </select>
-        <label>Uang Muka (DP)</label>
-        <input type="range" id="kprDP" min="1" max="30" value="10" step="1" oninput="hitungKPR()">
-        <div class="range-row"><span id="dpLabel">Rp 18.200.000 (10%)</span><span>Maks 30%</span></div>
-        <label>Tenor KPR</label>
-        <input type="range" id="kprTenor" min="5" max="20" value="20" step="1" oninput="hitungKPR()">
-        <div class="range-row"><span id="tenorLabel">20 tahun</span><span>Maks 20 tahun</span></div>
-        <label>Suku Bunga</label>
-        <select id="kprBunga" onchange="hitungKPR()">
+        <span class="kpr-lbl">Uang Muka (DP)</span>
+        <input type="range" class="kpr-range" id="kprDP" min="1" max="30" value="10" step="1" oninput="hitungKPR()">
+        <div class="kpr-range-vals"><span id="dpLabel">Rp 18.200.000 (10%)</span><span>Maks 30%</span></div>
+        <span class="kpr-lbl">Tenor KPR</span>
+        <input type="range" class="kpr-range" id="kprTenor" min="5" max="20" value="20" step="1" oninput="hitungKPR()">
+        <div class="kpr-range-vals"><span id="tenorLabel">20 tahun</span><span>Maks 20 tahun</span></div>
+        <span class="kpr-lbl">Suku Bunga</span>
+        <select class="kpr-sel" id="kprBunga" onchange="hitungKPR()">
           <option value="5">5% / tahun (KPR FLPP – Subsidi, Tetap)</option>
           <option value="10">10% / tahun (KPR Komersil – estimasi)</option>
           <option value="12">12% / tahun (KPR Komersil – estimasi tinggi)</option>
         </select>
       </div>
-      <div class="kpr-result">
-        <h3>📊 Estimasi Cicilan KPR</h3>
+      <div class="kpr-right">
+        <div style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-500);margin-bottom:1rem">Estimasi Hasil</div>
         <div class="kpr-highlight">
-          <div class="cicilan-lbl">Cicilan Per Bulan</div>
-          <div class="cicilan-val" id="kprCicilan">Rp 1.760.000</div>
+          <div class="kpr-hl-lbl" id="kprHlLbl">Cicilan Per Bulan</div>
+          <div class="kpr-hl-val" id="kprCicilan">Rp 1.760.000</div>
         </div>
-        <div class="kpr-row"><span class="lbl">Harga Rumah</span><span class="val" id="kprHarga">Rp 182.000.000</span></div>
-        <div class="kpr-row"><span class="lbl">Uang Muka</span><span class="val" id="kprDPVal">Rp 18.200.000</span></div>
-        <div class="kpr-row"><span class="lbl">Pokok Pinjaman</span><span class="val" id="kprPokok">Rp 163.800.000</span></div>
-        <div class="kpr-row"><span class="lbl">Total Bayar</span><span class="val" id="kprTotal">Rp 422.400.000</span></div>
-        <div id="kprInfoKomersil" style="display:none;margin-top:.75rem;background:#E6F1FB;border-radius:8px;padding:.75rem 1rem;font-size:12px;color:#185FA5;font-weight:600">
-          💵 Tipe komersil hanya tersedia dengan pembayaran <strong>Cash / Tunai</strong>. Hubungi kami untuk negosiasi harga dan jadwal pembayaran.
-        </div>
-        <p style="font-size:11px;color:var(--text-muted);margin-top:.5rem">*Estimasi saja. Angka final ditentukan bank penyalur FLPP (untuk tipe subsidi).</p>
+        <div class="kpr-row"><span class="k">Harga Rumah</span><span class="v" id="kprHarga">Rp 182.000.000</span></div>
+        <div class="kpr-row"><span class="k">Uang Muka</span><span class="v" id="kprDPVal">Rp 18.200.000</span></div>
+        <div class="kpr-row"><span class="k">Pokok Pinjaman</span><span class="v" id="kprPokok">Rp 163.800.000</span></div>
+        <div class="kpr-row"><span class="k">Total Bayar</span><span class="v" id="kprTotal">Rp 422.400.000</span></div>
+        <div class="kpr-kom-note" id="kprKomNote">💡 Tipe komersil tersedia untuk pembayaran <strong>Cash/Tunai</strong>. Hubungi kami untuk info harga dan jadwal bayar.</div>
+        <p style="font-size:11px;color:var(--gray-300);margin-top:.75rem">*Estimasi saja. Angka final ditentukan bank penyalur FLPP.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SITEPLAN -->
-<section id="siteplan" style="background:#f8f6f0;max-width:100%;padding:4rem 0">
-<div style="max-width:1100px;margin:0 auto;padding:0 2rem">
-  <div class="section-label">Denah Kawasan</div>
-  <div class="section-title">Siteplan Garuda Maharam Residence</div>
-  <div class="section-desc">Tata letak unit dan fasilitas di dalam kawasan perumahan.</div>
-  <div class="siteplan-wrap">
-    <div class="siteplan-img-box" id="siteplanBox">
-      <div class="siteplan-placeholder" id="siteplanPlaceholder">
-        <div style="font-size:3rem">🗺️</div>
-        <div style="font-weight:600;font-size:15px;color:var(--text)">Siteplan Garuda Maharam Residence</div>
-        <div style="font-size:13px">Tambahkan <code style="background:rgba(0,0,0,.07);padding:1px 6px;border-radius:4px">siteplan_id</code> di Google Sheets tab Settings</div>
+<div class="sp-section" id="siteplan">
+  <div class="sp-inner">
+    <div class="s-label">Denah Kawasan</div>
+    <h2 class="s-title" style="margin-bottom:.75rem">Siteplan Garuda Maharam</h2>
+    <p class="s-desc" style="margin-bottom:2rem">Tata letak unit dan fasilitas di dalam kawasan perumahan.</p>
+    <div class="sp-box" id="siteplanBox">
+      <div class="sp-placeholder" id="spPlaceholder">
+        <div class="sp-ph-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        </div>
+        <div style="font-size:15px;font-weight:600;color:var(--gray-700)">Siteplan belum tersedia</div>
+        <div style="font-size:13px">Tambahkan <code style="background:var(--gray-300);padding:1px 7px;border-radius:5px;font-size:12px">siteplan_id</code> di Google Sheets tab Settings</div>
       </div>
     </div>
-    <div class="siteplan-info">
-      <div class="siteplan-stat"><div class="snum" id="spTotal">42</div><div class="slbl">Total Kavling</div></div>
-      <div class="siteplan-stat"><div class="snum" id="spLB">36</div><div class="slbl">Luas Bangunan (m²)</div></div>
-      <div class="siteplan-stat"><div class="snum" id="spLT">100</div><div class="slbl">Luas Tanah (m²)</div></div>
-      <div class="siteplan-stat"><div class="snum">2</div><div class="slbl">Kamar Tidur</div></div>
+    <div class="sp-stats">
+      <div class="sp-stat"><div class="sn" id="spTotal">42</div><div class="sl">Total Kavling</div></div>
+      <div class="sp-stat"><div class="sn" id="spLB">36</div><div class="sl">Luas Bangunan (m²)</div></div>
+      <div class="sp-stat"><div class="sn" id="spLT">120</div><div class="sl">Luas Tanah (m²)</div></div>
+      <div class="sp-stat"><div class="sn">2</div><div class="sl">Kamar Tidur</div></div>
     </div>
   </div>
 </div>
-</section>
 
-<!-- GALERI -->
-<section id="galeri">
-  <div class="section-label">Dokumentasi Proyek</div>
-  <div class="section-title">Galeri Pembangunan</div>
-  <div class="section-desc">Foto progres terkini langsung dari lokasi — diperbarui berkala.</div>
-  <div class="galeri-tabs">
-    <button class="galeri-tab active" onclick="filterGaleri('semua',this)">Semua</button>
-    <button class="galeri-tab" onclick="filterGaleri('tampak depan',this)">Tampak Depan</button>
-    <button class="galeri-tab" onclick="filterGaleri('pondasi',this)">Pondasi</button>
-    <button class="galeri-tab" onclick="filterGaleri('struktur',this)">Struktur</button>
-    <button class="galeri-tab" onclick="filterGaleri('finishing',this)">Finishing</button>
-    <button class="galeri-tab" onclick="filterGaleri('lokasi',this)">Lokasi</button>
+<!-- GALLERY -->
+<section class="section" id="galeri">
+  <div class="s-head">
+    <div class="s-label">Dokumentasi Proyek</div>
+    <h2 class="s-title">Galeri Pembangunan</h2>
+    <p class="s-desc">Foto progres terkini langsung dari lokasi — diperbarui berkala.</p>
   </div>
-  <div class="galeri-grid" id="galeriGrid"></div>
+  <div class="gal-tabs">
+    <button class="gtab act" onclick="filterGaleri('semua',this)">Semua</button>
+    <button class="gtab" onclick="filterGaleri('tampak depan',this)">Tampak Depan</button>
+    <button class="gtab" onclick="filterGaleri('pondasi',this)">Pondasi</button>
+    <button class="gtab" onclick="filterGaleri('struktur',this)">Struktur</button>
+    <button class="gtab" onclick="filterGaleri('finishing',this)">Finishing</button>
+    <button class="gtab" onclick="filterGaleri('lokasi',this)">Lokasi</button>
+  </div>
+  <div class="gal-grid" id="galeriGrid"></div>
 </section>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="lbOutside(event)">
+<div class="lb" id="lb" onclick="lbOut(event)">
   <button class="lb-close" onclick="closeLB()">✕</button>
   <button class="lb-prev" onclick="lbNav(-1)">‹</button>
   <button class="lb-next" onclick="lbNav(1)">›</button>
-  <div class="lightbox-inner">
+  <div class="lb-inner">
     <img id="lbImg" src="" alt="">
-    <div class="lightbox-caption" id="lbCaption"></div>
+    <div class="lb-cap" id="lbCap"></div>
     <div class="lb-thumbs" id="lbThumbs"></div>
   </div>
-  <div class="lb-counter" id="lbCounter"></div>
+  <div class="lb-counter" id="lbCtr"></div>
 </div>
 
 <!-- LOKASI -->
-<section id="lokasi" style="background:#f8f6f0;max-width:100%;padding:4rem 0">
-<div style="max-width:1100px;margin:0 auto;padding:0 2rem">
-  <div class="section-label">Lokasi &amp; Aksesibilitas</div>
-  <div class="section-title">Strategis di Paringin, Balangan</div>
-  <div class="lokasi-grid">
-    <div class="lokasi-map">
-      <div style="font-size:3rem">📍</div>
-      <div style="font-weight:700;font-size:16px;text-align:center" id="lokasiAlamat">Jl. Lingkar Timur RT 9, Paringin</div>
-      <div style="font-size:13px;color:var(--teal-600)">Kabupaten Balangan, Kalimantan Selatan</div>
-      <a id="lokasiMapLink" href="https://maps.app.goo.gl/zdVzL2cJLB9nLRrw9" target="_blank" style="background:var(--teal-600);color:white;padding:8px 20px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:600">📍 Buka di Google Maps</a>
-    </div>
-    <div class="lokasi-list">
-      <div class="lokasi-item"><div class="lokasi-icon" style="background:#E1F5EE">🏫</div><div><h4>Sekolah Negeri</h4><p>SD/SMP/SMA ±500m – 1km dari lokasi</p></div></div>
-      <div class="lokasi-item"><div class="lokasi-icon" style="background:#FAEEDA">🏥</div><div><h4>Puskesmas &amp; RSUD</h4><p>Puskesmas ±1km, RSUD Balangan ±3km</p></div></div>
-      <div class="lokasi-item"><div class="lokasi-icon" style="background:#EAF3DE">🛒</div><div><h4>Pasar &amp; Pertokoan</h4><p>Pasar Paringin ±1,5km dari lokasi</p></div></div>
-      <div class="lokasi-item"><div class="lokasi-icon" style="background:#E6F1FB">🏛️</div><div><h4>Kantor Pemerintahan</h4><p>Kantor Bupati Balangan ±2km</p></div></div>
+<div class="loc-section" id="lokasi">
+  <div class="loc-inner">
+    <div class="s-label">Lokasi &amp; Aksesibilitas</div>
+    <h2 class="s-title">Strategis di Paringin, Balangan</h2>
+    <div class="loc-grid">
+      <div class="loc-map-box">
+        <div class="loc-pin-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <div class="loc-addr" id="lokasiAlamat">Jl. Lingkar Timur RT 9, Paringin</div>
+        <div class="loc-sub">Kabupaten Balangan, Kalimantan Selatan</div>
+        <a class="loc-map-btn" id="lokasiMapLink" href="https://maps.app.goo.gl/zdVzL2cJLB9nLRrw9" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Buka di Google Maps
+        </a>
+      </div>
+      <div class="loc-items">
+        <div class="loc-item">
+          <div class="loc-item-icon" style="background:rgba(11,140,104,.15)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4EE3AB" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div><h4>Sekolah Negeri</h4><p>SD/SMP/SMA ±500m – 1km dari lokasi</p></div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-item-icon" style="background:rgba(201,150,58,.15)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFC86E" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div><h4>Puskesmas &amp; RSUD</h4><p>Puskesmas ±1km, RSUD Balangan ±3km</p></div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-item-icon" style="background:rgba(24,98,181,.15)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#79BFFF" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          </div>
+          <div><h4>Pasar &amp; Pertokoan</h4><p>Pasar Paringin ±1,5km dari lokasi</p></div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-item-icon" style="background:rgba(208,79,46,.15)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F09575" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          </div>
+          <div><h4>Kantor Pemerintahan</h4><p>Kantor Bupati Balangan ±2km</p></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-</section>
 
 <!-- SYARAT -->
-<section id="syarat">
-  <div class="section-label">Persyaratan KPR FLPP</div>
-  <div class="section-title">Siapa yang Bisa Mengajukan?</div>
-  <div class="syarat-grid">
-    <div class="syarat-card"><h3>👤 Syarat Umum</h3><ul>
-      <li>WNI, min. 21 tahun / sudah menikah</li>
-      <li>Belum pernah memiliki rumah</li>
-      <li>Belum pernah terima subsidi perumahan</li>
-      <li>Punya e-KTP dan NPWP</li>
-      <li>Penghasilan maks. Rp 8 juta/bulan</li>
-    </ul></div>
-    <div class="syarat-card"><h3>📁 Dokumen KPR</h3><ul>
-      <li>Fotokopi KTP suami &amp; istri</li>
-      <li>Fotokopi Kartu Keluarga</li>
-      <li>Fotokopi Buku Nikah / Akte Cerai</li>
-      <li>Slip gaji / Surat keterangan penghasilan</li>
-      <li>Fotokopi NPWP</li>
-      <li>Rekening koran 3 bulan terakhir</li>
-    </ul></div>
-    <div class="syarat-card"><h3>🏦 Proses Pengajuan</h3><ul>
-      <li>Booking unit + tanda terima</li>
-      <li>Verifikasi dokumen di kantor developer</li>
-      <li>Pengajuan KPR ke bank penyalur FLPP</li>
-      <li>Penilaian/appraisal oleh bank</li>
-      <li>Akad kredit &amp; serah terima kunci</li>
-    </ul></div>
+<section class="section" id="syarat">
+  <div class="s-head">
+    <div class="s-label">Persyaratan KPR FLPP</div>
+    <h2 class="s-title">Siapa yang Bisa Mengajukan?</h2>
+  </div>
+  <div class="req-grid">
+    <div class="req-card">
+      <div class="req-card-icon" style="background:var(--teal-ll)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <h3>Syarat Umum</h3>
+      <ul class="req-list">
+        <li>WNI, min. 21 tahun / sudah menikah</li>
+        <li>Belum pernah memiliki rumah</li>
+        <li>Belum pernah terima subsidi perumahan</li>
+        <li>Punya e-KTP dan NPWP</li>
+        <li>Penghasilan maks. Rp 8 juta/bulan</li>
+      </ul>
+    </div>
+    <div class="req-card">
+      <div class="req-card-icon" style="background:var(--gold-l)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <h3>Dokumen KPR</h3>
+      <ul class="req-list">
+        <li>Fotokopi KTP suami &amp; istri</li>
+        <li>Fotokopi Kartu Keluarga</li>
+        <li>Fotokopi Buku Nikah / Akte Cerai</li>
+        <li>Slip gaji / surat keterangan penghasilan</li>
+        <li>Fotokopi NPWP</li>
+        <li>Rekening koran 3 bulan terakhir</li>
+      </ul>
+    </div>
+    <div class="req-card">
+      <div class="req-card-icon" style="background:var(--blue-l)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>Proses Pengajuan</h3>
+      <ul class="req-list">
+        <li>Booking unit + tanda terima</li>
+        <li>Verifikasi dokumen di kantor developer</li>
+        <li>Pengajuan KPR ke bank penyalur FLPP</li>
+        <li>Penilaian/appraisal oleh bank</li>
+        <li>Akad kredit &amp; serah terima kunci</li>
+      </ul>
+    </div>
   </div>
 </section>
 
 <!-- BOOKING -->
-<section id="booking" style="background:#f8f6f0;max-width:100%;padding:4rem 0">
-<div style="max-width:1100px;margin:0 auto;padding:0 2rem">
-  <div class="section-label">Formulir Pemesanan</div>
-  <div class="section-title">Booking Unit Sekarang</div>
-  <div class="section-desc">Isi formulir di bawah. Tim kami akan menghubungi Anda dalam 1×24 jam.</div>
-  <div class="booking-wrap">
-    <div id="bookingForm">
-      <div class="form-grid">
-        <div class="form-group"><label>Nama Lengkap *</label><input type="text" id="fNama" placeholder="Sesuai KTP"></div>
-        <div class="form-group"><label>No. HP / WhatsApp *</label><input type="tel" id="fHP" placeholder="08xxxxxxxxxx"></div>
-        <div class="form-group"><label>Email</label><input type="email" id="fEmail" placeholder="contoh@email.com"></div>
-        <div class="form-group"><label>Pekerjaan</label>
-          <select id="fPekerjaan">
-            <option value="">-- Pilih --</option>
-            <option>PNS/ASN</option><option>TNI/Polri</option>
-            <option>Karyawan Swasta</option><option>Wiraswasta</option>
-            <option>Petani/Nelayan</option><option>Lainnya</option>
-          </select>
+<div class="booking-section" id="booking">
+  <div class="booking-inner">
+    <div class="s-label">Formulir Pemesanan</div>
+    <h2 class="s-title">Booking Unit Sekarang</h2>
+    <p class="s-desc">Tim kami akan menghubungi Anda dalam 1×24 jam setelah formulir dikirim.</p>
+    <div class="booking-wrap">
+      <div id="bookingForm">
+        <div class="form-grid">
+          <div class="fg"><label>Nama Lengkap *</label><input type="text" id="fNama" placeholder="Sesuai KTP"></div>
+          <div class="fg"><label>No. HP / WhatsApp *</label><input type="tel" id="fHP" placeholder="08xxxxxxxxxx"></div>
+          <div class="fg"><label>Email</label><input type="email" id="fEmail" placeholder="contoh@email.com"></div>
+          <div class="fg"><label>Pekerjaan</label>
+            <select id="fPekerjaan">
+              <option value="">— Pilih —</option>
+              <option>PNS/ASN</option><option>TNI/Polri</option>
+              <option>Karyawan Swasta</option><option>Wiraswasta</option>
+              <option>Petani/Nelayan</option><option>Lainnya</option>
+            </select>
+          </div>
+          <div class="fg"><label>Tipe Unit yang Diminati *</label>
+            <select id="fUnit">
+              <option value="">— Pilih Tipe —</option>
+              <option>Tipe 36 Minimalis (Subsidi – Rp 182 Jt)</option>
+              <option>Tipe 42 Minimalis (Komersil – Rp 238 Jt)</option>
+              <option>Tipe 45 Minimalis (Komersil – Rp 250 Jt)</option>
+              <option>Tipe 50 (Komersil – Rp 320 Jt)</option>
+              <option>Tipe 60 (Komersil – Rp 370 Jt)</option>
+              <option>Tipe 70 (Komersil – Rp 420 Jt)</option>
+              <option>Tipe 80 (Komersil – Rp 470 Jt)</option>
+              <option>Belum yakin, minta konsultasi</option>
+            </select>
+          </div>
+          <div class="fg"><label>Penghasilan Bulanan</label>
+            <select id="fGaji">
+              <option value="">— Pilih Range —</option>
+              <option>Di bawah Rp 3 juta</option><option>Rp 3 – 5 juta</option>
+              <option>Rp 5 – 8 juta</option><option>Rp 8 – 10 juta</option>
+            </select>
+          </div>
+          <div class="fg full"><label>Pertanyaan / Catatan</label>
+            <textarea id="fCatatan" placeholder="Tuliskan pertanyaan atau kebutuhan khusus Anda…"></textarea>
+          </div>
         </div>
-        <div class="form-group"><label>Tipe Unit yang Diminati *</label>
-          <select id="fUnit">
-            <option value="">-- Pilih Tipe --</option>
-            <option>Tipe 36 Minimalis (Subsidi - Rp 182 Jt)</option>
-            <option>Tipe 42 Minimalis (Komersil - Rp 238 Jt)</option>
-            <option>Tipe 45 Minimalis (Komersil - Rp 250 Jt)</option>
-            <option>Tipe 50 (Komersil - Rp 320 Jt)</option>
-            <option>Tipe 60 (Komersil - Rp 370 Jt)</option>
-            <option>Tipe 70 (Komersil - Rp 420 Jt)</option>
-            <option>Tipe 80 (Komersil - Rp 470 Jt)</option>
-            <option>Belum yakin, minta konsultasi</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Penghasilan Bulanan</label>
-          <select id="fGaji">
-            <option value="">-- Pilih Range --</option>
-            <option>Di bawah Rp 3 juta</option><option>Rp 3 – 5 juta</option>
-            <option>Rp 5 – 8 juta</option><option>Rp 8 – 10 juta</option>
-          </select>
-        </div>
-        <div class="form-group full"><label>Pertanyaan / Catatan</label>
-          <textarea id="fCatatan" placeholder="Tuliskan pertanyaan atau kebutuhan khusus Anda..."></textarea>
-        </div>
+        <p style="font-size:12px;color:var(--gray-300);margin-bottom:1rem">* Wajib diisi. Data Anda aman dan hanya digunakan untuk keperluan konfirmasi.</p>
+        <div class="form-err" id="formError"></div>
+        <button class="btn-submit" id="btnSubmit" onclick="submitBooking()">Kirim Permintaan Booking →</button>
       </div>
-      <p style="font-size:12px;color:var(--text-muted);margin-bottom:1rem">* Wajib diisi. Data Anda aman dan hanya digunakan untuk keperluan konfirmasi.</p>
-      <div class="error-banner" id="formError"></div>
-      <button class="form-submit" id="btnSubmit" onclick="submitBooking()">📋 Kirim Permintaan Booking</button>
-    </div>
-    <div class="booking-success" id="bookingSuccess">
-      <div class="success-icon">✅</div>
-      <div class="success-title">Booking Berhasil Dikirim!</div>
-      <p style="color:var(--text-muted);font-size:14px;margin-bottom:1.5rem">Terima kasih, <strong id="successNama"></strong>! Tim kami akan menghubungi <strong id="successHP"></strong> dalam 1×24 jam.</p>
-      <div style="background:var(--teal-50);border-radius:10px;padding:1rem;font-size:13px;color:var(--teal-800)">
-        Atau hubungi langsung via WhatsApp di nomor yang tertera di bawah halaman.
+      <div class="book-success" id="bookingSuccess">
+        <div class="suc-ico">
+          <svg viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="suc-title">Booking Berhasil Dikirim!</div>
+        <p style="color:var(--gray-500);font-size:14px;margin-bottom:1rem">Terima kasih, <strong id="sucNama"></strong>! Tim kami akan menghubungi <strong id="sucHP"></strong> dalam 1×24 jam.</p>
+        <div class="suc-note">Atau hubungi langsung via WhatsApp di nomor yang tertera di bawah halaman.</div>
       </div>
     </div>
   </div>
 </div>
-</section>
 
 <!-- AI CHAT -->
-<section id="faq">
-  <div class="section-label">Asisten AI · Powered by Groq</div>
-  <div class="section-title">Tanya Asisten Kami</div>
-  <div class="section-desc">Tanyakan apapun tentang Garuda Maharam Residence — harga, KPR, syarat, lokasi, atau proses booking. Dijawab langsung oleh AI 24 jam.</div>
-
-  <div class="ai-chat-wrap">
-    <div class="ai-suggestions" id="aiSuggestions">
-      <div class="ai-suggestion-label">💡 Pertanyaan populer — klik untuk langsung tanya:</div>
-      <div class="ai-suggestion-btns">
-        <button onclick="askSuggestion(this)">Apa syarat KPR FLPP?</button>
-        <button onclick="askSuggestion(this)">Tipe mana yang cocok untuk gaji Rp 5 juta?</button>
-        <button onclick="askSuggestion(this)">Berapa DP minimal rumah subsidi?</button>
-        <button onclick="askSuggestion(this)">Bagaimana proses booking sampai akad?</button>
-        <button onclick="askSuggestion(this)">Apakah honorer bisa KPR FLPP?</button>
-        <button onclick="askSuggestion(this)">Apa bedanya tipe subsidi dan komersil?</button>
-        <button onclick="askSuggestion(this)">Bank apa yang menyalurkan FLPP di Kalsel?</button>
-        <button onclick="askSuggestion(this)">Kapan target serah terima unit?</button>
+<section class="section" id="faq">
+  <div class="s-head">
+    <div class="s-label">Asisten AI · Powered by Groq</div>
+    <h2 class="s-title">Tanya Asisten Kami</h2>
+    <p class="s-desc">Tanyakan apapun tentang harga, KPR, syarat, lokasi, atau proses booking. Dijawab AI 24 jam.</p>
+  </div>
+  <div class="ai-wrap">
+    <div class="ai-sugg" id="aiSugg">
+      <div class="ai-sugg-lbl">Pertanyaan Populer</div>
+      <div class="ai-sugg-btns">
+        <button onclick="askSug(this)">Apa syarat KPR FLPP?</button>
+        <button onclick="askSug(this)">Tipe mana untuk gaji Rp 5 juta?</button>
+        <button onclick="askSug(this)">Berapa DP minimal?</button>
+        <button onclick="askSug(this)">Proses booking sampai akad?</button>
+        <button onclick="askSug(this)">Apakah honorer bisa KPR FLPP?</button>
+        <button onclick="askSug(this)">Bedanya subsidi dan komersil?</button>
+        <button onclick="askSug(this)">Bank penyalur FLPP di Kalsel?</button>
+        <button onclick="askSug(this)">Target serah terima unit?</button>
       </div>
     </div>
-
-    <div class="ai-messages" id="aiMessages">
+    <div class="ai-msgs" id="aiMsgs">
       <div class="ai-msg bot">
-        <div class="ai-avatar">🤖</div>
-        <div class="ai-bubble">
-          Halo! Saya asisten AI Garuda Maharam Residence. Saya siap menjawab pertanyaan Anda seputar perumahan kami — mulai dari harga, tipe unit, syarat KPR FLPP, proses booking, hingga lokasi. Silakan tanya apa saja! 😊
-        </div>
+        <div class="ai-av">🤖</div>
+        <div class="ai-bub">Halo! Saya asisten AI Garuda Maharam Residence. Saya siap menjawab pertanyaan seputar harga, tipe unit, syarat KPR FLPP, proses booking, hingga lokasi. Silakan tanya apa saja! 😊</div>
       </div>
     </div>
-
-    <div class="ai-input-wrap">
-      <input type="text" id="aiInput" class="ai-input"
-        placeholder="Ketik pertanyaan Anda di sini..."
-        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}">
-      <button class="ai-send-btn" id="aiSendBtn" onclick="sendChat()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    <div class="ai-input-row">
+      <input type="text" id="aiInput" class="ai-inp" placeholder="Ketik pertanyaan Anda…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}">
+      <button class="ai-send" id="aiSend" onclick="sendChat()">
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2" fill="white" stroke="none"/></svg>
       </button>
     </div>
-    <div style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:.5rem;padding-bottom:.75rem">
-      Dijawab oleh AI · Untuk kepastian, konfirmasi ke tim kami via WhatsApp
-    </div>
+    <div class="ai-foot">Dijawab AI · Untuk kepastian, konfirmasi ke tim kami via WhatsApp</div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
+  <div class="foot-inner">
     <div>
-      <h4>🏠 Garuda Maharam Residence</h4>
-      <p>Perumahan subsidi berkualitas oleh PT Rusdi Rahmi Property. Hunian layak dan terjangkau untuk masyarakat Kabupaten Balangan, Kalimantan Selatan.</p>
-      <p style="margin-top:1rem" id="footerAlamat">📍 Jl. Lingkar Timur RT 9, Paringin, Kab. Balangan 71662</p>
-    </div>
-    <div>
-      <h4>Tautan Cepat</h4>
-      <a onclick="goTo('unit')">Tipe Unit</a>
-      <a onclick="goTo('kpr')">Simulasi KPR</a>
-      <a onclick="goTo('siteplan')">Siteplan</a>
-      <a onclick="goTo('galeri')">Galeri</a>
-      <a onclick="goTo('lokasi')">Lokasi</a>
-      <a onclick="goTo('booking')">Booking Unit</a>
-    </div>
-    <div>
-      <h4>Hubungi Kami</h4>
-      <a id="footerWA" href="https://wa.me/6281258001180" target="_blank">📱 +62 812-5800-1180 (WhatsApp)</a>
-      <a id="footerEmail" href="mailto:garuda_maharam@gmail.com">📧 garuda_maharam@gmail.com</a>
-      <a>🕐 Senin–Sabtu, 08.00–17.00 WITA</a>
-      <div style="margin-top:1rem">
-        <h4>Terdaftar di</h4>
-        <p>✅ SIKUMBANG (BP Tapera)</p>
-        <p>✅ Bank BTN – Penyalur FLPP</p>
+      <div class="foot-brand">
+        <div class="foot-logo">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9" fill="rgba(0,0,0,.2)"/></svg>
+        </div>
+        <div>
+          <div class="foot-name">Garuda Maharam Residence</div>
+          <div class="foot-sub">PT Rusdi Rahmi Property</div>
+        </div>
+      </div>
+      <p>Perumahan subsidi berkualitas untuk masyarakat Kabupaten Balangan, Kalimantan Selatan.</p>
+      <p id="footerAlamat" style="margin-top:.75rem;opacity:.5">📍 Jl. Lingkar Timur RT 9, Paringin, Kab. Balangan 71662</p>
+      <div class="foot-badge">
+        <span class="fbadge">✅ SIKUMBANG – BP Tapera</span>
+        <span class="fbadge">✅ Bank BTN – Penyalur FLPP</span>
       </div>
     </div>
+    <div>
+      <h4>Navigasi</h4>
+      <a class="foot-link" onclick="goTo('unit')">Tipe Unit</a>
+      <a class="foot-link" onclick="goTo('kpr')">Simulasi KPR</a>
+      <a class="foot-link" onclick="goTo('siteplan')">Siteplan</a>
+      <a class="foot-link" onclick="goTo('galeri')">Galeri</a>
+      <a class="foot-link" onclick="goTo('lokasi')">Lokasi</a>
+      <a class="foot-link" onclick="goTo('booking')">Booking Unit</a>
+    </div>
+    <div>
+      <h4>Kontak</h4>
+      <a id="footerWA" class="foot-link" href="https://wa.me/6281258001180" target="_blank">📱 +62 812-5800-1180</a>
+      <a id="footerEmail" class="foot-link" href="mailto:garuda_maharam@gmail.com">📧 garuda_maharam@gmail.com</a>
+      <a class="foot-link">🕐 Senin–Sabtu, 08.00–17.00 WITA</a>
+    </div>
   </div>
-  <div class="footer-copy">© 2026 PT Rusdi Rahmi Property · Garuda Maharam Residence · Harga dan stok dapat berubah tanpa pemberitahuan sebelumnya.</div>
+  <div class="foot-copy">
+    <span>© 2026 PT Rusdi Rahmi Property · Garuda Maharam Residence</span>
+    <span>Harga dan stok dapat berubah tanpa pemberitahuan</span>
+  </div>
 </footer>
 
-<!-- MODAL UNIT -->
-<div class="modal-bg" id="modalBg" onclick="closeModalOutside(event)">
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg" onclick="closeModalOut(event)">
   <div class="modal"><button class="modal-close" onclick="closeModal()">✕</button><div id="modalBody"></div></div>
 </div>
 
-<!-- WA FLOAT ICON -->
+<!-- WA FLOAT -->
 <div class="wa-float">
-  <div class="wa-tooltip">💬 Tanya via WhatsApp</div>
-  <a class="wa-btn" id="waFloat" href="https://wa.me/6281258001180?text=Halo%2C%20saya%20ingin%20informasi%20Garuda%20Maharam%20Residence" target="_blank" title="Chat WhatsApp">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
+  <div class="wa-tip">Tanya via WhatsApp</div>
+  <a class="wa-btn" id="waFloat" href="https://wa.me/6281258001180?text=Halo%2C%20saya%20ingin%20informasi%20Garuda%20Maharam%20Residence" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 </div>
 
 <script>
-// ==============================================================
-// SCRIPT_URL — URL Google Apps Script Anda
-// ==============================================================
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz6VfX1nng0WaC6NP-Ym_ujUNuyNsUg5Jlv3vFGcpi4LeYFp4AAeuC9xBY7O_3v85ef4w/exec';
-
-// ==============================================================
-// GROQ CONFIG
-// ==============================================================
 const GROQ_API_KEY = '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';
-const GROQ_MODEL   = 'llama-3.3-70b-versatile';
+const GROQ_MODEL = 'llama-3.3-70b-versatile';
 
-let allUnits = [];
-let siteSettings = {};
-let allFotos = [];
-let filteredFotos = [];
-let lbIndex = 0;
+let allUnits = [], siteSettings = {}, allFotos = [], filteredFotos = [], lbIdx = 0;
+const chatHistory = [];
 
-// ==============================================================
-// LOAD DATA
-// ==============================================================
+// ── LOADING ─────────────────────────────────────────────────
+function animBar(pct) { document.getElementById('lsFill').style.width = pct + '%'; }
+
+// ── LOAD DATA ────────────────────────────────────────────────
 async function loadData() {
-  animateBar(0, 40);
+  animBar(30);
   try {
     const res = await fetch(SCRIPT_URL + '?action=all');
-    animateBar(40, 80);
+    animBar(70);
     const data = await res.json();
     allUnits = data.units || [];
     siteSettings = data.settings || {};
@@ -744,26 +851,21 @@ async function loadData() {
     renderUnits();
     renderProgress();
     populateKPRSelect();
-    animateBar(80, 100);
-    setTimeout(() => document.getElementById('loadingScreen').classList.add('hidden'), 400);
+    animBar(100);
+    setTimeout(() => document.getElementById('ls').classList.add('out'), 500);
     loadGaleri();
-  } catch(err) {
-    console.error(err);
-    document.getElementById('errorBanner').style.display = 'block';
-    document.getElementById('loadingScreen').classList.add('hidden');
+  } catch(e) {
+    console.error(e);
+    document.getElementById('errBox').style.display = 'block';
+    document.getElementById('ls').classList.add('out');
     renderFallbackUnits();
-    renderGaleriPlaceholder();
+    renderGalPlaceholder();
   }
 }
 
-function animateBar(f, t) { document.getElementById('loadBar').style.width = t + '%'; }
-
-// ==============================================================
-// APPLY SETTINGS
-// ==============================================================
+// ── SETTINGS ─────────────────────────────────────────────────
 function applySettings() {
   const s = siteSettings;
-  if (s.nama_proyek) document.getElementById('navNama').textContent = s.nama_proyek;
   if (s.tagline) document.getElementById('heroDesc').textContent = s.tagline;
   if (s.alamat) {
     document.getElementById('lokasiAlamat').textContent = s.alamat;
@@ -771,395 +873,355 @@ function applySettings() {
   }
   if (s.gmaps_url) document.getElementById('lokasiMapLink').href = s.gmaps_url;
   if (s.whatsapp) {
-    const num = String(s.whatsapp).replace(/[^0-9]/g,'');
+    const n = String(s.whatsapp).replace(/\D/g,'');
     const wa = document.getElementById('footerWA');
-    wa.textContent = '📱 +' + num + ' (WhatsApp)';
-    wa.href = 'https://wa.me/' + num;
-    document.getElementById('waFloat').href = 'https://wa.me/' + num + '?text=Halo%2C%20saya%20ingin%20informasi%20Garuda%20Maharam%20Residence';
+    wa.textContent = '📱 +' + n.replace(/(\d{2})(\d{3})(\d{4})(\d+)/,'$1 $2-$3-$4');
+    wa.href = 'https://wa.me/' + n;
+    document.getElementById('waFloat').href = 'https://wa.me/' + n + '?text=Halo%2C%20saya%20ingin%20informasi%20Garuda%20Maharam%20Residence';
   }
   if (s.email) {
-    document.getElementById('footerEmail').textContent = '📧 ' + s.email;
-    document.getElementById('footerEmail').href = 'mailto:' + s.email;
+    const el = document.getElementById('footerEmail');
+    el.textContent = '📧 ' + s.email;
+    el.href = 'mailto:' + s.email;
   }
   renderSiteplan();
 }
 
-// ==============================================================
-// RENDER UNITS
-// ==============================================================
-function renderUnits() {
-  const grid = document.getElementById('unitsGrid');
-  if (!allUnits.length) { renderFallbackUnits(); return; }
-  renderUnitGroup(grid, allUnits, gradients());
-}
+// ── UNIT CARDS ───────────────────────────────────────────────
+const grads = [
+  'linear-gradient(135deg,#0B8C68,#1D9E75)',
+  'linear-gradient(135deg,#27500A,#3B6D11)',
+  'linear-gradient(135deg,#185FA5,#378ADD)',
+  'linear-gradient(135deg,#854F0B,#C9963A)',
+  'linear-gradient(135deg,#533099,#7F77DD)',
+  'linear-gradient(135deg,#993556,#D4537E)',
+  'linear-gradient(135deg,#141210,#3A3834)',
+];
 
-function gradients() {
-  return [
-    'linear-gradient(135deg,#E1F5EE,#9FE1CB)',
-    'linear-gradient(135deg,#C0DD97,#EAF3DE)',
-    'linear-gradient(135deg,#DBEAFE,#BFDBFE)',
-    'linear-gradient(135deg,#FEF3C7,#FDE68A)',
-    'linear-gradient(135deg,#FCE7F3,#FBCFE8)',
-    'linear-gradient(135deg,#EDE9FE,#DDD6FE)',
-    'linear-gradient(135deg,#FFEDD5,#FED7AA)'
-  ];
-}
-
-function renderUnitGroup(grid, units, grads) {
+function renderUnitCards(grid, units) {
   if (!units.length) {
-    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted)">Tidak ada unit yang sesuai filter.</div>';
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--gray-300)">Tidak ada unit sesuai filter.</div>';
     return;
   }
-  grid.innerHTML = units.map((u, i) => {
+  grid.innerHTML = units.map((u,i) => {
     const stok = parseInt(u.stok_tersedia) || 0;
     const total = parseInt(u.stok_total) || 0;
     const habis = stok <= 0;
-    const isSubsidi = (u.jenis||'').toLowerCase() === 'subsidi' || ((u.nama||'').toLowerCase().includes('36') && !(u.jenis||'').toLowerCase().includes('komersil'));
+    const isS = (u.jenis||'').toLowerCase() === 'subsidi' || ((u.nama||'').toLowerCase().includes('36') && !(u.jenis||'').toLowerCase().includes('komersil'));
     const harga = parseInt(u.harga) || 182000000;
-    const label = (u.label||'TERSEDIA').toUpperCase();
-    const populer = label === 'POPULER';
-    let badgeClass = 'tersedia', badgeText = 'TERSEDIA';
-    if (habis) { badgeClass = 'habis'; badgeText = 'HABIS'; }
-    else if (populer) { badgeClass = 'populer'; badgeText = 'POPULER'; }
-    else if (isSubsidi) { badgeClass = 'subsidi-badge'; badgeText = 'SUBSIDI'; }
-    else { badgeClass = 'komersil-badge'; badgeText = 'KOMERSIL'; }
-    const tagHtml = isSubsidi
-      ? `<span class="unit-tag kpr">🏦 KPR FLPP</span> <span class="unit-tag cash">💵 Cash</span>`
-      : `<span class="unit-tag cash">💵 Cash</span>`;
     const lb = parseInt(u.lb) || parseInt(u.tipe) || 36;
-    const kt = lb >= 70 ? 3 : lb >= 45 ? 3 : 2;
-    const priceClass = !isSubsidi ? 'unit-price komersil-price' : 'unit-price';
-    const cardClass = !isSubsidi ? 'unit-card komersil-card' : 'unit-card';
-    const keterangan = isSubsidi ? '· harga subsidi' : '· harga komersil';
+    const lbl = (u.label||'').toUpperCase();
+    let bCls = isS ? 'sub' : 'kom', bTxt = isS ? 'Subsidi FLPP' : 'Komersil';
+    if (habis) { bCls = 'hbs'; bTxt = 'Stok Habis'; }
+    else if (lbl === 'POPULER') { bCls = 'pop'; bTxt = 'Populer'; }
+    const ket = isS ? '· harga subsidi' : '· harga komersil';
     return `
-    <div class="${cardClass} ${populer?'featured':''}">
-      <div class="unit-img" style="background:${grads[i%grads.length]}">
-        🏠
-        <div class="unit-badge ${badgeClass}">${badgeText}</div>
+    <div class="ucard">
+      <div class="ucard-hero" style="background:${grads[i%grads.length]}">
+        <div class="ucard-hero-bg" style="background:${grads[i%grads.length]}"></div>
+        <span class="ubadge ${bCls}">${bTxt}</span>
       </div>
-      <div class="unit-body">
-        <div style="margin-bottom:.5rem">${tagHtml}</div>
-        <div class="unit-avail ${habis?'habis':'ada'}">
-          ${habis ? '⛔ Stok habis' : stok + ' unit tersisa dari ' + total + ' unit'}
+      <div class="ucard-body">
+        <div class="ucard-tags">
+          ${isS ? '<span class="utag kpr">KPR FLPP</span>' : ''}
+          <span class="utag cash">Cash</span>
         </div>
-        <div class="unit-name">${u.nama || 'Tipe '+u.tipe}</div>
-        <div class="${priceClass}">Rp ${harga.toLocaleString('id')} <span>${keterangan}</span></div>
-        <div class="unit-specs">
-          <div class="spec"><div class="val">${u.lb||u.tipe||'—'} m²</div><div class="key">Luas Bangunan</div></div>
-          <div class="spec"><div class="val">120 m²</div><div class="key">Luas Tanah</div></div>
-          <div class="spec"><div class="val">${u.kamar_tidur||kt} KT</div><div class="key">Kamar Tidur</div></div>
+        <div class="ucard-name">${u.nama || 'Tipe ' + (u.tipe||lb)}</div>
+        <div class="ucard-price ${isS?'sub':'kom'}">Rp ${harga.toLocaleString('id')} <small>${ket}</small></div>
+        <div class="ucard-avail ${habis?'hbs':'ada'}">${habis ? 'Stok habis' : stok + ' unit tersisa dari ' + total}</div>
+        <div class="ucard-specs">
+          <div class="uspec"><div class="sv">${lb}m²</div><div class="sk">Bangunan</div></div>
+          <div class="uspec"><div class="sv">120m²</div><div class="sk">Tanah</div></div>
+          <div class="uspec"><div class="sv">${u.kamar_tidur||(lb>=70?3:lb>=45?3:2)} KT</div><div class="sk">Kamar</div></div>
         </div>
-        <div class="unit-footer">
-          <button class="btn-outline" onclick="openModal(${allUnits.indexOf(u)})">Detail</button>
-          <button class="btn-primary" ${habis?'disabled style="opacity:.5;cursor:not-allowed"':'onclick="goTo(\'booking\')"'}>${habis?'Habis':'Booking'}</button>
+        <div class="ucard-foot">
+          <button class="btn-detail" onclick="openModal(${allUnits.indexOf(u)})">Detail</button>
+          <button class="btn-book" ${habis?'disabled':''} onclick="${habis?'':'goTo(\'booking\')'}">${habis?'Habis':'Booking Sekarang'}</button>
         </div>
       </div>
     </div>`;
   }).join('');
 }
 
-function filterUnit(jenis, btn) {
-  document.querySelectorAll('.unit-filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const grid = document.getElementById('unitsGrid');
-  let filtered = allUnits;
-  if (jenis === 'subsidi') filtered = allUnits.filter(u => (u.jenis||'').toLowerCase()==='subsidi' || (parseInt(u.tipe)||parseInt(u.lb)||0)<=36);
-  if (jenis === 'komersil') filtered = allUnits.filter(u => (u.jenis||'').toLowerCase()==='komersil' || (parseInt(u.tipe)||parseInt(u.lb)||0)>36);
-  renderUnitGroup(grid, filtered, gradients());
+function renderUnits() {
+  const g = document.getElementById('unitsGrid');
+  if (!allUnits.length) { renderFallbackUnits(); return; }
+  renderUnitCards(g, allUnits);
+}
+
+function filterUnit(jenis, btn, actCls) {
+  document.querySelectorAll('.fbtn').forEach(b => b.className = 'fbtn');
+  btn.classList.add(actCls);
+  const g = document.getElementById('unitsGrid');
+  let f = allUnits;
+  if (jenis === 'subsidi') f = allUnits.filter(u => (u.jenis||'').toLowerCase()==='subsidi'||(parseInt(u.tipe)||parseInt(u.lb)||0)<=36);
+  if (jenis === 'komersil') f = allUnits.filter(u => (u.jenis||'').toLowerCase()==='komersil'||(parseInt(u.tipe)||parseInt(u.lb)||0)>36);
+  renderUnitCards(g, f);
 }
 
 function renderFallbackUnits() {
   allUnits = [
-    { nama:'Tipe 36 Minimalis', tipe:36, harga:182000000, lb:36, lt:120, kamar_tidur:2, kamar_mandi:1, stok_tersedia:10, stok_total:10, label:'TERSEDIA', jenis:'subsidi', fasilitas:'Listrik 1300VA,Air PAM,Carport,Pagar depan', listrik:1300 },
-    { nama:'Tipe 42 Minimalis', tipe:42, harga:238000000, lb:42, lt:120, kamar_tidur:2, kamar_mandi:1, stok_tersedia:8,  stok_total:8,  label:'TERSEDIA', jenis:'komersil', fasilitas:'Listrik 1300VA,Air PAM,Carport,Pagar depan', listrik:1300 },
-    { nama:'Tipe 45 Minimalis', tipe:45, harga:250000000, lb:45, lt:120, kamar_tidur:3, kamar_mandi:1, stok_tersedia:6,  stok_total:6,  label:'TERSEDIA', jenis:'komersil', fasilitas:'Listrik 2200VA,Air PAM,Carport,Pagar depan', listrik:2200 },
-    { nama:'Tipe 50',           tipe:50, harga:320000000, lb:50, lt:120, kamar_tidur:3, kamar_mandi:2, stok_tersedia:5,  stok_total:5,  label:'TERSEDIA', jenis:'komersil', fasilitas:'Listrik 2200VA,Air PAM,Carport,Pagar depan', listrik:2200 },
-    { nama:'Tipe 60',           tipe:60, harga:370000000, lb:60, lt:120, kamar_tidur:3, kamar_mandi:2, stok_tersedia:5,  stok_total:5,  label:'TERSEDIA', jenis:'komersil', fasilitas:'Listrik 2200VA,Air PAM,Carport 2 Mobil,Pagar depan', listrik:2200 },
-    { nama:'Tipe 70',           tipe:70, harga:420000000, lb:70, lt:120, kamar_tidur:3, kamar_mandi:2, stok_tersedia:4,  stok_total:4,  label:'TERSEDIA', jenis:'komersil', fasilitas:'Listrik 2200VA,Air PAM,Carport 2 Mobil,Pagar depan', listrik:2200 },
-    { nama:'Tipe 80',           tipe:80, harga:470000000, lb:80, lt:120, kamar_tidur:4, kamar_mandi:2, stok_tersedia:4,  stok_total:4,  label:'TERSEDIA', jenis:'komersil', fasilitas:'Listrik 3500VA,Air PAM,Carport 2 Mobil,Pagar depan', listrik:3500 },
+    {nama:'Tipe 36 Minimalis',tipe:36,harga:182000000,lb:36,lt:120,kamar_tidur:2,kamar_mandi:1,stok_tersedia:10,stok_total:10,label:'TERSEDIA',jenis:'subsidi',fasilitas:'Listrik 1300VA,Air PAM,Carport,Pagar depan',listrik:1300},
+    {nama:'Tipe 42 Minimalis',tipe:42,harga:238000000,lb:42,lt:120,kamar_tidur:2,kamar_mandi:1,stok_tersedia:8,stok_total:8,label:'TERSEDIA',jenis:'komersil',fasilitas:'Listrik 1300VA,Air PAM,Carport,Pagar depan',listrik:1300},
+    {nama:'Tipe 45 Minimalis',tipe:45,harga:250000000,lb:45,lt:120,kamar_tidur:3,kamar_mandi:1,stok_tersedia:6,stok_total:6,label:'TERSEDIA',jenis:'komersil',fasilitas:'Listrik 2200VA,Air PAM,Carport,Pagar depan',listrik:2200},
+    {nama:'Tipe 50',tipe:50,harga:320000000,lb:50,lt:120,kamar_tidur:3,kamar_mandi:2,stok_tersedia:5,stok_total:5,label:'TERSEDIA',jenis:'komersil',fasilitas:'Listrik 2200VA,Air PAM,Carport,Pagar depan',listrik:2200},
+    {nama:'Tipe 60',tipe:60,harga:370000000,lb:60,lt:120,kamar_tidur:3,kamar_mandi:2,stok_tersedia:5,stok_total:5,label:'TERSEDIA',jenis:'komersil',fasilitas:'Listrik 2200VA,Air PAM,Carport 2 Mobil,Pagar depan',listrik:2200},
+    {nama:'Tipe 70',tipe:70,harga:420000000,lb:70,lt:120,kamar_tidur:3,kamar_mandi:2,stok_tersedia:4,stok_total:4,label:'TERSEDIA',jenis:'komersil',fasilitas:'Listrik 2200VA,Air PAM,Carport 2 Mobil,Pagar depan',listrik:2200},
+    {nama:'Tipe 80',tipe:80,harga:470000000,lb:80,lt:120,kamar_tidur:4,kamar_mandi:2,stok_tersedia:4,stok_total:4,label:'TERSEDIA',jenis:'komersil',fasilitas:'Listrik 3500VA,Air PAM,Carport 2 Mobil,Pagar depan',listrik:3500},
   ];
   renderUnits();
 }
 
-// ==============================================================
-// RENDER PROGRESS
-// ==============================================================
+// ── PROGRESS ─────────────────────────────────────────────────
 function renderProgress() {
   const s = siteSettings;
-  const totalUnit = allUnits.reduce((a,u)=>a+(parseInt(u.stok_total)||0),0) || parseInt(s.total_unit) || 42;
-  const tersedia = allUnits.reduce((a,u)=>a+(parseInt(u.stok_tersedia)||0),0);
-  const terjual = totalUnit - tersedia;
-  const pctTerjual = Math.round(terjual/totalUnit*100);
-  const pctKonstr = parseInt(s.progress_konstruksi) || 2;
-  const pctDok = parseInt(s.progress_dokumen) || 2;
-
-  document.getElementById('pTotal').textContent = totalUnit;
-  document.getElementById('pTersedia').textContent = tersedia;
-  document.getElementById('pTerjual').textContent = terjual;
+  const tot = allUnits.reduce((a,u)=>a+(parseInt(u.stok_total)||0),0) || parseInt(s.total_unit) || 42;
+  const av = allUnits.reduce((a,u)=>a+(parseInt(u.stok_tersedia)||0),0);
+  const sold = tot - av;
+  const pctAvail = Math.round(av/tot*100);
+  const pctK = parseInt(s.progress_konstruksi) || 2;
+  const pctD = parseInt(s.progress_dokumen) || 2;
+  document.getElementById('pTotal').textContent = tot;
+  document.getElementById('pTersedia').textContent = av;
+  document.getElementById('pTerjual').textContent = sold;
   document.getElementById('pTarget').textContent = s.target_serah || 'Q2 2026';
-  document.getElementById('pbUnitTxt').textContent = tersedia + ' / ' + totalUnit + ' tersisa';
-  document.getElementById('pbKonstrTxt').textContent = pctKonstr + '%';
-  document.getElementById('pbDokTxt').textContent = pctDok + '%';
-  document.getElementById('spTotal').textContent = totalUnit;
+  document.getElementById('pbUnitTxt').textContent = av + ' / ' + tot;
+  document.getElementById('pbKonstrTxt').textContent = pctK + '%';
+  document.getElementById('pbDokTxt').textContent = pctD + '%';
+  document.getElementById('spTotal').textContent = tot;
   if (allUnits[0]) {
     document.getElementById('spLB').textContent = allUnits[0].lb || 36;
-    document.getElementById('spLT').textContent = allUnits[0].lt || 100;
+    document.getElementById('spLT').textContent = allUnits[0].lt || 120;
   }
-
   setTimeout(() => {
-    document.getElementById('pbUnit').style.width = pctTerjual + '%';
-    document.getElementById('pbKonstr').style.width = pctKonstr + '%';
-    document.getElementById('pbDok').style.width = pctDok + '%';
-    document.getElementById('statTotal').textContent = totalUnit;
+    document.getElementById('pbUnit').style.width = pctAvail + '%';
+    document.getElementById('pbKonstr').style.width = pctK + '%';
+    document.getElementById('pbDok').style.width = pctD + '%';
+    document.getElementById('statTotal').textContent = tot;
     if (allUnits.length) {
-      const harga = parseInt(allUnits[0].harga) || 182000000;
-      document.getElementById('statHarga').textContent = (harga/1000000).toFixed(0) + ' Jt';
-      const pokok = harga * 0.9;
-      const r = 5/100/12; const n = 240;
-      const cicilan = Math.round(pokok*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1));
-      document.getElementById('statCicilan').textContent = (cicilan/1000000).toFixed(2).replace('.',',') + ' Jt';
+      const h = parseInt(allUnits[0].harga) || 182000000;
+      document.getElementById('statHarga').textContent = (h/1000000).toFixed(0);
+      const p = h * 0.9; const r = 5/100/12; const n = 240;
+      const c = Math.round(p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1));
+      document.getElementById('statCicilan').textContent = (c/1000000).toFixed(2).replace('.',',');
     }
-  }, 300);
+  }, 400);
 }
 
-// ==============================================================
-// KPR SELECT
-// ==============================================================
+// ── KPR SELECT ───────────────────────────────────────────────
 function populateKPRSelect() {
   if (!allUnits.length) return;
   document.getElementById('kprTipe').innerHTML = allUnits.map(u => {
-    const harga = parseInt(u.harga) || 182000000;
-    const jenis = (u.jenis||'').toLowerCase()==='komersil' ? 'Komersil' : 'Subsidi';
-    return `<option value="${harga}">${u.nama||'Tipe '+u.tipe} — Rp ${harga.toLocaleString('id')} (${jenis})</option>`;
+    const h = parseInt(u.harga) || 182000000;
+    const j = (u.jenis||'').toLowerCase()==='komersil' ? 'Komersil' : 'Subsidi';
+    return `<option value="${h}">${u.nama||'Tipe '+u.tipe} — Rp ${h.toLocaleString('id')} (${j})</option>`;
   }).join('');
   hitungKPR();
 }
 
-// ==============================================================
-// KALKULATOR KPR
-// ==============================================================
+// ── KPR CALC ─────────────────────────────────────────────────
 function hitungKPR() {
   const sel = document.getElementById('kprTipe');
-  const harga = parseInt(sel.value) || 182000000;
-  const selectedText = sel.options[sel.selectedIndex] ? sel.options[sel.selectedIndex].text : '';
-  const isKomersil = selectedText.includes('Komersil');
-  const dpPct = parseInt(document.getElementById('kprDP').value);
-  const tenor  = parseInt(document.getElementById('kprTenor').value);
-  const bunga  = parseFloat(document.getElementById('kprBunga').value);
-  const dp     = Math.round(harga * dpPct / 100);
-  const pokok  = harga - dp;
+  const h = parseInt(sel.value) || 182000000;
+  const txt = sel.options[sel.selectedIndex]?.text || '';
+  const isK = txt.includes('Komersil');
+  const dp = parseInt(document.getElementById('kprDP').value);
+  const tenor = parseInt(document.getElementById('kprTenor').value);
+  const bunga = parseFloat(document.getElementById('kprBunga').value);
+  const dpAmt = Math.round(h * dp / 100);
+  const pokok = h - dpAmt;
   const r = bunga/100/12; const n = tenor*12;
   const cicilan = Math.round(pokok*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1));
-  const total   = cicilan*n + dp;
-
-  document.getElementById('dpLabel').textContent    = 'Rp '+dp.toLocaleString('id')+' ('+dpPct+'%)';
+  const total = cicilan*n + dpAmt;
+  document.getElementById('dpLabel').textContent = 'Rp '+dpAmt.toLocaleString('id')+' ('+dp+'%)';
   document.getElementById('tenorLabel').textContent = tenor+' tahun';
-  document.getElementById('kprHarga').textContent   = 'Rp '+harga.toLocaleString('id');
-  document.getElementById('kprDPVal').textContent   = 'Rp '+dp.toLocaleString('id');
-  document.getElementById('kprPokok').textContent   = 'Rp '+pokok.toLocaleString('id');
-
-  const highlightEl = document.querySelector('.kpr-highlight');
-  const lbl = document.querySelector('.cicilan-lbl');
-  const infoEl = document.getElementById('kprInfoKomersil');
-
-  if (isKomersil) {
-    document.getElementById('kprCicilan').textContent = 'HANYA CASH';
-    document.getElementById('kprTotal').textContent   = 'Rp '+harga.toLocaleString('id');
-    if (highlightEl) highlightEl.style.background = '#185FA5';
-    if (lbl) lbl.textContent = 'Metode Pembayaran';
-    if (infoEl) infoEl.style.display = 'block';
+  document.getElementById('kprHarga').textContent = 'Rp '+h.toLocaleString('id');
+  document.getElementById('kprDPVal').textContent = 'Rp '+dpAmt.toLocaleString('id');
+  document.getElementById('kprPokok').textContent = 'Rp '+pokok.toLocaleString('id');
+  const hlVal = document.getElementById('kprCicilan');
+  const hlLbl = document.getElementById('kprHlLbl');
+  const komNote = document.getElementById('kprKomNote');
+  if (isK) {
+    hlVal.textContent = 'HANYA CASH';
+    hlVal.className = 'kpr-hl-val kom';
+    hlLbl.textContent = 'Metode Pembayaran';
+    document.getElementById('kprTotal').textContent = 'Rp '+h.toLocaleString('id');
+    komNote.style.display = 'block';
   } else {
-    document.getElementById('kprCicilan').textContent = 'Rp '+cicilan.toLocaleString('id');
-    document.getElementById('kprTotal').textContent   = 'Rp '+total.toLocaleString('id');
-    if (highlightEl) highlightEl.style.background = 'var(--teal-600)';
-    if (lbl) lbl.textContent = 'Cicilan Per Bulan';
-    if (infoEl) infoEl.style.display = 'none';
+    hlVal.textContent = 'Rp '+cicilan.toLocaleString('id');
+    hlVal.className = 'kpr-hl-val';
+    hlLbl.textContent = 'Cicilan Per Bulan';
+    document.getElementById('kprTotal').textContent = 'Rp '+total.toLocaleString('id');
+    komNote.style.display = 'none';
   }
 }
 hitungKPR();
 
-// ==============================================================
-// SITEPLAN
-// ==============================================================
+// ── SITEPLAN ─────────────────────────────────────────────────
 function renderSiteplan() {
   const id = siteSettings.siteplan_id || '';
   if (!id) return;
   const box = document.getElementById('siteplanBox');
   box.innerHTML = `
     <img src="https://drive.google.com/thumbnail?id=${id}&sz=w1200" alt="Siteplan"
-      style="width:100%;display:block;border-radius:var(--radius-lg)"
-      onerror="this.parentElement.innerHTML='<div class=siteplan-placeholder><div style=font-size:3rem>🗺️</div><div>Gambar tidak dapat dimuat.</div></div>'">
-    <button class="siteplan-zoom-btn" onclick="window.open('https://drive.google.com/file/d/${id}/view','_blank')">🔍 Perbesar</button>`;
+      style="width:100%;display:block;border-radius:var(--r-xl)"
+      onerror="this.parentElement.innerHTML='<div class=sp-placeholder><div class=sp-ph-icon><svg viewBox=\'0 0 24 24\' stroke-width=\'1.5\' stroke=\'#ccc\' fill=\'none\'><path d=\'M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18\'/></svg></div><div>Gambar tidak dapat dimuat</div></div>'">
+    <button class="sp-zoom" onclick="window.open('https://drive.google.com/file/d/${id}/view','_blank')">🔍 Perbesar</button>`;
 }
 
-// ==============================================================
-// GALERI
-// ==============================================================
-function normalizeKat(str) {
-  return (str||'').trim().replace(/\s+/g,' ').toLowerCase();
-}
-
+// ── GALERI ───────────────────────────────────────────────────
 async function loadGaleri() {
   try {
     const res = await fetch(SCRIPT_URL + '?action=galeri');
     const data = await res.json();
-    allFotos = Array.isArray(data) ? data.filter(f => f.drive_id && String(f.drive_id).trim()) : [];
+    allFotos = Array.isArray(data) ? data.filter(f=>f.drive_id&&String(f.drive_id).trim()) : [];
     filteredFotos = [...allFotos];
-    allFotos.length ? renderGaleri(allFotos) : renderGaleriPlaceholder();
-  } catch(e) {
-    console.error('Galeri error:', e);
-    renderGaleriPlaceholder();
-  }
+    allFotos.length ? renderGal(allFotos) : renderGalPlaceholder();
+  } catch(e) { renderGalPlaceholder(); }
 }
 
-function renderGaleri(fotos) {
+function renderGal(fotos) {
   filteredFotos = fotos;
-  const grid = document.getElementById('galeriGrid');
-  if (!fotos.length) { renderGaleriPlaceholder(); return; }
-  grid.innerHTML = fotos.map((f,i) => {
+  const g = document.getElementById('galeriGrid');
+  if (!fotos.length) { renderGalPlaceholder(); return; }
+  g.innerHTML = fotos.map((f,i) => {
     const id = String(f.drive_id).trim();
-    const judul = f.judul || '';
+    const jul = f.judul || '';
     const tgl = f.tanggal || '';
-    return `
-    <div class="galeri-item" onclick="openLB(${i})">
-      <img src="https://drive.google.com/thumbnail?id=${id}&sz=w600" alt="${judul}" loading="lazy"
-        onerror="this.parentElement.style.background='var(--gray-50)';this.style.display='none'">
-      <div class="galeri-overlay"><span>🔍</span></div>
-      <div class="galeri-caption">${judul}${tgl?' · '+tgl:''}</div>
+    return `<div class="gal-item" onclick="openLB(${i})">
+      <img src="https://drive.google.com/thumbnail?id=${id}&sz=w600" alt="${jul}" loading="lazy" onerror="this.parentElement.style.background='var(--gray-100)';this.style.display='none'">
+      <div class="gal-overlay"><svg width="28" height="28" viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      <div class="gal-cap">${jul}${tgl?' · '+tgl:''}</div>
     </div>`;
   }).join('');
 }
 
-function renderGaleriPlaceholder() {
-  const labels = [
-    {icon:'🏗️',text:'Pondasi'},{icon:'🧱',text:'Dinding'},
-    {icon:'🪟',text:'Jendela'},{icon:'🚪',text:'Pintu'},
-    {icon:'🏠',text:'Tampak Depan'},{icon:'📐',text:'Denah'}
+function renderGalPlaceholder() {
+  const icons = [
+    {svg:'<rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',lbl:'Tampak Depan'},
+    {svg:'<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>',lbl:'Pondasi'},
+    {svg:'<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',lbl:'Struktur'},
+    {svg:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',lbl:'Finishing'},
+    {svg:'<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>',lbl:'Lokasi'},
+    {svg:'<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/>',lbl:'Denah'},
   ];
-  document.getElementById('galeriGrid').innerHTML = labels.map(l => `
-    <div class="galeri-placeholder-card">
-      <div style="font-size:2rem">${l.icon}</div>
-      <div style="font-weight:600;font-size:13px">${l.text}</div>
-      <div style="font-size:11px;opacity:.5">Belum tersedia</div>
+  document.getElementById('galeriGrid').innerHTML = icons.map(ic => `
+    <div class="gal-ph">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gray-300)" stroke-width="1.5">${ic.svg}</svg>
+      <div style="font-size:12px;font-weight:500;color:var(--gray-300)">${ic.lbl}</div>
+      <div style="font-size:11px;color:var(--gray-300)">Belum tersedia</div>
     </div>`).join('');
 }
 
 function filterGaleri(kat, btn) {
-  document.querySelectorAll('.galeri-tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  const fotos = kat === 'semua' ? allFotos : allFotos.filter(f => normalizeKat(f.kategori) === normalizeKat(kat));
-  fotos.length ? renderGaleri(fotos) : renderGaleriPlaceholder();
+  document.querySelectorAll('.gtab').forEach(t=>t.classList.remove('act'));
+  btn.classList.add('act');
+  const fotos = kat==='semua' ? allFotos : allFotos.filter(f=>(f.kategori||'').trim().toLowerCase()===kat.toLowerCase());
+  fotos.length ? renderGal(fotos) : renderGalPlaceholder();
 }
 
-// ==============================================================
-// LIGHTBOX
-// ==============================================================
+// ── LIGHTBOX ─────────────────────────────────────────────────
 function openLB(idx) {
-  lbIndex = idx; updateLB();
-  document.getElementById('lightbox').classList.add('open');
+  lbIdx = idx; updateLB();
+  document.getElementById('lb').classList.add('open');
   document.body.style.overflow = 'hidden';
   document.getElementById('lbThumbs').innerHTML = filteredFotos.map((f,i) => {
     const id = String(f.drive_id).trim();
-    return `<img class="lb-thumb ${i===idx?'active':''}" src="https://drive.google.com/thumbnail?id=${id}&sz=w120" onclick="jumpLB(${i})" alt="">`;
+    return `<img class="lb-thumb ${i===idx?'act':''}" src="https://drive.google.com/thumbnail?id=${id}&sz=w120" onclick="jumpLB(${i})" alt="">`;
   }).join('');
 }
 function updateLB() {
-  const f = filteredFotos[lbIndex];
+  const f = filteredFotos[lbIdx];
   if (!f) return;
   const id = String(f.drive_id).trim();
   document.getElementById('lbImg').src = `https://drive.google.com/thumbnail?id=${id}&sz=w1200`;
-  document.getElementById('lbCaption').textContent = (f.judul||'') + (f.tanggal?' · '+f.tanggal:'');
-  document.getElementById('lbCounter').textContent = (lbIndex+1)+' / '+filteredFotos.length;
-  document.querySelectorAll('.lb-thumb').forEach((t,i)=>t.classList.toggle('active',i===lbIndex));
+  document.getElementById('lbCap').textContent = (f.judul||'') + (f.tanggal?' · '+f.tanggal:'');
+  document.getElementById('lbCtr').textContent = (lbIdx+1)+' / '+filteredFotos.length;
+  document.querySelectorAll('.lb-thumb').forEach((t,i)=>t.classList.toggle('act',i===lbIdx));
 }
-function jumpLB(i){ lbIndex=i; updateLB(); }
-function lbNav(d){ lbIndex=(lbIndex+d+filteredFotos.length)%filteredFotos.length; updateLB(); }
-function closeLB(){ document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow=''; }
-function lbOutside(e){ if(e.target.id==='lightbox') closeLB(); }
-document.addEventListener('keydown', e=>{
-  if(!document.getElementById('lightbox').classList.contains('open')) return;
-  if(e.key==='ArrowRight') lbNav(1);
-  if(e.key==='ArrowLeft') lbNav(-1);
-  if(e.key==='Escape') closeLB();
+function jumpLB(i){lbIdx=i;updateLB();}
+function lbNav(d){lbIdx=(lbIdx+d+filteredFotos.length)%filteredFotos.length;updateLB();}
+function closeLB(){document.getElementById('lb').classList.remove('open');document.body.style.overflow='';}
+function lbOut(e){if(e.target.id==='lb')closeLB();}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('lb').classList.contains('open'))return;
+  if(e.key==='ArrowRight')lbNav(1);
+  if(e.key==='ArrowLeft')lbNav(-1);
+  if(e.key==='Escape')closeLB();
 });
 
-// ==============================================================
-// MODAL UNIT
-// ==============================================================
+// ── MODAL ────────────────────────────────────────────────────
 function openModal(idx) {
   const u = allUnits[idx];
-  const harga = parseInt(u.harga) || 182000000;
-  const fasilitas = (u.fasilitas||'Listrik,PAM,Carport').split(',');
-  const isSubsidi = (u.jenis||'').toLowerCase() === 'subsidi' || (parseInt(u.tipe)||parseInt(u.lb)||0) <= 36;
-  const metodeBayar = isSubsidi
-    ? `<span style="background:var(--teal-50);color:var(--teal-800);padding:3px 10px;border-radius:100px;font-size:12px;font-weight:700">🏦 KPR FLPP</span> <span style="background:#E6F1FB;color:#185FA5;padding:3px 10px;border-radius:100px;font-size:12px;font-weight:700">💵 Cash</span>`
-    : `<span style="background:#E6F1FB;color:#185FA5;padding:3px 10px;border-radius:100px;font-size:12px;font-weight:700">💵 Cash / Tunai</span>`;
+  const h = parseInt(u.harga)||182000000;
+  const fas = (u.fasilitas||'Listrik,PAM,Carport').split(',');
+  const isS = (u.jenis||'').toLowerCase()==='subsidi'||(parseInt(u.tipe)||parseInt(u.lb)||0)<=36;
+  const mc = isS ? 'var(--teal-d)' : 'var(--blue)';
+  const tags = isS
+    ? `<span style="background:var(--teal-ll);color:var(--teal-d);padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600">KPR FLPP</span> <span style="background:var(--blue-l);color:var(--blue);padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600">Cash</span>`
+    : `<span style="background:var(--blue-l);color:var(--blue);padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600">Cash / Tunai</span>`;
   document.getElementById('modalBody').innerHTML = `
-    <h3>${u.nama}</h3>
-    <div class="modal-price" style="color:${isSubsidi?'var(--teal-600)':'#185FA5'}">Rp ${harga.toLocaleString('id')}</div>
-    <div style="margin-bottom:1rem">${metodeBayar}</div>
-    <div class="modal-specs">
-      <div class="modal-spec"><div class="k">Luas Bangunan</div><div class="v">${u.lb||u.tipe} m²</div></div>
-      <div class="modal-spec"><div class="k">Luas Tanah</div><div class="v">120 m²</div></div>
-      <div class="modal-spec"><div class="k">Kamar Tidur</div><div class="v">${u.kamar_tidur||2} Kamar</div></div>
-      <div class="modal-spec"><div class="k">Kamar Mandi</div><div class="v">${u.kamar_mandi||1} Kamar</div></div>
-      <div class="modal-spec"><div class="k">Daya Listrik</div><div class="v">${u.listrik||'1.300'} VA</div></div>
-      <div class="modal-spec"><div class="k">Stok Tersisa</div><div class="v">${u.stok_tersedia||'—'} Unit</div></div>
+    <div class="modal-head">
+      <h3 style="font-family:'Nunito',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.35rem">${u.nama}</h3>
+      <div class="modal-price" style="color:${mc}">Rp ${h.toLocaleString('id')}</div>
+      <div style="margin-bottom:.25rem">${tags}</div>
     </div>
-    <p style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text-muted)">FASILITAS TERMASUK</p>
-    <ul class="modal-list">${fasilitas.map(f=>`<li>${f.trim()}</li>`).join('')}</ul>
-    ${isSubsidi ? '' : '<div style="background:#E6F1FB;border-radius:8px;padding:.75rem;font-size:12px;color:#185FA5;font-weight:600;margin-bottom:1rem">💡 Tipe ini hanya tersedia untuk pembelian Cash/Tunai.</div>'}
-    <button class="modal-btn" style="background:${isSubsidi?'var(--teal-600)':'#185FA5'}" onclick="closeModal();goTo('booking')">Booking Unit Ini →</button>`;
+    <div class="modal-body">
+      <div class="modal-specs">
+        <div class="mspec"><div class="mk">Luas Bangunan</div><div class="mv">${u.lb||u.tipe} m²</div></div>
+        <div class="mspec"><div class="mk">Luas Tanah</div><div class="mv">120 m²</div></div>
+        <div class="mspec"><div class="mk">Kamar Tidur</div><div class="mv">${u.kamar_tidur||2} Kamar</div></div>
+        <div class="mspec"><div class="mk">Kamar Mandi</div><div class="mv">${u.kamar_mandi||1} Kamar</div></div>
+        <div class="mspec"><div class="mk">Daya Listrik</div><div class="mv">${u.listrik||'1.300'} VA</div></div>
+        <div class="mspec"><div class="mk">Stok Tersisa</div><div class="mv">${u.stok_tersedia||'—'} Unit</div></div>
+      </div>
+      <p style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gray-500);margin-bottom:.75rem">Fasilitas Termasuk</p>
+      <ul class="mlist">${fas.map(f=>`<li>${f.trim()}</li>`).join('')}</ul>
+      ${!isS?'<div style="background:var(--blue-l);border-radius:10px;padding:.85rem 1rem;font-size:12px;color:var(--blue);font-weight:500;margin-bottom:1.25rem">💡 Tipe ini hanya tersedia untuk pembelian Cash/Tunai.</div>':''}
+      <button class="modal-cta" onclick="closeModal();goTo('booking')">Booking Unit Ini →</button>
+    </div>`;
   document.getElementById('modalBg').classList.add('open');
 }
-function closeModal(){ document.getElementById('modalBg').classList.remove('open'); }
-function closeModalOutside(e){ if(e.target.id==='modalBg') closeModal(); }
+function closeModal(){document.getElementById('modalBg').classList.remove('open');}
+function closeModalOut(e){if(e.target.id==='modalBg')closeModal();}
 
-// ==============================================================
-// BOOKING
-// ==============================================================
+// ── BOOKING ──────────────────────────────────────────────────
 async function submitBooking() {
   const nama = document.getElementById('fNama').value.trim();
   const hp = document.getElementById('fHP').value.trim();
   const unit = document.getElementById('fUnit').value;
   const errEl = document.getElementById('formError');
   errEl.style.display = 'none';
-  if(!nama){errEl.textContent='⚠️ Mohon isi nama lengkap Anda.';errEl.style.display='block';return;}
-  if(!hp){errEl.textContent='⚠️ Mohon isi nomor HP/WhatsApp Anda.';errEl.style.display='block';return;}
-  if(!unit){errEl.textContent='⚠️ Mohon pilih tipe unit yang diminati.';errEl.style.display='block';return;}
+  if (!nama){errEl.textContent='⚠️ Mohon isi nama lengkap Anda.';errEl.style.display='block';return;}
+  if (!hp){errEl.textContent='⚠️ Mohon isi nomor HP/WhatsApp Anda.';errEl.style.display='block';return;}
+  if (!unit){errEl.textContent='⚠️ Mohon pilih tipe unit yang diminati.';errEl.style.display='block';return;}
   const btn = document.getElementById('btnSubmit');
-  btn.disabled=true; btn.textContent='⏳ Mengirim...';
+  btn.disabled=true; btn.textContent='⏳ Mengirim…';
   try {
-    await fetch(SCRIPT_URL, {method:'POST', body:JSON.stringify({
-      nama, hp,
-      email: document.getElementById('fEmail').value,
-      pekerjaan: document.getElementById('fPekerjaan').value,
-      unit,
-      gaji: document.getElementById('fGaji').value,
-      catatan: document.getElementById('fCatatan').value
+    await fetch(SCRIPT_URL,{method:'POST',body:JSON.stringify({
+      nama,hp,email:document.getElementById('fEmail').value,
+      pekerjaan:document.getElementById('fPekerjaan').value,
+      unit,gaji:document.getElementById('fGaji').value,
+      catatan:document.getElementById('fCatatan').value
     })});
-    document.getElementById('successNama').textContent = nama;
-    document.getElementById('successHP').textContent = hp;
+    document.getElementById('sucNama').textContent = nama;
+    document.getElementById('sucHP').textContent = hp;
     document.getElementById('bookingForm').style.display = 'none';
     document.getElementById('bookingSuccess').style.display = 'block';
   } catch(err) {
-    btn.disabled=false; btn.textContent='📋 Kirim Permintaan Booking';
+    btn.disabled=false; btn.textContent='Kirim Permintaan Booking →';
     errEl.textContent='⚠️ Terjadi kesalahan koneksi. Coba lagi atau hubungi kami via WhatsApp.';
     errEl.style.display='block';
   }
 }
 
-// ==============================================================
-// AI CHAT — Menggunakan Groq API (OpenAI-compatible)
-// ==============================================================
-const chatHistory = [];
-
-function buildSystemPrompt() {
-  const units = allUnits.map(u => {
-    const jenis = (u.jenis||'').toLowerCase()==='komersil' ? 'Komersil (Cash saja)' : 'Subsidi (KPR FLPP + Cash)';
-    return `- ${u.nama}: Rp ${parseInt(u.harga).toLocaleString('id')}, LB ${u.lb}m², LT 120m², ${u.kamar_tidur||2} KT, stok ${u.stok_tersedia} unit, ${jenis}`;
+// ── AI CHAT ──────────────────────────────────────────────────
+function buildSysPrompt() {
+  const us = allUnits.map(u=>{
+    const j=(u.jenis||'').toLowerCase()==='komersil'?'Komersil (Cash saja)':'Subsidi (KPR FLPP + Cash)';
+    return `- ${u.nama}: Rp ${parseInt(u.harga).toLocaleString('id')}, LB ${u.lb}m², LT 120m², ${u.kamar_tidur||2} KT, stok ${u.stok_tersedia} unit, ${j}`;
   }).join('\n');
-  const s = siteSettings;
+  const s=siteSettings;
   return `Kamu adalah asisten penjualan Garuda Maharam Residence, perumahan di Paringin, Kabupaten Balangan, Kalimantan Selatan, dikembangkan oleh PT Rusdi Rahmi Property.
 
 DATA PROYEK:
@@ -1169,112 +1231,78 @@ DATA PROYEK:
 - Kontak WA: ${s.whatsapp||'081258001180'} | Email: ${s.email||'garuda_maharam@gmail.com'}
 
 TIPE UNIT:
-${units||'- Tipe 36 Minimalis: Rp 182.000.000 (Subsidi FLPP)\n- Tipe 42-80: Komersil Cash only'}
+${us||'- Tipe 36 Minimalis: Rp 182.000.000 (Subsidi FLPP)\n- Tipe 42-80: Komersil Cash only'}
 
 KETENTUAN PENTING:
 - Tipe 36: KPR FLPP (bunga 5% tetap, tenor max 20 tahun) ATAU Cash
 - Tipe 42-80: HANYA Cash/Tunai
 - Syarat FLPP: WNI, belum punya rumah, belum pernah terima subsidi, penghasilan max Rp 8 juta/bulan
-- DP minimum FLPP: 1% harga (bank biasanya minta 5-10%)
 - Bank penyalur FLPP Kalsel: BTN, BRI, Bank Kalsel, BPD
 
 CARA MENJAWAB:
-- Bahasa Indonesia yang ramah dan hangat
+- Bahasa Indonesia ramah dan hangat
 - Jawab singkat dan jelas, max 4-5 kalimat
-- Untuk rekomendasi tipe, tanya budget dan kebutuhan calon pembeli
 - Akhiri dengan ajakan booking/survei jika relevan
 - Kalau tidak tahu, arahkan ke WA ${s.whatsapp||'081258001180'}`;
 }
 
 async function sendChat() {
-  const input = document.getElementById('aiInput');
-  const msg = input.value.trim();
+  const inp = document.getElementById('aiInput');
+  const msg = inp.value.trim();
   if (!msg) return;
-
   appendMsg('user', msg);
-  input.value = '';
-  document.getElementById('aiSuggestions').style.display = 'none';
-
-  const btn = document.getElementById('aiSendBtn');
-  btn.disabled = true;
-  input.disabled = true;
-
-  const typingId = appendTyping();
-  chatHistory.push({ role: 'user', content: msg });
-
+  inp.value = '';
+  document.getElementById('aiSugg').style.display = 'none';
+  const btn = document.getElementById('aiSend');
+  btn.disabled = true; inp.disabled = true;
+  const tid = appendTyping();
+  chatHistory.push({role:'user',content:msg});
   try {
-    // ── Groq API (OpenAI-compatible) ──────────────────────────
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + GROQ_API_KEY
-      },
-      body: JSON.stringify({
-        model: GROQ_MODEL,
-        max_tokens: 1000,
-        messages: [
-          { role: 'system', content: buildSystemPrompt() },
-          ...chatHistory
-        ]
-      })
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_API_KEY},
+      body:JSON.stringify({model:GROQ_MODEL,max_tokens:1000,messages:[{role:'system',content:buildSysPrompt()},...chatHistory]})
     });
-
-    const data = await res.json();
-
-    // Groq mengembalikan format OpenAI: choices[0].message.content
-    const reply = data.choices?.[0]?.message?.content
-      || data.error?.message
-      || 'Maaf, terjadi kesalahan. Silakan coba lagi.';
-
-    chatHistory.push({ role: 'assistant', content: reply });
-    removeTyping(typingId);
+    const d = await res.json();
+    const reply = d.choices?.[0]?.message?.content || d.error?.message || 'Maaf, terjadi kesalahan. Silakan coba lagi.';
+    chatHistory.push({role:'assistant',content:reply});
+    removeTyping(tid);
     appendMsg('bot', reply);
-
-  } catch(err) {
-    removeTyping(typingId);
-    appendMsg('bot', 'Maaf, koneksi bermasalah. Silakan coba lagi atau hubungi kami via WhatsApp. 🙏');
+  } catch(e) {
+    removeTyping(tid);
+    appendMsg('bot','Maaf, koneksi bermasalah. Silakan coba lagi atau hubungi kami via WhatsApp. 🙏');
   }
-
-  btn.disabled = false;
-  input.disabled = false;
-  input.focus();
+  btn.disabled=false; inp.disabled=false; inp.focus();
 }
 
-function askSuggestion(el) {
-  document.getElementById('aiInput').value = el.textContent;
-  sendChat();
-}
+function askSug(el){document.getElementById('aiInput').value=el.textContent;sendChat();}
 
 function appendMsg(role, text) {
-  const msgs = document.getElementById('aiMessages');
-  const formatted = text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
-  const div = document.createElement('div');
-  div.className = 'ai-msg ' + role;
-  div.innerHTML = `<div class="ai-avatar">${role==='bot'?'🤖':'Anda'}</div><div class="ai-bubble">${formatted}</div>`;
-  msgs.appendChild(div);
+  const msgs = document.getElementById('aiMsgs');
+  const fmt = text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+  const d = document.createElement('div');
+  d.className = 'ai-msg '+role;
+  d.innerHTML = `<div class="ai-av">${role==='bot'?'🤖':'Anda'}</div><div class="ai-bub">${fmt}</div>`;
+  msgs.appendChild(d);
   msgs.scrollTop = msgs.scrollHeight;
 }
 
 function appendTyping() {
-  const msgs = document.getElementById('aiMessages');
-  const id = 'typing-' + Date.now();
-  const div = document.createElement('div');
-  div.className = 'ai-msg bot'; div.id = id;
-  div.innerHTML = `<div class="ai-avatar">🤖</div><div class="ai-bubble typing"><span></span><span></span><span></span></div>`;
-  msgs.appendChild(div);
+  const msgs = document.getElementById('aiMsgs');
+  const id = 'typ-'+Date.now();
+  const d = document.createElement('div');
+  d.className = 'ai-msg bot'; d.id = id;
+  d.innerHTML = `<div class="ai-av">🤖</div><div class="ai-bub typing"><span></span><span></span><span></span></div>`;
+  msgs.appendChild(d);
   msgs.scrollTop = msgs.scrollHeight;
   return id;
 }
+function removeTyping(id){const e=document.getElementById(id);if(e)e.remove();}
 
-function removeTyping(id) { const el = document.getElementById(id); if(el) el.remove(); }
-
-// ==============================================================
-// SCROLL
-// ==============================================================
+// ── NAVIGATION ───────────────────────────────────────────────
 function goTo(id) {
   const el = document.getElementById(id);
-  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  if (el) el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 loadData();
