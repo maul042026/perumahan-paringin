@@ -1165,6 +1165,7 @@ footer a:hover {
     <a onclick="goTo('kpr')">Kalkulator KPR</a>
     <a onclick="goTo('features')">Fitur</a>
     <a onclick="goTo('faq')">Chat AI</a>
+	<a onclick="goTo('siteplan')">Siteplan</a>
     <a onclick="goTo('booking')">Kontak</a>
     <button class="btn-nav" onclick="goTo('booking')">📋 Pesan Sekarang</button>
   </div>
@@ -1567,7 +1568,7 @@ footer a:hover {
 
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz6VfX1nng0WaC6NP-Ym_ujUNuyNsUg5Jlv3vFGcpi4LeYFp4AAeuC9xBY7O_3v85ef4w/exec';
-const GROQ_API_KEY = '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';
+const GROQ_API_KEY = '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';
 const GROQ_MODEL = 'llama-3.3-70b-versatile';
 
 let allUnits = [];
@@ -1704,6 +1705,19 @@ function hitungKPR() {
   document.getElementById('kprPokok').textContent = 'Rp ' + (pokok / 1000000).toFixed(1) + 'M';
   document.getElementById('kprTotal').textContent = 'Rp ' + (total / 1000000).toFixed(0) + 'M';
 }
+
+// ── SITEPLAN ─────────────────────────────────────────────────
+function renderSiteplan() {
+  const id = siteSettings.siteplan_id || '';
+  if (!id) return;
+  const box = document.getElementById('siteplanBox');
+  box.innerHTML = `
+    <img src="https://drive.google.com/thumbnail?id=${id}&sz=w1200" alt="Siteplan"
+      style="width:100%;display:block;border-radius:var(--r-xl)"
+      onerror="this.parentElement.innerHTML='<div class=sp-placeholder><div class=sp-ph-icon><svg viewBox=\'0 0 24 24\' stroke-width=\'1.5\' stroke=\'#ccc\' fill=\'none\'><path d=\'M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18\'/></svg></div><div>Gambar tidak dapat dimuat</div></div>'">
+    <button class="sp-zoom" onclick="window.open('https://drive.google.com/file/d/${id}/view','_blank')">🔍 Perbesar</button>`;
+}
+
 
 async function loadGaleri() {
   try {
