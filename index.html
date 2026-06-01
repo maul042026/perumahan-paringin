@@ -1904,21 +1904,29 @@ async function sendChat() {
   const btn = document.getElementById('aiSend');
   btn.disabled = true; inp.disabled = true;
   const tid = appendTyping();
-  chatHistory.push({role:'user',content:msg});
+  chatHistory.push({role:'user', content:msg});
+
   try {
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_API_KEY},
-      body:JSON.stringify({model:GROQ_MODEL,max_tokens:1000,messages:[{role:'system',content:buildSysPrompt()},...chatHistory]})
+    const res = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'chat',
+        messages: [
+          { role: 'system', content: buildSysPrompt() },
+          ...chatHistory
+        ]
+      })
     });
     const d = await res.json();
-    const reply = d.choices?.[0]?.message?.content || d.error?.message || 'Maaf, terjadi kesalahan. Silakan coba lagi.';
-    chatHistory.push({role:'assistant',content:reply});
+    const reply = d.choices?.[0]?.message?.content
+                  || d.error?.message
+                  || 'Maaf, terjadi kesalahan. Silakan coba lagi.';
+    chatHistory.push({role:'assistant', content:reply});
     removeTyping(tid);
     appendMsg('bot', reply);
   } catch(e) {
     removeTyping(tid);
-    appendMsg('bot','Maaf, koneksi bermasalah. Silakan coba lagi atau hubungi kami via WhatsApp. 🙏');
+    appendMsg('bot', 'Maaf, koneksi bermasalah. Silakan coba lagi atau hubungi kami via WhatsApp. 🙏');
   }
   btn.disabled=false; inp.disabled=false; inp.focus();
 }
